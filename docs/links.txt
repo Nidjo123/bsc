@@ -1,2 +1,6 @@
 http://lunokhod.org/?p=1356 - Semi-Global Matching explanations
 https://tex.stackexchange.com/questions/159446/what-is-the-proper-way-of-citing-referencing-an-external-image-document-file
+
+http://docs.opencv.org/2.4/doc/tutorials/calib3d/camera_calibration/camera_calibration.html - kalibracija kamere
+
+http://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html - kalibracija i rektifikacija
