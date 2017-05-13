@@ -5,6 +5,7 @@
 #include <png++/png.hpp>
 #include "LocalMatching.hpp"
 #include "SSD.hpp"
+#include "ZSAD.hpp"
 #include "predefs.hpp"
 
 int main(int argc, char *argv[]) {
@@ -16,15 +17,15 @@ int main(int argc, char *argv[]) {
 
     std::cout << "Left image: '" << argv[1] << "'\nRight image: '" << argv[2] << "'\nWindow size: " << window << "\nMax. disparity: " << max_disparity << std::endl;
 
-    SSD ssd(left, right, window, max_disparity);
+    ZSAD corresp(left, right, window, max_disparity);
 
-    LocalMatching localMatching(&ssd);
+    LocalMatching localMatching(&corresp);
 
     std::cout << "Starting calculations!" << std::endl;
     int **disparity_map = localMatching.calculateDisparities();
 
-    const int width = ssd.getWidth();
-    const int height = ssd.getHeight();
+    const int width = corresp.getWidth();
+    const int height = corresp.getHeight();
     
     // make image
     png::image<png::gray_pixel> output(width, height);
