@@ -1,6 +1,0 @@
-#include "Correspondence.hpp"
-
-Correspondence::Correspondence(image &left_image, image &right_image, int window, int max_disparity)
-  : left_image_(left_image), right_image_(right_image), width_(left_image.get_width()), height_(left_image.get_height()),  window_(window), max_disparity_(max_disparity),  {
-  cost = new int**
-}

@@ -1,5 +1,0 @@
-#include "SSD.hpp"
-
-void SSD::calculate() {
-
-}
