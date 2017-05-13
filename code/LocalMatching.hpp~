@@ -1,0 +1,8 @@
+#ifndef LOCAL_MATCHING_HPP
+#define LOCAL_MATCHING_HPP
+
+class LocalMatching {
+
+};
+
+#endif

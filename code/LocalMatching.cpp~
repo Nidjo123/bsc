@@ -1,0 +1,4 @@
+#include "LocalMatching.hpp"
+
+LocalMatching::LocalMatching(Correspondence &correspondence)
+  : correspondence_(correspondence) {}

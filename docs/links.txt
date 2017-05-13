@@ -4,3 +4,11 @@ https://tex.stackexchange.com/questions/159446/what-is-the-proper-way-of-citing-
 http://docs.opencv.org/2.4/doc/tutorials/calib3d/camera_calibration/camera_calibration.html - kalibracija kamere
 
 http://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html - kalibracija i rektifikacija
+
+https://www.youtube.com/watch?v=dtoqpH5s3nA - Mathias Rothermel. Semi-global matching and 3D City Models.
+
+https://www.youtube.com/watch?v=kxsvG4sSuvA - CVFX Lecture 15: Stereo correspondence
+
+https://www.youtube.com/watch?v=9qtKEsOFeUg - 3D Point Clouds Extracted from Photogrammetric Data with Semi-Global Matching
+
+https://www.youtube.com/watch?v=O7B2vCsTpC0 - Stereo 3D Vision (How to avoid being dinner for Wolves) - Computerphile

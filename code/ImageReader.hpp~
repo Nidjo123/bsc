@@ -1,0 +1,11 @@
+#ifndef IMAGE_READER_HPP
+#define IMAGE_READER_HPP
+
+#include <string>
+
+class ImageReader {
+public:
+  Image readImage(
+};
+
+#endif

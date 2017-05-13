@@ -1,0 +1,25 @@
+#ifndef CORRESPONDENCE_HPP
+#define CORRESPONDENCE_HPP
+
+#include <png++/png.hpp>
+
+typedef png::image<png::rgb_pixel> image;
+
+class Correspondence {
+private:
+  const image &left_image_;
+  const image &right_image_;
+  const int width_;
+  const int height_;
+  const int window_;
+  int ***disparity_;
+  
+  
+public:
+  Correspondence(image &left_image, image &right_image, int window, int max_disparity);
+  virtual ~Correspondence();
+  
+  virtual void calculate();
+};
+
+#endif CORRESPONDENCE_HPP
