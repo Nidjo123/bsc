@@ -5,11 +5,12 @@
 #include <png++/png.hpp>
 #include "LocalMatching.hpp"
 #include "SSD.hpp"
+#include "predefs.hpp"
 
 int main(int argc, char *argv[]) {
   if (argc == 6) {
-    png::image<png::gray_pixel> left(argv[1]);
-    png::image<png::gray_pixel> right(argv[2]);
+    image left(argv[1]);
+    image right(argv[2]);
     const int window = atoi(argv[3]);
     const int max_disparity = atoi(argv[4]);
 
