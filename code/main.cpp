@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 
     std::cout << "Left image: '" << argv[1] << "'\nRight image: '" << argv[2] << "'\nWindow size: " << window << "\nMax. disparity: " << max_disparity << std::endl;
 
-    Census corresp(left, right, window, max_disparity);
+    SSD corresp(left, right, window, max_disparity);
 
     LocalMatching localMatching(&corresp);
 
@@ -31,10 +31,11 @@ int main(int argc, char *argv[]) {
     
     // make image
     png::image<png::gray_pixel> output(width, height);
+    const float scale = std::numeric_limits<png::gray_pixel>::max() / (float) (max_disparity + 1);
 
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-	output[i][j] = std::round(disparity_map[i][j]);
+	output[i][j] = std::round(disparity_map[i][j] * scale);
       }
     }
 
