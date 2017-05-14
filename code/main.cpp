@@ -6,18 +6,20 @@
 #include "LocalMatching.hpp"
 #include "SSD.hpp"
 #include "ZSAD.hpp"
+#include "Census.hpp"
 #include "predefs.hpp"
 
 int main(int argc, char *argv[]) {
-  if (argc == 6) {
+  if (argc == 7) {
     image left(argv[1]);
     image right(argv[2]);
-    const int window = atoi(argv[3]);
-    const int max_disparity = atoi(argv[4]);
+    char *method = argv[3];
+    const int window = atoi(argv[4]);
+    const int max_disparity = atoi(argv[5]);
 
     std::cout << "Left image: '" << argv[1] << "'\nRight image: '" << argv[2] << "'\nWindow size: " << window << "\nMax. disparity: " << max_disparity << std::endl;
 
-    ZSAD corresp(left, right, window, max_disparity);
+    Census corresp(left, right, window, max_disparity);
 
     LocalMatching localMatching(&corresp);
 
@@ -36,8 +38,8 @@ int main(int argc, char *argv[]) {
       }
     }
 
-    std::cout << "Writing image " << argv[5] << std::endl;
-    output.write(argv[5]);
+    std::cout << "Writing image " << argv[6] << std::endl;
+    output.write(argv[6]);
 
     std::cout << "Done!" << std::endl;
   }
