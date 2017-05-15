@@ -11,7 +11,7 @@ Correspondence::Correspondence(image &left_image, image &right_image, int window
       cost_[i][j] = new int[max_disparity_ + 1];
 
       for (int k = 0; k < max_disparity_; k++) {
-	cost_[i][j][k] = max_disparity_;
+	cost_[i][j][k] = 999999999;
       }
     }
   }

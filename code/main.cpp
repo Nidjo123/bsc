@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 
     std::cout << "Left image: '" << argv[1] << "'\nRight image: '" << argv[2] << "'\nWindow size: " << window << "\nMax. disparity: " << max_disparity << std::endl;
 
-    SSD corresp(left, right, window, max_disparity);
+    ZSAD corresp(left, right, window, max_disparity);
 
     LocalMatching localMatching(&corresp);
 
@@ -31,7 +31,12 @@ int main(int argc, char *argv[]) {
     
     // make image
     png::image<png::gray_pixel> output(width, height);
-    const float scale = std::numeric_limits<png::gray_pixel>::max() / (float) (max_disparity + 1);
+    const float scale = ((int) std::numeric_limits<png::gray_pixel>::max()) / (float) (max_disparity + 1);
+
+    int value = std::numeric_limits<png::gray_pixel>::max();
+
+    std::cout << "Max value is " << value << std::endl;
+    std::cout << "Scale factor is " << scale << std::endl;
 
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
