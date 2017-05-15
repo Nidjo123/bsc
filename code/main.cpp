@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
     
     // make image
     png::image<png::gray_pixel> output(width, height);
-    const float scale = ((int) std::numeric_limits<png::gray_pixel>::max()) / (float) (max_disparity + 1);
+    const float scale = std::numeric_limits<png::gray_pixel>::max() / (float) (max_disparity + 1);
 
     int value = std::numeric_limits<png::gray_pixel>::max();
 

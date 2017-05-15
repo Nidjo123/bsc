@@ -30,7 +30,7 @@ Correspondence::~Correspondence() {
 
 int*** Correspondence::calculateCost() {
   for (int y = whalf_; y < height_ - whalf_; y++) {
-    std::cout << (y / (float) (height_ - 2 * whalf_) * 100.f) << "%" << std::endl;
+    std::cout << (y / (float) (height_ - 2 * whalf_ + 2) * 100.f) << "%" << std::endl;
     for (int x = whalf_; x < width_ - whalf_; x++) {
       #pragma omp parallel for
       for (int d = 0; d <= max_disparity_; d++) {
