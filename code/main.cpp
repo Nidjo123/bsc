@@ -7,6 +7,7 @@
 #include "SSD.hpp"
 #include "ZSAD.hpp"
 #include "Census.hpp"
+#include "BirchfieldTomasi.hpp"
 #include "predefs.hpp"
 
 int main(int argc, char *argv[]) {
@@ -18,8 +19,8 @@ int main(int argc, char *argv[]) {
     const int max_disparity = atoi(argv[5]);
 
     std::cout << "Left image: '" << argv[1] << "'\nRight image: '" << argv[2] << "'\nWindow size: " << window << "\nMax. disparity: " << max_disparity << std::endl;
-
-    ZSAD corresp(left, right, window, max_disparity);
+    
+    BirchfieldTomasi corresp(left, right, window, max_disparity);
 
     LocalMatching localMatching(&corresp);
 

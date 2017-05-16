@@ -3,6 +3,7 @@
 
 #include <png++/png.hpp>
 
+typedef png::gray_pixel pixel;
 typedef png::image<png::gray_pixel> image;
 
 // window size should be odd
