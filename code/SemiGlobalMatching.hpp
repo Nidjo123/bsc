@@ -12,6 +12,7 @@ private:
   int height_;
   int max_disparity_;
   int ***S;
+  int *L[2];
   int **disparity_map_;
 
   bool isBorderPixel(int x, int y) const;

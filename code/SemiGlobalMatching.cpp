@@ -30,7 +30,7 @@ SemiGlobalMatching::SemiGlobalMatching(Correspondence *correspondence)
   }
 
   S = new int**[height_];
-
+  
   for (int i = 0; i < height_; i++) {
     S[i] = new int*[width_];
 
@@ -41,6 +41,9 @@ SemiGlobalMatching::SemiGlobalMatching(Correspondence *correspondence)
       }
     }
   }
+
+  L[0] = new int[max_disparity_ + 1];
+  L[1] = new int[max_disparity_ + 1];
 }
 
 SemiGlobalMatching::~SemiGlobalMatching() {
@@ -58,6 +61,9 @@ SemiGlobalMatching::~SemiGlobalMatching() {
   delete [] S;
 
   delete [] disparity_map_;
+
+  delete [] L[0];
+  delete [] L[1];
 }
 
 bool SemiGlobalMatching::isBorderPixel(int x, int y) const {
@@ -67,35 +73,39 @@ bool SemiGlobalMatching::isBorderPixel(int x, int y) const {
 void SemiGlobalMatching::traversePath(int sx, int sy, const Path &path, int ***C) {
   if (sx < 0 || sy < 0 || sx >= width_ || sy >= height_ || !isBorderPixel(sx, sy)) return;
 
+  for (int d = 0; d < max_disparity_ + 1; d++) {
+    L[0][d] = C[sy][sx][d];
+  }
+
   int x = sx + path.dx;
   int y = sy + path.dy;
-  int prev_min_Lr = S[sy][sx][0];
-  int min_d = -2;
+  int min_prev_Lr = C[sy][sx][0];
   
   for (; x > 0 && y > 0 && x < width_ - 1 && y < height_ - 1; x += path.dx, y += path.dy) {
-    int curr_Lr = 0;
-    int curr_min_Lr = 9999999;
-    int curr_min_d = 0;
+    int min_Lr = 999999999;
     
     for (int d = 0; d < max_disparity_ + 1; d++) {
-      curr_Lr = C[y][x][d] + prev_min_Lr;
+      int Lr = 999999999;
 
-      if (std::abs(min_d - d) == 1) {
-	curr_Lr += P1;
-      } else if (min_d != d && min_d >= 0) {
-	curr_Lr += P2;
+      for (int dp = 0; dp < max_disparity_ + 1; dp++) {
+	if (d == dp && Lr > L[0][dp]) {
+	  Lr = L[0][dp];
+	} else if (std::abs(d - dp) == 1 && Lr > L[0][dp] + P1) {
+	  Lr = L[0][dp] + P1;
+	} else if (Lr > L[0][dp] + P2) {
+	  Lr = L[0][dp] + P2;
+	}
       }
 
-      if (curr_min_Lr > curr_Lr) {
-	curr_min_Lr = curr_Lr;
-	curr_min_d = d;
-      }
-
-      S[y][x][d] += curr_Lr;
+      S[y][x][d] += (L[1][d] = C[y][x][d] + Lr - min_prev_Lr);
+      min_Lr = std::min(min_Lr, L[1][d]);
     }
 
-    min_d = curr_min_d;
-    prev_min_Lr = curr_min_Lr;
+    min_prev_Lr = min_Lr;
+
+    for (int i = 0; i < max_disparity_ + 1; i++) {
+      L[0][i] = L[1][i];
+    }
   }
 }
 
