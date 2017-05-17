@@ -3,24 +3,28 @@
 
 #include "Correspondence.hpp"
 
+struct Path;
+
 class SemiGlobalMatching {
 private:
   Correspondence &correspondence_;
-  image &left_image_;
-  image &right_image_;
   int width_;
   int height_;
   int max_disparity_;
-  int **aggregateCost_;
+  int ***S;
   int **disparity_map_;
 
-  void aggregateCost();
+  bool isBorderPixel(int x, int y) const;
+  void traversePath(int sx, int sy, const Path &path, int ***C);
+  void aggregateCost(int ***C);
   
 public:
-  SemiGlobalMatching(image &left, image &right, int max_disparity);
+  SemiGlobalMatching(Correspondence *correspondence);
   virtual ~SemiGlobalMatching();
   
   int** calculateDisparities();
 };
+
+const int MAX_PATHS = 16;
 
 #endif

@@ -8,6 +8,7 @@
 #include "ZSAD.hpp"
 #include "Census.hpp"
 #include "BirchfieldTomasi.hpp"
+#include "SemiGlobalMatching.hpp"
 #include "predefs.hpp"
 
 int main(int argc, char *argv[]) {
@@ -22,7 +23,7 @@ int main(int argc, char *argv[]) {
     
     BirchfieldTomasi corresp(left, right, window, max_disparity);
 
-    LocalMatching localMatching(&corresp);
+    SemiGlobalMatching localMatching(&corresp);
 
     std::cout << "Starting calculations!" << std::endl;
     int **disparity_map = localMatching.calculateDisparities();
