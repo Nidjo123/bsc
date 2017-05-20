@@ -20,11 +20,12 @@ int main(int argc, char *argv[]) {
     const int max_disparity = atoi(argv[5]);
 
     std::cout << "Left image: '" << argv[1] << "'\nRight image: '" << argv[2] << "'\nWindow size: " << window << "\nMax. disparity: " << max_disparity << std::endl;
-    
-    BirchfieldTomasi corresp(left, right, window, max_disparity);
 
-    SemiGlobalMatching localMatching(&corresp);
+    //    BirchfieldTomassi (left, right, window, max_disparity);
+    ZSAD corresp(left, right, window, max_disparity);
 
+    //    SemiGlobalMatching localMatching(&corresp);
+    LocalMatching localMatching(&corresp);
     std::cout << "Starting calculations!" << std::endl;
     int **disparity_map = localMatching.calculateDisparities();
 
@@ -33,6 +34,7 @@ int main(int argc, char *argv[]) {
     
     // make image
     png::image<png::gray_pixel> output(width, height);
+    png::image<png::gray_pixel> disp_output(width, height);
     const float scale = std::numeric_limits<png::gray_pixel>::max() / (float) (max_disparity + 1);
 
     int value = std::numeric_limits<png::gray_pixel>::max();
@@ -43,11 +45,13 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
 	output[i][j] = std::round(disparity_map[i][j] * scale);
+	disp_output[i][j] = disparity_map[i][j] * 3;
       }
     }
 
     std::cout << "Writing image " << argv[6] << std::endl;
-    output.write(argv[6]);
+    //        output.write(argv[6]);
+    disp_output.write(argv[6]);
 
     std::cout << "Done!" << std::endl;
   }
