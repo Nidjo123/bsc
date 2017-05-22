@@ -1,7 +1,8 @@
 \select@language {croatian}
 \contentsline {chapter}{\numberline {1}Uvod}{1}
-\contentsline {chapter}{\numberline {2}Stereoskopski sustavi}{2}
-\contentsline {chapter}{\numberline {3}Lokalne metode}{3}
-\contentsline {chapter}{\numberline {4}Poluglobalno podudaranje}{4}
-\contentsline {chapter}{\numberline {5}Rezultati}{5}
-\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{6}
+\contentsline {chapter}{\numberline {2}Stereoskopski sustavi}{3}
+\contentsline {chapter}{\numberline {3}Lokalne metode}{4}
+\contentsline {chapter}{\numberline {4}Poluglobalno podudaranje}{5}
+\contentsline {chapter}{\numberline {5}Rezultati}{6}
+\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{7}
+\contentsline {chapter}{\numberline {7}Upute za kori\IeC {\v s}tenje}{8}

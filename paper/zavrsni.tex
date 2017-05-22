@@ -24,15 +24,39 @@
 Računalni vid iznimno je zanimljivo interdisciplinarno područje koje se svrstava kao grana umjetne inteligencije.
 Ono se bavi omogućavanjem računalima da shvate i interpretiraju podatke iz digitalnih slika i videozapisa.
 Vid je jedno od najznačajnijih osjetila jer pomoću njega primamo mnoštvo korisnih informacija.
-Pomoću vida se orijentiramo u prostoru, prepoznajemo druge ljude i njihova lica, čitamo itd.
+Pomoću vida se orijentiramo u prostoru, prepoznajemo druge ljude i njihova lica, čitamo, prikupljamo informacije itd.
 Kada bi računala mogla interpretirati vizualne podražaje poput ljudi, to bi omogućilo velik
-napredak u umjetnoj inteligenciji. Nažalost, to je još uvijek neriješen problem. Cijelo područje
+napredak u umjetnoj inteligenciji. Nažalost, to je još uvijek neriješen problem.
+
+Cijelo područje
 je nastalo šezdesetih godina prošlog stoljeća kada se mislilo da će se taj problem relativno brzo riješiti.
 Naime, profesor je kao zadatak studentu zadao da na robota stavi kameru i da robot opisuje ono što vidi.
 Vrlo brzo se pokazalo kako je problem puno složeniji nego što se mislilo.
 S druge strane, od tada su ostvareni veliki napretci u tom području kao i općenito u umjetnoj inteligenciji.
 
-$$ f(x) = x^2 + y_1 $$
+U ovom radu ćemo opisati neke metode za stvaranje rekonstrukcije prostora iz slika dviju kamera. Takvi sustavi se nazivaju stereo sustavi, a takva vrsta vida stereo vid.
+Oni funkcioniraju analogno ljudskom vidu koji se još naziva binokularni vid zbog toga što ljudi gledaju pomoću dva oka. To ljudima omogućava stvaranje vrlo kvalitetnog dojma o 3D osobinama prostora kojeg promatraju. Mogu zaključiti koliko je nešto udaljeno, odnos veličina raznih predmeta itd.
+
+Gusta stereoskopska rekonstrukcija pokušava iz dvaju slika rekonstruirati gusti oblak točaka koji
+odgovara prostoru koji se promatra. Postupak se odvija u nekoliko koraka.
+Prvo je potrebno obraditi slike kako bi se otklonile fizičke nesavršenosti sustava poput nesavršenosti leće i položaja senzora. Zatim je potrebno piksele
+transformirati kako bi svi korespondentni pikseli ležali na istom pravcu, odnosno epipolarnoj liniji. Nakon toga se može krenuti u rekonstrukciju scene.
+
+Postoje dvije glavne podjele metoda guste stereoskopske rekonstrukcije, a to su lokalne i globalne metode. Lokalne metode se temelje na promatranju lokalne okoline svakog pojedinog piksela koju ćemo nazvati prozorčić.
+Postupak rekonstrukcije tada se svodi na traženje najsličnijeg prozorčića na drugoj slici. Važno je naglasiti kako se traženje vrši samo duž epipolarne linije.
+Za razliku od lokalnih, globalne metode rekonstrukciju rade pomoću svih piksela slike što intuitivno dovodi do zaključka da je postupak složeniji i zahtijeva više računalnih resursa.
+
+Metoda poluglobalnog podudaranja, koju ćemo detaljnije obrađivati u ovom radu, može se svrstati negdje između. Naime, ona kao ulaz prima izračunate korespondencije lokalnih metoda, a zatim radi optimizaciju nad pikselima duž iste linije u osam ili šesnaest smjerova. Takva optimizacije dovodi do kvalitetnijih rezultata u dijelovima gdje dolazi do nagle promjene u dubini scene.
+
+U sljedećem poglavlju ćemo ukratko objasniti postupke kalibracije stereo sustava te rektifikacije parova slika kao predradnja postupku rekonstrukcije.
+
+U trećem poglavlju ćemo obraditi nekoliko lokalnih metoda guste stereoskopske rekonstrukcije. Lokalne metode nude relativno dobre rezultate uz prihvatljivu performansu.
+
+Zatim ćemo definirati algoritam poluglobalnog podudaranja, razraditi njegove hiperparametre te vidjeti kakva poboljšanja nudi u odnosu na lokalne metode.
+
+U petom poglavlju ćemo vidjeti rezultate eksperimenata na standardnim skupovima slika, usporedbe obrađenih metoda i komentare.
+
+Nakon zaključka se nalaze kratke upute za korištenje implementiranih programa i skripti za testiranje ispitnih slijedova.
 
 \chapter{Stereoskopski sustavi}
 
@@ -43,6 +67,8 @@ $$ f(x) = x^2 + y_1 $$
 \chapter{Rezultati}
 
 \chapter{Zaključak}
+
+\chapter{Upute za korištenje}
 Zaključak.
 
 \bibliography{literatura}
