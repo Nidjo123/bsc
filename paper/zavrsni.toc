@@ -1,8 +1,11 @@
 \select@language {croatian}
 \contentsline {chapter}{\numberline {1}Uvod}{1}
-\contentsline {chapter}{\numberline {2}Stereoskopski sustavi}{3}
-\contentsline {chapter}{\numberline {3}Lokalne metode}{4}
-\contentsline {chapter}{\numberline {4}Poluglobalno podudaranje}{5}
-\contentsline {chapter}{\numberline {5}Rezultati}{6}
-\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{7}
-\contentsline {chapter}{\numberline {A}Upute za kori\IeC {\v s}tenje}{8}
+\contentsline {chapter}{\numberline {2}Stereoskopska rekonstrukcija}{3}
+\contentsline {subsection}{\numberline {2.0.1}Epipolarna geometrija}{3}
+\contentsline {subsection}{\numberline {2.0.2}Rektifikacija}{3}
+\contentsline {chapter}{\numberline {3}Lokalne metode}{5}
+\contentsline {subsection}{\numberline {3.0.1}Algoritam}{5}
+\contentsline {chapter}{\numberline {4}Poluglobalno podudaranje}{6}
+\contentsline {chapter}{\numberline {5}Rezultati}{7}
+\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{8}
+\contentsline {chapter}{\numberline {A}Upute za kori\IeC {\v s}tenje}{9}
