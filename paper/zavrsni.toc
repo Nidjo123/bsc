@@ -5,4 +5,4 @@
 \contentsline {chapter}{\numberline {4}Poluglobalno podudaranje}{5}
 \contentsline {chapter}{\numberline {5}Rezultati}{6}
 \contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{7}
-\contentsline {chapter}{\numberline {7}Upute za kori\IeC {\v s}tenje}{8}
+\contentsline {chapter}{\numberline {A}Upute za kori\IeC {\v s}tenje}{8}

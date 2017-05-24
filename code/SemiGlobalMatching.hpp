@@ -1,29 +1,26 @@
 #ifndef SEMI_GLOBAL_MATCHING_HPP
 #define SEMI_GLOBAL_MATCHING_HPP
 
-#include "Correspondence.hpp"
+#include "Matching.hpp"
 
 struct Path;
 
-class SemiGlobalMatching {
+class SemiGlobalMatching : public Matching {
 private:
-  Correspondence &correspondence_;
-  int width_;
-  int height_;
-  int max_disparity_;
-  int ***S;
-  int *L[2];
-  int **disparity_map_;
+  const int P1_;
+  const int P2_;
+  int ***S_;
+  int *L_[2];
 
   bool isBorderPixel(int x, int y) const;
   void traversePath(int sx, int sy, const Path &path, int ***C);
   void aggregateCost(int ***C);
   
 public:
-  SemiGlobalMatching(Correspondence *correspondence);
+  SemiGlobalMatching(Correspondence *correspondence, int P1, int P2);
   virtual ~SemiGlobalMatching();
   
-  int** calculateDisparities();
+  virtual int** calculateDisparities() override;
 };
 
 const int MAX_PATHS = 16;
