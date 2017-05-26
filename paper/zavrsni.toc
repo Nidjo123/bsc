@@ -2,15 +2,15 @@
 \contentsline {chapter}{\numberline {1}Uvod}{1}
 \contentsline {chapter}{\numberline {2}Stereoskopska rekonstrukcija}{3}
 \contentsline {section}{\numberline {2.1}Epipolarna geometrija}{3}
-\contentsline {section}{\numberline {2.2}Rektifikacija}{3}
+\contentsline {section}{\numberline {2.2}Rektifikacija}{4}
 \contentsline {chapter}{\numberline {3}Lokalne metode}{5}
 \contentsline {section}{\numberline {3.1}Op\IeC {\'c}i algoritam}{5}
 \contentsline {section}{\numberline {3.2}SSD}{6}
 \contentsline {section}{\numberline {3.3}ZSAD}{6}
-\contentsline {section}{\numberline {3.4}Census}{6}
-\contentsline {section}{\numberline {3.5}Korespondencija neovisna o uzorkovanju (Birchfield-Tomasi)}{6}
-\contentsline {section}{\numberline {3.6}Usporedba lokalnih i globalnih metoda}{6}
-\contentsline {chapter}{\numberline {4}Poluglobalno podudaranje}{7}
-\contentsline {chapter}{\numberline {5}Rezultati}{8}
-\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{9}
-\contentsline {chapter}{\numberline {A}Upute za kori\IeC {\v s}tenje}{10}
+\contentsline {section}{\numberline {3.4}Census}{7}
+\contentsline {section}{\numberline {3.5}Korespondencija neovisna o uzorkovanju (Birchfield-Tomasi)}{7}
+\contentsline {section}{\numberline {3.6}Usporedba lokalnih i globalnih metoda}{7}
+\contentsline {chapter}{\numberline {4}Poluglobalno podudaranje}{8}
+\contentsline {chapter}{\numberline {5}Rezultati}{9}
+\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{10}
+\contentsline {chapter}{\numberline {A}Upute za kori\IeC {\v s}tenje}{11}
