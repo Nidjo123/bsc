@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.4.6)  26 MAY 2017 23:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.4.6)  27 MAY 2017 15:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -817,17 +817,17 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 Poglavlje 3.
 [5
 
-]
-Overfull \hbox (75.32166pt too wide) in paragraph at lines 150--150
+] [6]
+Overfull \hbox (75.32166pt too wide) in paragraph at lines 164--164
 []\T1/lmr/bx/n/17.28 Korespondencija neo-visna o uzor-ko-va-nju (Birchfield-
  []
 
 
-Underfull \hbox (badness 1147) in paragraph at lines 169--169
+Underfull \hbox (badness 1147) in paragraph at lines 183--183
 []|\T1/lmr/m/n/12 minimizacija glo-balne funk-cije kroz
  []
 
-[6] [7]
+[7]
 Poglavlje 4.
 [8
 
@@ -844,34 +844,30 @@ Poglavlje A.
 No file zavrsni.bbl.
 [11
 
-] [12] (./zavrsni.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] [12] (./zavrsni.aux) ) 
 Here is how much of TeX's memory you used:
  6119 strings out of 493013
  85317 string characters out of 6135683
- 162731 words of memory out of 5000000
+ 161731 words of memory out of 5000000
  9501 multiletter control sequences out of 15000+600000
  94461 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,9n,40p,536b,326s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
-ips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share
-/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm
--mathsy.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texm
-f/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcs
-c10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fo
-nts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pf
-b></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/typ
-e1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/s
-hare/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/
-lm/lmro12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/te
-xmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/
-lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf
-/fonts/type1/public/lm/lmtto10.pfb>
-Output written on zavrsni.pdf (16 pages, 318209 bytes).
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/sh
+are/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-
+mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf
+/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx1
+0.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/font
+s/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pf
+b></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/ty
+pe1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr
+/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/publ
+ic/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/tex
+mf/fonts/type1/public/lm/lmro12.pfb></usr/share/texmf/fonts/type1/public/lm/lms
+s12.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/
+fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12
+.pfb></usr/share/texmf/fonts/type1/public/lm/lmtto10.pfb>
+Output written on zavrsni.pdf (16 pages, 320615 bytes).
 PDF statistics:
  129 PDF objects out of 1000 (max. 8388607)
  94 compressed objects within 1 object stream

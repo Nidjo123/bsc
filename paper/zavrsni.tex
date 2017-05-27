@@ -143,9 +143,23 @@ Najbolja podudarnost kod SSD-a postiže se kada je vrijednost funkcije cijene je
 \section{ZSAD}
 
 Sljedeća metoda je ZSAD ({eng. \sl Zero Sum of Absolute Differences}). Matematički ju možemo definirati ovako:
-$$C_{ZSAD}(x, y, d) = \sum_{i}[(M_L - I_L(x, y)) - (M_R - I_R(x - d, y))]$$
+$$C_{ZSAD}(x, y, d) = \sum_{i}\lvert(M_L - I_L(x, y)) - (M_R - I_R(x - d, y))\rvert$$
 gdje je $I_L$ lijeva slika, $I_R$ desna slika, a $M_L$ i $M_R$ srednje vrijednosti intenziteta piksela u trenutnom prozoru lijeve, odnosno desne slike.
 \section{Census}
+
+Funkcija korespondencije Census se temelji na Hammingovoj udaljenosti između dvije binarne riječi. Kako bismo odredili cijenu između dvaju piksela, potrebno je transformirati
+prozore oko piksela u binarne riječi. Svakom pikselu u prozoru ćemo pridružiti bit prema sljedećoj funkciji:
+
+\[   
+b(p, q) = 
+     \begin{cases}
+       0, & I(p) \leq I(q) \\
+       1, & I(p) \gt I(q) \\
+     \end{cases}
+\]
+gdje je $I$ slika, $p$ piksel u sredini prozora za kojega računamo transformaciju, $q$ bilo koji piksel unutar prozora. Važno je napomenuti da redoslijed pridruživanja bitova mora biti jednak u oba
+prozora koja se uspoređuju kako bi rezultat bio ispravan. Nakon što svakom pikselu pridružimo binarnu vrijednost, cijenu možemo izračunati
+računski tako primijenimo operaciju isključivo-ili između binarnih riječi prozora lijeve i desne slike te zatim prebrojimo broj bitova u jedinici.
 
 \section{Korespondencija neovisna o uzorkovanju (Birchfield-Tomasi)}
 

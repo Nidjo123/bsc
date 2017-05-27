@@ -7,7 +7,7 @@
 \contentsline {section}{\numberline {3.1}Op\IeC {\'c}i algoritam}{5}
 \contentsline {section}{\numberline {3.2}SSD}{6}
 \contentsline {section}{\numberline {3.3}ZSAD}{6}
-\contentsline {section}{\numberline {3.4}Census}{7}
+\contentsline {section}{\numberline {3.4}Census}{6}
 \contentsline {section}{\numberline {3.5}Korespondencija neovisna o uzorkovanju (Birchfield-Tomasi)}{7}
 \contentsline {section}{\numberline {3.6}Usporedba lokalnih i globalnih metoda}{7}
 \contentsline {chapter}{\numberline {4}Poluglobalno podudaranje}{8}
