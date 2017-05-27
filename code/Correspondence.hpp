@@ -13,6 +13,7 @@ protected:
   int whalf_;
   int max_disparity_;
   int ***cost_;
+  bool calculated_;
   
 public:
   Correspondence(image &left_image, image &right_image, int window, int max_disparity);

@@ -12,33 +12,27 @@
 #include "SemiGlobalMatching.hpp"
 #include "predefs.hpp"
 
-static char const *help = "Arguments: left_image right_image corresp_method matching_method"
-  "window_size max_disparity output_image [P1 P2]\n"
+static char const *help = "Arguments: left_image right_image matching_method"
+  "window_size max_disparity output_image P1 P2\n"
   "Available correspondences: SSD, ZSAD, Census, BT\n"
-  "Available matching methods: LocalMatching, SGM\n"
-  "Window size must be odd number.\n"
-  "If SGM is used, it requires two additional arguments (P1 and P2)\n";
+  "Window size must be odd number.\n";
 
 int main(int argc, char *argv[]) {
-  if (argc == 8 || argc == 10) {
+  if (argc == 9) {
     image left(argv[1]);
     image right(argv[2]);
-    std::string matching_method(argv[3]);
-    std::string corresp_method(argv[4]);
-    const int window = atoi(argv[5]);
-    const int max_disparity = atoi(argv[6]);
+    std::string corresp_method(argv[3]);
+    const int window = atoi(argv[4]);
+    const int max_disparity = atoi(argv[5]);
 
-    int P1 = 3, P2 = 22;
-
-    if (argc == 10) {
-      P1 = atoi(argv[8]);
-      P2 = atoi(argv[9]);
-    }
+    int  P1 = atoi(argv[7]);
+    int  P2 = atoi(argv[8]);
 
     std::cout << "Left image: '" << argv[1] << "'\nRight image: '" << argv[2] << "'\nWindow size: " << window << "\nMax. disparity: " << max_disparity << std::endl;
 
     Correspondence *corresp;
-    Matching *matching;
+    Matching *localMatching;
+    Matching *sgm;
 
     if (corresp_method == "SSD") {
       corresp = new SSD(left, right, window, max_disparity);
@@ -53,17 +47,11 @@ int main(int argc, char *argv[]) {
       return 1;
     }
     
-    if (matching_method == "LocalMatching") {
-      matching = new LocalMatching(corresp);
-    } else if (matching_method == "SGM") {
-      matching = new SemiGlobalMatching(corresp, P1, P2);
-    } else {
-      std::cout << "Unknown matching method: " << matching_method << std::endl;
-      return 1;
-    }
+    localMatching = new LocalMatching(corresp);
+    sgm = new SemiGlobalMatching(corresp, P1, P2);
 
     std::cout << "Starting calculations!" << std::endl;
-    int **disparity_map = matching->calculateDisparities();
+    int **disparity_map = localMatching->calculateDisparities();
 
     const int width = corresp->getWidth();
     const int height = corresp->getHeight();
@@ -77,12 +65,24 @@ int main(int argc, char *argv[]) {
       }
     }
 
-    std::cout << "Writing image " << argv[6] << std::endl;
-    output.write(argv[7]);
+    std::cout << "Writing local matching image " << argv[6] << std::endl;
+    output.write("local_" + std::string(argv[6]));
+
+    disparity_map = sgm->calculateDisparities();
+
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+	output[i][j] = disparity_map[i][j];
+      }
+    }
+
+    std::cout << "Writing sgm matching image " << argv[6] << std::endl;
+    output.write("sgm_" + std::string(argv[6]));
 
     std::cout << "Done!" << std::endl;
 
-    delete matching;
+    delete localMatching;
+    delete sgm;
     delete corresp;
   } else {
     std::cout << help << std::endl;

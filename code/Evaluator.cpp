@@ -24,7 +24,7 @@ double Evaluator::error(image &left_truth, image &right_truth, image &test) {
     }
   }
 
-  std::cout << "Bad pixels: " << bad_pixels << "\nTotal unoccluded pixels: " << unoccluded_pixels << std::endl;
+  //  std::cout << "Bad pixels: " << bad_pixels << "\nTotal unoccluded pixels: " << unoccluded_pixels << std::endl;
 
   return bad_pixels / (double) unoccluded_pixels;
 }
@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
     image right_truth(right_truth_path);
     image test(test_path);
 
-    std::cout << "Error: " << Evaluator::error(left_truth, right_truth, test);
+    std::cout << Evaluator::error(left_truth, right_truth, test);
   }
   
   return 0;

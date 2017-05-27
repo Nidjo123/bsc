@@ -1,7 +1,8 @@
 #include "Correspondence.hpp"
+#include <climits>
 
 Correspondence::Correspondence(image &left_image, image &right_image, int window, int max_disparity)
-  : left_image_(left_image), right_image_(right_image), width_(left_image.get_width()), height_(left_image.get_height()),  whalf_(window / 2), max_disparity_(max_disparity)  {
+  : left_image_(left_image), right_image_(right_image), width_(left_image.get_width()), height_(left_image.get_height()),  whalf_(window / 2), max_disparity_(max_disparity), calculated_(false)  {
   cost_ = new int**[height_];
 
   for (int i = 0; i < height_; i++) {
@@ -11,7 +12,7 @@ Correspondence::Correspondence(image &left_image, image &right_image, int window
       cost_[i][j] = new int[max_disparity_ + 1];
 
       for (int k = 0; k < max_disparity_; k++) {
-	cost_[i][j][k] = 999999999;
+	cost_[i][j][k] = INT_MAX;
       }
     }
   }
@@ -29,8 +30,9 @@ Correspondence::~Correspondence() {
 }
 
 int*** Correspondence::calculateCost() {
+  if (calculated_) return cost_;
+  
   for (int y = whalf_; y < height_ - whalf_; y++) {
-    std::cout << (y / (float) (height_ - 2 * whalf_ + 2) * 100.f) << "%" << std::endl;
     for (int x = whalf_; x < width_ - whalf_; x++) {
       #pragma omp parallel for
       for (int d = 0; d <= max_disparity_; d++) {
@@ -38,6 +40,8 @@ int*** Correspondence::calculateCost() {
       }
     }
   }
+
+  calculated_ = true;
 
   return cost_;
 }
