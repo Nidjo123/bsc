@@ -13,20 +13,20 @@
 #include "predefs.hpp"
 
 static char const *help = "Arguments: left_image right_image matching_method"
-  "window_size max_disparity output_image P1 P2\n"
+  "window_size max_disparity P1 P2 local_out_image sgm_out_image\n"
   "Available correspondences: SSD, ZSAD, Census, BT\n"
   "Window size must be odd number.\n";
 
 int main(int argc, char *argv[]) {
-  if (argc == 9) {
+  if (argc == 10) {
     image left(argv[1]);
     image right(argv[2]);
     std::string corresp_method(argv[3]);
     const int window = atoi(argv[4]);
     const int max_disparity = atoi(argv[5]);
 
-    int  P1 = atoi(argv[7]);
-    int  P2 = atoi(argv[8]);
+    int  P1 = atoi(argv[6]);
+    int  P2 = atoi(argv[7]);
 
     std::cout << "Left image: '" << argv[1] << "'\nRight image: '" << argv[2] << "'\nWindow size: " << window << "\nMax. disparity: " << max_disparity << std::endl;
 
@@ -65,8 +65,8 @@ int main(int argc, char *argv[]) {
       }
     }
 
-    std::cout << "Writing local matching image " << argv[6] << std::endl;
-    output.write("local_" + std::string(argv[6]));
+    std::cout << "Writing local matching image " << argv[8] << std::endl;
+    output.write(argv[8]);
 
     disparity_map = sgm->calculateDisparities();
 
@@ -76,8 +76,8 @@ int main(int argc, char *argv[]) {
       }
     }
 
-    std::cout << "Writing sgm matching image " << argv[6] << std::endl;
-    output.write("sgm_" + std::string(argv[6]));
+    std::cout << "Writing sgm matching image " << argv[9] << std::endl;
+    output.write(argv[9]);
 
     std::cout << "Done!" << std::endl;
 

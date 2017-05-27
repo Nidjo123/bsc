@@ -75,14 +75,17 @@ void SemiGlobalMatching::traversePath(int sx, int sy, const Path &path, int ***C
     for (int d = 0; d < max_disparity_ + 1; d++) {
       int Lr = INT_MAX;
 
-      for (int dp = 0; dp < max_disparity_ + 1; dp++) {
-	if (d == dp && Lr > L_[0][dp]) {
-	  Lr = L_[0][dp];
-	} else if (std::abs(d - dp) == 1 && Lr > L_[0][dp] + P1_) {
-	  Lr = L_[0][dp] + P1_;
-	} else if (Lr > L_[0][dp] + P2_) {
-	  Lr = L_[0][dp] + P2_;
-	}
+      if (Lr > L_[0][d]) {
+	Lr = L_[0][d];
+      }
+      if (d > 0 && Lr > L_[0][d-1] + P1_) {
+	Lr = L_[0][d-1] + P1_;
+      }
+      if (d < max_disparity_ && Lr > L_[0][d+1] + P1_) {
+	Lr = L_[0][d+1] + P1_;
+      }
+      if (Lr > min_prev_Lr + P2_) {
+	Lr = min_prev_Lr + P2_;
       }
 
       S_[y][x][d] += (L_[1][d] = C[y][x][d] + Lr - min_prev_Lr);
