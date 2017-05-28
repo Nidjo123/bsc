@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.4.6)  27 MAY 2017 15:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.4.6)  28 MAY 2017 17:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -622,19 +622,19 @@ Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
 ) (./zavrsni.aux)
 \openout1 = `zavrsni.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 5.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 6.
 
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -734,52 +734,52 @@ e
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 13.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 16.
 
 (/usr/share/texmf/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 13.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 16.
 
 (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 13.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 16.
 
 (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 13.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 16.
 
 
 (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 13.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 16.
 
 
 (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 13.
+(Font)              <14.4> on input line 16.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 13.
+(Font)              <10> on input line 16.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 13.
-LaTeX Font Info:    Try loading font information for U+msa on input line 13.
+(Font)              <7> on input line 16.
+LaTeX Font Info:    Try loading font information for U+msa on input line 16.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 13.
+LaTeX Font Info:    Try loading font information for U+msb on input line 16.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 16.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 19.
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -799,7 +799,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 ]
 Poglavlje 1.
 
-Overfull \hbox (0.65814pt too wide) in paragraph at lines 40--44
+Overfull \hbox (0.65814pt too wide) in paragraph at lines 43--47
 []\T1/lmr/m/n/12 Gusta ste-re-oskop-ska re-kons-truk-cija po-ku-²ava iz dvaju s
 lika re-kons-tru-irati gusti
  []
@@ -812,65 +812,58 @@ Poglavlje 2.
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 101.
+(Font)              <5> on input line 104.
  [4]
 Poglavlje 3.
 [5
 
 ] [6]
-Overfull \hbox (75.32166pt too wide) in paragraph at lines 164--164
-[]\T1/lmr/bx/n/17.28 Korespondencija neo-visna o uzor-ko-va-nju (Birchfield-
- []
+
+Package natbib Warning: Citation `kovac15ms' on page 7 undefined on input line 
+194.
 
 
-Underfull \hbox (badness 1147) in paragraph at lines 183--183
+Underfull \hbox (badness 1147) in paragraph at lines 213--213
 []|\T1/lmr/m/n/12 minimizacija glo-balne funk-cije kroz
  []
 
-[7]
+[7] [8]
 Poglavlje 4.
-[8
-
-]
-Poglavlje 5.
 [9
 
 ]
-Poglavlje 6.
+Poglavlje 5.
 [10
 
 ]
-Poglavlje A.
-No file zavrsni.bbl.
+Poglavlje 6.
 [11
 
-] [12] (./zavrsni.aux) ) 
+]
+Poglavlje A.
+(./zavrsni.bbl [12
+
+]
+! Undefined control sequence.
+<argument> ...normalfont \interlinepenalty \@Mdef 
+                                                  \Huge \scshape Dodatak \\ ...
+l.1 \begin{thebibliography}{2}
+                              
+? 
+! Emergency stop.
+<argument> ...normalfont \interlinepenalty \@Mdef 
+                                                  \Huge \scshape Dodatak \\ ...
+l.1 \begin{thebibliography}{2}
+                              
+End of file on the terminal!
+
+ 
 Here is how much of TeX's memory you used:
- 6119 strings out of 493013
- 85317 string characters out of 6135683
- 161731 words of memory out of 5000000
- 9501 multiletter control sequences out of 15000+600000
+ 6118 strings out of 493013
+ 85316 string characters out of 6135683
+ 163731 words of memory out of 5000000
+ 9500 multiletter control sequences out of 15000+600000
  94461 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,9n,40p,536b,326s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/sh
-are/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-
-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf
-/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx1
-0.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/font
-s/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pf
-b></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/ty
-pe1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr
-/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/publ
-ic/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/tex
-mf/fonts/type1/public/lm/lmro12.pfb></usr/share/texmf/fonts/type1/public/lm/lms
-s12.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/
-fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12
-.pfb></usr/share/texmf/fonts/type1/public/lm/lmtto10.pfb>
-Output written on zavrsni.pdf (16 pages, 320615 bytes).
-PDF statistics:
- 129 PDF objects out of 1000 (max. 8388607)
- 94 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+!  ==> Fatal error occurred, no output PDF file produced!

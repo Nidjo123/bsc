@@ -1,8 +1,11 @@
 \documentclass[utf8, zavrsni, numeric]{fer}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{natbib}
 
 \begin{document}
+
+\nocite{*}
 
 \thesisnumber{5118}
 
@@ -136,7 +139,6 @@ Stoga je potrebno razmatrati samo piksele duž epipolarne linije.
 Prva metoda koju ćemo opisati je SSD ({eng. \sl Sum of Squared Differences}) koja se temelji na zbroju kvadrata razlika intenziteta piksela.
 Matematički ju možemo opisati sljedećim izrazom:
 $$C_{SSD}(x, y, d) = \sum_{i}(I_R(x - d, y) - I_L(x, y))^2 $$
-
 gdje su $(x, y)$ koordinate piksela lijeve slike, $d$ trenutni disparitet, a $I_L$ lijeva slika te $I_R$ desna slika. Zbroj ide po svim pikselima unutar prozora promatranog piksela.
 Najbolja podudarnost kod SSD-a postiže se kada je vrijednost funkcije cijene jednaka $0$. Lako je vidjeti zašto je tomu tako kada bismo usporedili dva prozora s istim intenzitetima piksela. Tada će vrijednost funkcije biti $0$ jer oduzimamo iste vrijednosti. Iz toga slijedi da što se intenziteti više razlikuju, to će i cijene biti veće. Također, kvadrat doprinosi tome da vrijednosti ne budu negativne tako da možemo raditi samo s pozitivnim brojevima.
 
@@ -154,14 +156,42 @@ prozore oko piksela u binarne riječi. Svakom pikselu u prozoru ćemo pridružit
 b(p, q) = 
      \begin{cases}
        0, & I(p) \leq I(q) \\
-       1, & I(p) \gt I(q) \\
+       1, & I(p) > I(q) \\
      \end{cases}
 \]
 gdje je $I$ slika, $p$ piksel u sredini prozora za kojega računamo transformaciju, $q$ bilo koji piksel unutar prozora. Važno je napomenuti da redoslijed pridruživanja bitova mora biti jednak u oba
 prozora koja se uspoređuju kako bi rezultat bio ispravan. Nakon što svakom pikselu pridružimo binarnu vrijednost, cijenu možemo izračunati
 računski tako primijenimo operaciju isključivo-ili između binarnih riječi prozora lijeve i desne slike te zatim prebrojimo broj bitova u jedinici.
 
-\section{Korespondencija neovisna o uzorkovanju (Birchfield-Tomasi)}
+\section{Korespondencija neovisna o uzorkovanju}
+
+Birchfield-Tomasijeva korespondencija se malo razlikuje od do sada navedenih metoda. Razlikuje se po tome što ona ne koristi prozorčić već se temelji na usporedbama s dvaju susjednih piksela duž epipolarne linije.
+Funkcija cijene je definirana preko simetričnih funkcija:
+$$ C_{BT} = min(C_{BT}(x_i, y_i, I_L, I_R), C_{BT}(y_i, x_i I_R, I_L) $$
+gdje se $x_i$ i $y_i$ pikseli lijeve slike $I_L$, odnosno desne slike $I_R$.
+
+Funkcije $C_{BT}$ je definirana ovako:
+\begin{equation}
+I^+ = \frac{1}{2}(I_i(y_i) + I_R(y_i + 1))
+\end{equation}
+
+\begin{equation}
+I^- = \frac{1}{2}(I_R(y_i) + I_R(y_i - 1))
+\end{equation}
+
+\begin{equation}
+I_{min} = min(I^-_R, I^+_R, I_R(y_i))
+\end{equation}
+
+\begin{equation}
+I_{max} = max(I^-_R, I^+_R, I_R(y_i))
+\end{equation}
+
+\begin{equation}
+C_{BT}(x_i, y_i, I_L, I_R) = max(0, I_L(x_i - I_{max}, I_{min} - I_L(x_i)))
+\end{equation}
+
+Birchfield-Tomasijeva cijena je opisana u diplomskom radu Dine Kovača \cite{kovac15ms}, a izvorno u ...
 
 \section{Usporedba lokalnih i globalnih metoda}
 U ovom odjeljku dana je usporedba lokalnih i globalnih metoda podudaranja.
