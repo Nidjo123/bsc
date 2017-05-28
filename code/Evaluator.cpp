@@ -24,7 +24,7 @@ double Evaluator::error(image &left_truth, image &right_truth, image &test) {
     }
   }
 
-  //  std::cout << "Bad pixels: " << bad_pixels << "\nTotal unoccluded pixels: " << unoccluded_pixels << std::endl;
+  //std::cout << "Bad pixels: " << bad_pixels << "\nTotal unoccluded pixels: " << unoccluded_pixels << std::endl;
 
   return bad_pixels / (double) unoccluded_pixels;
 }
