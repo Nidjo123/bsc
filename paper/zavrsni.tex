@@ -121,6 +121,9 @@ Navedene postupke implementira i nudi biblioteka OpenCV \footnote{http://opencv.
 
 % slika epipolarnih linija
 
+\section{Rekonstrukcija udaljenosti}
+Sada ćemo opisati postupak za rekonstrukciju udaljenosti pojedinih točaka u prostoru od kamere. Izračun se temelji na izračunatim disparitetima.
+
 \chapter{Lokalne metode}
 Metode guste stereoskopske rekonstrukcije se mogu podijeliti na lokalne i globalne. U ovom poglavlju ćemo načelno opisati takve metode te detaljnije obraditi neke koje su korištene u ovom radu.
 
@@ -204,10 +207,10 @@ I_{max} = max(I^-_R, I^+_R, I_R(y_i))
 \end{equation}
 
 \begin{equation}
-C_{BT}(x_i, y_i, I_L, I_R) = max(0, I_L(x_i - I_{max}, I_{min} - I_L(x_i)))
+C_{BT}(x_i, y_i, I_L, I_R) = max(0, I_L(x_i) - I_{max}, I_{min} - I_L(x_i)))
 \end{equation}
 
-Birchfield-Tomasijeva cijena je opisana u diplomskom radu Dine Kovača %\cite{kovac15ms}, a izvorno u ...
+Birchfield-Tomasijeva cijena je opisana u diplomskom radu Dine Kovača \citet{kovac15ms}, a izvorno u ...
 
 \section{Usporedba lokalnih i globalnih metoda}
 U ovom odjeljku dana je usporedba lokalnih i globalnih metoda podudaranja.
@@ -244,11 +247,12 @@ pikselima u određenim smjerovima. Time ga, kao što mu i naziv govori, možemo 
 \chapter{Zaključak}
 Zaključak.
 
-\appendix
-\chapter{Upute za korištenje}
-
 \bibliography{literatura}
 \bibliographystyle{fer}
+
+\appendix
+\chapter{Upute za korištenje}
+Ovdje idu upute.
 
 \begin{sazetak}
   Sažetak na hrvatskom jeziku.

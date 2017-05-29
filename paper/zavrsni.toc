@@ -3,14 +3,16 @@
 \contentsline {chapter}{\numberline {2}Stereoskopska rekonstrukcija}{3}
 \contentsline {section}{\numberline {2.1}Epipolarna geometrija}{3}
 \contentsline {section}{\numberline {2.2}Rektifikacija}{4}
+\contentsline {section}{\numberline {2.3}Rekonstrukcija udaljenosti}{5}
 \contentsline {chapter}{\numberline {3}Lokalne metode}{6}
 \contentsline {section}{\numberline {3.1}Op\IeC {\'c}i algoritam}{6}
 \contentsline {section}{\numberline {3.2}SSD}{7}
 \contentsline {section}{\numberline {3.3}ZSAD}{7}
 \contentsline {section}{\numberline {3.4}Census}{7}
 \contentsline {section}{\numberline {3.5}Korespondencija neovisna o uzorkovanju}{8}
-\contentsline {section}{\numberline {3.6}Usporedba lokalnih i globalnih metoda}{9}
+\contentsline {section}{\numberline {3.6}Usporedba lokalnih i globalnih metoda}{8}
 \contentsline {chapter}{\numberline {4}Poluglobalno podudaranje}{10}
 \contentsline {chapter}{\numberline {5}Rezultati}{11}
 \contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{12}
-\contentsline {chapter}{\numberline {A}Upute za kori\IeC {\v s}tenje}{13}
+\contentsline {chapter}{Literatura}{13}
+\contentsline {chapter}{\numberline {A}Upute za kori\IeC {\v s}tenje}{14}
