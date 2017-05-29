@@ -117,12 +117,12 @@ Ovaj postupak se obično provodi uz pomoć šahovske ploče koja je pogodna za t
 Nakon toga se mogu odrediti ranije navedeni parametri. Postupak se odvija u nekoliko koraka, od kojih je prvi traženje šahovskih polja. Nakon toga se pomoću kuteva iz uglova polja može odrediti distorzija
 i ostali parametri.
 
-Navedene postupke implementira i nudi biblioteka OpenCV \footnote{http://opencv.org/}. Korisno je istaknuti kako je u korištenim skupovima slika postupak kalibracije i rektifikacije već proveden.
+Navedene postupke implementira i nudi biblioteka OpenCV \footnote{http://opencv.org/}. Korisno je istaknuti kako je u korištenim skupovima slika postupak kalibracije i rektifikacije već proveden, barem u skupovima za treniranje. Moguće je doći i do nerektificiranih, sirovih slika pa sam provesti navedene postupke.
 
 % slika epipolarnih linija
 
 \section{Rekonstrukcija udaljenosti}
-Sada ćemo opisati postupak za rekonstrukciju udaljenosti pojedinih točaka u prostoru od kamere. Izračun se temelji na izračunatim disparitetima.
+Sada ćemo opisati postupak za rekonstrukciju udaljenosti pojedinih točaka u prostoru od kamere. Izračun se temelji na određenim disparitetima.
 
 \chapter{Lokalne metode}
 Metode guste stereoskopske rekonstrukcije se mogu podijeliti na lokalne i globalne. U ovom poglavlju ćemo načelno opisati takve metode te detaljnije obraditi neke koje su korištene u ovom radu.
