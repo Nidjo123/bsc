@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.4.6)  29 MAY 2017 15:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.4.6)  29 MAY 2017 18:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -857,10 +857,10 @@ Poglavlje A.
 
 ] [15] (./zavrsni.aux) ) 
 Here is how much of TeX's memory you used:
- 6239 strings out of 493013
- 86836 string characters out of 6135683
- 165459 words of memory out of 5000000
- 9607 multiletter control sequences out of 15000+600000
+ 6254 strings out of 493013
+ 87217 string characters out of 6135683
+ 165717 words of memory out of 5000000
+ 9622 multiletter control sequences out of 15000+600000
  89182 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,9n,40p,536b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -881,7 +881,7 @@ lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/
 fonts/type1/public/lm/lmtto10.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
 w/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/u
 hvr8a.pfb>
-Output written on zavrsni.pdf (19 pages, 420430 bytes).
+Output written on zavrsni.pdf (19 pages, 390844 bytes).
 PDF statistics:
  154 PDF objects out of 1000 (max. 8388607)
  109 compressed objects within 2 object streams
