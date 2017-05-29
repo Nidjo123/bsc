@@ -13,7 +13,7 @@
 #include "predefs.hpp"
 
 static char const *help = "Arguments: left_image right_image matching_method"
-  "window_size max_disparity P1 P2 local_out_image sgm_out_image\n"
+  " window_size max_disparity P1 P2 local_out_image sgm_out_image\n"
   "Available correspondences: SSD, ZSAD, Census, BT\n"
   "Window size must be odd number.\n";
 
@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
     } else if (corresp_method == "ZSAD") {
       corresp = new ZSAD(left, right, window, max_disparity);
     } else if (corresp_method == "Census") {
-      corresp = new ZSAD(left, right, window, max_disparity);
+      corresp = new Census(left, right, window, max_disparity);
     } else if (corresp_method == "BT") {
       corresp = new BirchfieldTomasi(left, right, window, max_disparity);
     } else {

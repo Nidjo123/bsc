@@ -29,9 +29,6 @@ for directory in os.listdir(path):
         leftImage = os.path.join(dirPath, "view1.png")
         rightImage = os.path.join(dirPath, "view5.png")
 
-        leftTruth = os.path.join(dirPath, "disp1.png")
-        rightTruth = os.path.join(dirPath, "disp5.png")
-
         resultPath = os.path.join(".", "middlebury_2006_results", directory)
 
         if not os.path.exists(resultPath):
