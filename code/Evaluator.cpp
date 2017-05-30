@@ -2,7 +2,7 @@
 #include <cmath>
 
 double Evaluator::error(image &left_truth, image &right_truth, image &test) {
-  const int tolerance = 7;
+  const int tolerance = 3;
 
   const int width = test.get_width();
   const int height = test.get_height();

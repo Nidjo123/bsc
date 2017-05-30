@@ -3,6 +3,7 @@
 \usepackage{tabularx}
 \usepackage{natbib}
 \usepackage{float}
+\usepackage{listings}
 
 \begin{document}
 
@@ -182,9 +183,12 @@ gdje je $I$ slika, $p$ piksel u sredini prozora za kojega računamo transformaci
 prozora koja se uspoređuju kako bi rezultat bio ispravan. Nakon što svakom pikselu pridružimo binarnu vrijednost, cijenu možemo izračunati
 računski tako primijenimo operaciju isključivo-ili između binarnih riječi prozora lijeve i desne slike te zatim prebrojimo broj bitova u jedinici.
 
+Do sada navedene metode opisane su u projektnoj dokumentaciji kolega \cite{projekt1415}.
+
 \section{Korespondencija neovisna o uzorkovanju}
 
-Birchfield-Tomasijeva korespondencija se malo razlikuje od do sada navedenih metoda. Razlikuje se po tome što ona ne koristi prozorčić već se temelji na usporedbama s dvaju susjednih piksela duž epipolarne linije.
+Birchfield-Tomasijeva korespondencija se malo razlikuje od do sada navedenih metoda.
+Razlikuje se po tome što ona ne koristi prozorčić već se temelji na usporedbama s dvaju susjednih piksela duž epipolarne linije.
 Funkcija cijene je definirana preko simetričnih funkcija:
 $$ C_{BT} = min(C_{BT}(x_i, y_i, I_L, I_R), C_{BT}(y_i, x_i I_R, I_L) $$
 gdje se $x_i$ i $y_i$ pikseli lijeve slike $I_L$, odnosno desne slike $I_R$.
@@ -210,7 +214,7 @@ I_{max} = max(I^-_R, I^+_R, I_R(y_i))
 C_{BT}(x_i, y_i, I_L, I_R) = max(0, I_L(x_i) - I_{max}, I_{min} - I_L(x_i)))
 \end{equation}
 
-Birchfield-Tomasijeva cijena je opisana u diplomskom radu Dine Kovača \citet{kovac15ms}, a izvorno u ...
+Birchfield-Tomasijeva cijena je opisana u diplomskom radu Dine Kovača \cite{kovac15ms}, a izvorno u radu Stana Birchfielda i Carla Tomasija \cite{birchfield1998depth}.
 
 \section{Usporedba lokalnih i globalnih metoda}
 U ovom odjeljku dana je usporedba lokalnih i globalnih metoda podudaranja.
@@ -242,25 +246,125 @@ pikselima u određenim smjerovima. Time ga, kao što mu i naziv govori, možemo 
 
 \chapter{Poluglobalno podudaranje}
 
+\chapter{Opis implementacije}
+
+Navedeni algoritmi implementirani su u programskom jeziku C++, a ispitni slijedovi, kao i pomoćne skripte napisani su u programskom jeziku Python verzije 3.
+Operacijski sustav na kojemu je implementacija razvijana i isprobana jest GNU/Linux distribucija Debian.
+Kako biste mogli pokrenuti programe, prvo je potrebno prevesti izvorni kod. Za to je potrebno imati kompajler, preporučeno g++, verzije koja podržava barem standard C++11.
+Potrebno je imati sljedeće:
+\begin{itemize}
+\item C++ kompajler (isprobano na g++ verzije 6.3.0 \footnote{https://gcc.gnu.org/})
+\item biblioteka png++, C++ omotač oko izvorne PNG biblioteke \footnote{http://www.nongnu.org/pngpp/}
+\item OpenMP biblioteka \footnote{http://www.openmp.org/}
+\item Python (isprobano u Pythonu 3)
+\item biblioteka matplotlib (Python) za izradu grafova
+\end{itemize}
+
+Osim navedenoga, potrebno je preuzeti i raspakirati standardne skupove slika Middlebury i
+KITTI.
+
+Prvo ćemo krenuti s prevođenjem programa. U direktoriju s k\^odom nalazi se nekoliko Bash skripti koje olakšavaju prevođenje programa. Prva skripta koju trebate pokrenuti je
+\begin{verbatim}
+          ./compileStereoMatching.sh
+\end{verbatim}
+Ona prevodi sve potrebne lokalne metode korespondencije kao i implementacije lokalnog podudaranja te poluglobalnog podudaranja. Prevedeni program omogućava obradu jednog para slika (s lijeve i desne kamere) uz određene parametre te pohranjuje dobivene neskalirane mape dispariteta
+u obliku PNG (eng. {\sl Portable Network Graphics}) slika. Naredba za pokretanje je sljedeća:
+\begin{verbatim}
+./stereoMatching lijeva_slika desna_slika metoda_korespondencije\
+ velicina_prozora maksimalni_disparitet P1 P2 izlaz_lokalno izlaz_SGM
+\end{verbatim}
+Metoda korespondencije može biti SSD, ZSAD, Census ili BT. $P1$ i $P2$ su parametri kažnjavanja
+diskontinuiteta kod algoritma poluglobalnog podudaranja. Kao što vidimo, program obrađuje slike
+i lokalnim i poluglobalnim podudaranjem odjednom, koristeći istu metodu korespondencije.
+Važno je naglasiti kako veličina prozora mora biti neparan broj jer se piksel oko kojega se računa cijena nalazi u sredini prozora pa sa svake strane mora biti jednak broj piksela.
+Nepoštivanje navedenog ograničenja rezultirat će upozorenjem.
+
+Drugi program za obradu slika omogućava korištenje poluglobalnog podudaranja i metode korespondencije Birchfield-Tomasi, što je kombinacija koja daje najbolje rezultate uz odličnu brzinu.
+Njega možete prevesti naredbom:
+\begin{verbatim}
+          ./compileSGM.sh
+\end{verbatim}
+
+Izvođenje skripte rezultirat će izvršnim programom {\tt sgm}. Njega možete pokrenuti sljedećom naredbom:
+\begin{verbatim}
+     ./sgm lijeva_slika desna_slika maksimalni_disparitet P1 P2 izlaz
+\end{verbatim}
+gdje su $P1$ i $P2$ ponovo iznosi penala diskontinuiteta kod poluglobalnog podudaranja.
+Pokretanje navedenog programa rezultirat će jednom neskaliranom mapom dispariteta pohranjenom
+u obliku slike u formatu PNG.
+Podrazumijevani broj smjerova optimizacija kod algoritma SGM je 16. Ukoliko se želi promijeniti
+broj smjerova, potrebno je promijeniti varijablu {\verb|N_PATHS|} u npr. 8, te ponovo prevesti izvorni kod. Mape dispariteta su pohranjene u sivoj skali (eng. {\sl grayscale}).
+Važno je pripaziti na to da mora vrijediti $P1 \geq P2$\/!
+
+Osim programa za obradu slika stereoskopskom rekonstrukcijom, tu su još i dva pomoćna programa. Jedan omogućava skaliranje vrijednosti svih piksela slike u formatu PNG. Možete ga prevesti
+naredbom
+\begin{verbatim}
+          ./compileScaler.sh
+\end{verbatim}
+što će rezultirati jednim izvršnim programom naziva {\tt scaleImage}. Pokretanje programa
+izgleda ovako:
+\begin{verbatim}
+          ./scaleImage slika faktor_skaliranja nova_slika
+\end{verbatim}
+gdje je faktor skaliranja broj koji određuje koliko puta će se intenzitet svakog piksela povećati. Pretpostavlja se da se radi s pikselima u sivoj skali. Razlog implementiranja ovog programa
+je što su kod manjih slika mape dispariteta skalirane kako bi se bolje vidjele razlike u dubini slike. Ako ne bi bilo skaliranja, slika bi bila previše tamna. Primjerice, kod standardnog skupa Middlebury je potrebno skalirati slike ukoliko se ne radi sa slikama u izvornoj rezoluciji. Razlog tome je jasan, ukoliko je slika manja, i najveći mogući disparitet će biti manji.
+Time će i mapa dispariteta sadržavati manje vrijednosti intenziteta piksela.
+
+Drugi pomoćni program je evaluator pojedine mape dispariteta. Moguće ga je prevesti naredbom:
+\begin{verbatim}
+          ./compileEvaluator.sh
+\end{verbatim}
+nakon čega će se u direktoriju stvoriti program {\tt evaluator}. Evaluator služi za ispitivanje
+pogreške mape dispariteta pripadnog para slika u odnosu na temeljnu istinu (eng. {\sl ground truth}). Temeljna istina, ili mapa točnih dispariteta je dana u standardnim skupovima slika, 
+obično u podskupu za treniranje. Program pokrećemo na sljedeći način:
+\begin{verbatim}
+     ./evaluator lijevi_tocni_disp desni_tocni_disp mapa_dispariteta
+\end{verbatim}
+što će rezultirati ispisom pogreške u konzoli. Pogreška je u rasponu $[0, 1]$ te ju možemo lako pretvoriti u postotke množenjem sa 100. Podrazumijevanja tolerancija između uspoređivanih vrijednosti je 3. Razlog primanja dvije slike je taj što su neki
+pikseli zaklonjeni, odnosno vidi ih se samo iz jedne kamere te na zajedničkoj mapi dispariteta
+zapravo ne znamo koja vrijednost bi tu trebala biti. Zato u obzir uzimamo samo piksele koji se vide na obje slike.
+Također, obično su nepoznati dispariteti označeni crnom bojom (vrijednost 0 u sivoj skali), što evaluator uzima u obzir.
+
 \chapter{Rezultati}
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=13cm]{img/SSD.png}
+  \includegraphics[width=13cm]{img/SSD_lokalno_middlebury.png}
   \caption{Pogreška metode korespondencije SSD}
   \label{fig:SSD-error}
 \end{figure}
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=13cm]{img/ZSAD.png}
+  \includegraphics[width=13cm]{img/SSD_SGM_middlebury.png}
+  \caption{Pogreška metode korespondencije SSD}
+  \label{fig:SSD-error}
+\end{figure}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=13cm]{img/ZSAD_lokalno_middlebury.png}
   \caption{Pogreška metode korespondencije ZSAD}
   \label{fig:ZSAD-error}
 \end{figure}
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=13cm]{img/Census.png}
+  \includegraphics[width=13cm]{img/ZSAD_SGM_middlebury.png}
+  \caption{Pogreška metode korespondencije ZSAD}
+  \label{fig:ZSAD-error}
+\end{figure}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=13cm]{img/Census_lokalno_middlebury.png}
+  \caption{Pogreška metode korespondencije Census}
+  \label{fig:Census-error}
+\end{figure}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=13cm]{img/Census_SGM_middlebury.png}
   \caption{Pogreška metode korespondencije Census}
   \label{fig:Census-error}
 \end{figure}
@@ -271,17 +375,12 @@ Zaključak.
 \bibliography{literatura}
 \bibliographystyle{fer}
 
-\appendix
-\chapter{Upute za korištenje}
-Ovdje idu upute.
-
 \begin{sazetak}
   Sažetak na hrvatskom jeziku.
 
 \kljucnerijeci{računalni vid, stereoskopska rekonstrukcija, poluglobalno podudaranje, disparitet, korespondencija}
 \end{sazetak}
 
-% TODO: Navedite naslov na engleskom jeziku.
 \engtitle{Dense stereoscopic reconstruction with semi-global matching}
 \begin{abstract}
 Abstract.

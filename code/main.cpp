@@ -25,6 +25,10 @@ int main(int argc, char *argv[]) {
     const int window = atoi(argv[4]);
     const int max_disparity = atoi(argv[5]);
 
+    if (window % 2 == 0) {
+      std::cout << "Window size must be odd number!" << std::endl;
+    }
+
     int  P1 = atoi(argv[6]);
     int  P2 = atoi(argv[7]);
 

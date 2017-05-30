@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.4.6)  29 MAY 2017 21:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.4.6)  30 MAY 2017 19:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -627,24 +627,58 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \float@box=\box29
 \@float@everytoks=\toks28
 \@floatcapt=\box30
-) (./zavrsni.aux)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count114
+\lst@gtempboxa=\box31
+\lst@token=\toks29
+\lst@length=\count115
+\lst@currlwidth=\dimen152
+\lst@column=\count116
+\lst@pos=\count117
+\lst@lostspace=\dimen153
+\lst@width=\dimen154
+\lst@newlines=\count118
+\lst@lineno=\count119
+\lst@maxwidth=\dimen155
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count120
+\lst@skipnumbers=\count121
+\lst@framebox=\box32
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+ (./zavrsni.aux
+
+LaTeX Warning: Label `fig:SSD-error' multiply defined.
+
+
+LaTeX Warning: Label `fig:ZSAD-error' multiply defined.
+
+
+LaTeX Warning: Label `fig:Census-error' multiply defined.
+
+)
 \openout1 = `zavrsni.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 7.
-
-(/usr/share/texmf/tex/latex/lm/t1lmr.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 8.
+ (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 *geometry* driver: auto-detecting
@@ -683,17 +717,17 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count114
-\scratchdimen=\dimen152
-\scratchbox=\box31
-\nofMPsegments=\count115
-\nofMParguments=\count116
-\everyMPshowfont=\toks29
-\MPscratchCnt=\count117
-\MPscratchDim=\dimen153
-\MPnumerator=\count118
-\makeMPintoPDFobject=\count119
-\everyMPtoPDFconversion=\toks30
+\scratchcounter=\count122
+\scratchdimen=\dimen156
+\scratchbox=\box33
+\nofMPsegments=\count123
+\nofMParguments=\count124
+\everyMPshowfont=\toks30
+\MPscratchCnt=\count125
+\MPscratchDim=\dimen157
+\MPnumerator=\count126
+\makeMPintoPDFobject=\count127
+\everyMPtoPDFconversion=\toks31
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -742,57 +776,59 @@ e
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 17.
+\c@lstlisting=\count128
+LaTeX Font Info:    Try loading font information for T1+phv on input line 18.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 17.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 18.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 17.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 17.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 18.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 18.
 
 (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 17.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 18.
 
 (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 17.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 18.
 
 
 (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 17.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 18.
 
 
 (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 17.
+(Font)              <14.4> on input line 18.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 17.
+(Font)              <10> on input line 18.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 17.
-LaTeX Font Info:    Try loading font information for U+msa on input line 17.
+(Font)              <7> on input line 18.
+LaTeX Font Info:    Try loading font information for U+msa on input line 18.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 17.
+LaTeX Font Info:    Try loading font information for U+msb on input line 18.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 20.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 21.
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -819,7 +855,7 @@ Poglavlje 2.
 File: img/pinhole_camera_model.png Graphic file (type png)
 
 <use img/pinhole_camera_model.png>
-Package pdftex.def Info: img/pinhole_camera_model.png used on input line 78.
+Package pdftex.def Info: img/pinhole_camera_model.png used on input line 79.
 (pdftex.def)             Requested size: 369.88582pt x 260.77885pt.
  [3
 
@@ -828,11 +864,11 @@ Package pdftex.def Info: img/pinhole_camera_model.png used on input line 78.
 File: img/distortion_examples.png Graphic file (type png)
 
 <use img/distortion_examples.png>
-Package pdftex.def Info: img/distortion_examples.png used on input line 100.
+Package pdftex.def Info: img/distortion_examples.png used on input line 101.
 (pdftex.def)             Requested size: 369.88582pt x 141.78902pt.
  [4 <./img/distortion_examples.png>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 120.
+(Font)              <5> on input line 121.
  [5]
 Poglavlje 3.
 [6
@@ -843,48 +879,77 @@ Poglavlje 4.
 
 ]
 Poglavlje 5.
-<img/SSD.png, id=71, 759.5577pt x 453.8556pt>
-File: img/SSD.png Graphic file (type png)
- <use img/SSD.png>
-Package pdftex.def Info: img/SSD.png used on input line 249.
-(pdftex.def)             Requested size: 369.88582pt x 221.01999pt.
+[11
 
-<img/ZSAD.png, id=72, 761.7258pt x 459.6372pt>
-File: img/ZSAD.png Graphic file (type png)
- <use img/ZSAD.png>
-Package pdftex.def Info: img/ZSAD.png used on input line 256.
-(pdftex.def)             Requested size: 369.88582pt x 223.19028pt.
-
-<img/Census.png, id=73, 761.7258pt x 451.6875pt>
-File: img/Census.png Graphic file (type png)
- <use img/Census.png>
-Package pdftex.def Info: img/Census.png used on input line 263.
-(pdftex.def)             Requested size: 369.88582pt x 219.33006pt.
- [11
-
- <./img/SSD.png> <./img/ZSAD.png>] [12 <./img/Census.png>]
+] [12] [13]
 Poglavlje 6.
-(./zavrsni.bbl [13
+<img/SSD_lokalno_middlebury.png, id=80, 697.4055pt x 456.7464pt>
+File: img/SSD_lokalno_middlebury.png Graphic file (type png)
 
-]) [14
+<use img/SSD_lokalno_middlebury.png>
+Package pdftex.def Info: img/SSD_lokalno_middlebury.png used on input line 332.
 
-]
-Poglavlje A.
-[15
+(pdftex.def)             Requested size: 369.88582pt x 242.25565pt.
 
-] [16] (./zavrsni.aux)
+<img/SSD_SGM_middlebury.png, id=81, 757.3896pt x 453.8556pt>
+File: img/SSD_SGM_middlebury.png Graphic file (type png)
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+<use img/SSD_SGM_middlebury.png>
+Package pdftex.def Info: img/SSD_SGM_middlebury.png used on input line 339.
+(pdftex.def)             Requested size: 369.88582pt x 221.65018pt.
+
+<img/ZSAD_lokalno_middlebury.png, id=82, 758.835pt x 453.8556pt>
+File: img/ZSAD_lokalno_middlebury.png Graphic file (type png)
+
+<use img/ZSAD_lokalno_middlebury.png>
+Package pdftex.def Info: img/ZSAD_lokalno_middlebury.png used on input line 346
+.
+(pdftex.def)             Requested size: 369.88582pt x 221.22774pt.
+
+<img/ZSAD_SGM_middlebury.png, id=83, 755.2215pt x 455.301pt>
+File: img/ZSAD_SGM_middlebury.png Graphic file (type png)
+
+<use img/ZSAD_SGM_middlebury.png>
+Package pdftex.def Info: img/ZSAD_SGM_middlebury.png used on input line 353.
+(pdftex.def)             Requested size: 369.88582pt x 222.98828pt.
+
+<img/Census_lokalno_middlebury.png, id=84, 753.0534pt x 455.301pt>
+File: img/Census_lokalno_middlebury.png Graphic file (type png)
+
+<use img/Census_lokalno_middlebury.png>
+Package pdftex.def Info: img/Census_lokalno_middlebury.png used on input line 3
+60.
+(pdftex.def)             Requested size: 369.88582pt x 223.64133pt.
+
+<img/Census_SGM_middlebury.png, id=85, 761.0031pt x 452.4102pt>
+File: img/Census_SGM_middlebury.png Graphic file (type png)
+
+<use img/Census_SGM_middlebury.png>
+Package pdftex.def Info: img/Census_SGM_middlebury.png used on input line 367.
+(pdftex.def)             Requested size: 369.88582pt x 219.88809pt.
+ [14
+
+ <./img/SSD_lokalno_middlebury.png> <./img/SSD_SGM_middlebury.png>] [15 <./img/
+ZSAD_lokalno_middlebury.png> <./img/ZSAD_SGM_middlebury.png>] [16 <./img/Census
+_lokalno_middlebury.png> <./img/Census_SGM_middlebury.png>]
+Poglavlje 7.
+(./zavrsni.bbl [17
+
+]) [18
+
+] [19] (./zavrsni.aux)
+
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 6272 strings out of 493013
- 87496 string characters out of 6135683
- 165750 words of memory out of 5000000
- 9637 multiletter control sequences out of 15000+600000
+ 7613 strings out of 493013
+ 107049 string characters out of 6135683
+ 184348 words of memory out of 5000000
+ 10963 multiletter control sequences out of 15000+600000
  89182 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,9n,40p,536b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,9n,40p,536b,351s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
 ips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share
 /texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm
@@ -901,10 +966,10 @@ ic/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/
 texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/fonts/type1/public/lm/
 lmtto10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on zavrsni.pdf (20 pages, 772671 bytes).
+Output written on zavrsni.pdf (23 pages, 1134641 bytes).
 PDF statistics:
- 163 PDF objects out of 1000 (max. 8388607)
- 111 compressed objects within 2 object streams
+ 178 PDF objects out of 1000 (max. 8388607)
+ 117 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
