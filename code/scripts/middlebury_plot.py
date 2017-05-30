@@ -69,6 +69,7 @@ localCensus = collections.defaultdict(lambda: [])
 sgmSSD = collections.defaultdict(lambda: [])
 sgmZSAD = collections.defaultdict(lambda: [])
 sgmCensus = collections.defaultdict(lambda: [])
+sgmBT = collections.defaultdict(lambda: [])
 
 with open("middlebury_2006.out", "r") as file:
     local = []
@@ -92,10 +93,11 @@ with open("middlebury_2006.out", "r") as file:
                 sgmZSAD[picName].append((int(window), float(error)*100))
             elif corresp == 'Census':
                 sgmCensus[picName].append((int(window), float(error)*100))
-
+            elif corresp == 'BT':
+                sgmBT[picName].append(float(error)*100)
+                
     for key in localSSD:
         markers[key] = '-' + next(marker)
-
     
     show(localSSD, 'SSD lokalno')
     show(localZSAD, 'ZSAD lokalno')
@@ -108,4 +110,13 @@ with open("middlebury_2006.out", "r") as file:
     showAvg((localSSD, 'SSD'), (localZSAD, 'ZSAD'), (localCensus, 'Census'), title='Prosječna pogreška lokalnih metoda')
 
     showAvg((sgmSSD, 'SSD'), (sgmZSAD, 'ZSAD'), (sgmCensus, 'Census'), title='Prosječna pogreška lokalno + SGM')
-
+    
+    xLabels = list(sgmBT.keys())
+    y = []
+    for key in xLabels:
+        y.append(sgmBT[key][0])
+    
+    plt.xticks(range(len(xLabels)), xLabels, rotation=90)
+    plt.stem(range(len(xLabels)), y)
+    plt.show()
+        

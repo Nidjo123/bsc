@@ -167,6 +167,9 @@ Najbolja podudarnost kod SSD-a postiže se kada je vrijednost funkcije cijene je
 Sljedeća metoda je ZSAD ({eng. \sl Zero Sum of Absolute Differences}). Matematički ju možemo definirati ovako:
 $$C_{ZSAD}(x, y, d) = \sum_{i}\lvert(M_L - I_L(x, y)) - (M_R - I_R(x - d, y))\rvert$$
 gdje je $I_L$ lijeva slika, $I_R$ desna slika, a $M_L$ i $M_R$ srednje vrijednosti intenziteta piksela u trenutnom prozoru lijeve, odnosno desne slike.
+Nedostatak ove metode je što moramo računati i srednje vrijednosti svakog mogućeg prozora. Za razliku od SSD-a, ovdje nenegativnost cijena postižemo korištenje apsolutne vrijednosti, a ne kvadriranjem. Idealna vrijednost iznosi 0, odnosno u slučaju kada su svi odgovarajući pikseli u oba
+prozora jednakih intenziteta.
+
 \section{Census}
 
 Funkcija korespondencije Census se temelji na Hammingovoj udaljenosti između dvije binarne riječi. Kako bismo odredili cijenu između dvaju piksela, potrebno je transformirati
@@ -324,6 +327,32 @@ obično u podskupu za treniranje. Program pokrećemo na sljedeći način:
 pikseli zaklonjeni, odnosno vidi ih se samo iz jedne kamere te na zajedničkoj mapi dispariteta
 zapravo ne znamo koja vrijednost bi tu trebala biti. Zato u obzir uzimamo samo piksele koji se vide na obje slike.
 Također, obično su nepoznati dispariteti označeni crnom bojom (vrijednost 0 u sivoj skali), što evaluator uzima u obzir.
+
+Osim navedenih programa, napisano je i nekoliko skripti u Pythonu. Prva koju ćemo opisati je
+{\verb|middlebury_2006.py|} koja služi za ispitivanje navedenog standardnog skupa slika.
+Pokrećemo ju naredbom:
+\begin{verbatim}
+          python3 middlebury_2006.py put_do_skupa_middlebury
+\end{verbatim}
+što će rezultirati stvaranjem direktorija {\verb|middlebury_2006_results|} u kojemu će se, nakon
+obrade slika, nalaziti izračunate mape dispariteta. Slike se obrađuju pomoću ranije navedenog
+programa {\verb|stereoMatching|}, i to pomoću svih implementiranih lokalnih metoda korespondencije, lokalnim
+podudaranjem te poluglobalnim podudaranjem u zadanom rasponu veličina prozorčića.
+Nakon što obrada slika završi, moguće je, po potrebi skalirati vrijednosti intenziteta
+pozivanjem
+\begin{verbatim}
+          python3 scale.py direktorij_s_rezultatima faktor_skaliranja
+\end{verbatim}
+
+Nakon toga je sve spremno za generiranje grafova. Izvršavanjem naredbe
+\begin{verbatim}
+          python3 middlebury_plot.py
+\end{verbatim}
+dobit ćemo prikaz svih grafova pogrešaka korespondencija, zatim korespondencija u kombinaciji
+s poluglobalnim podudaranjem te naposlijetku prikaz prosječnih pogrešaka u ovisnosti o
+veličini prozorčića.
+
+Za skup KITTI je napisana skripta
 
 \chapter{Rezultati}
 
