@@ -21,6 +21,8 @@ def toArrays(ts):
 
 def show(data, title):
     sortDict(data)
+
+    plt.gca().set_ylim([0, 100])
     
     for key in sorted(data.keys()):
         value = data[key]
@@ -33,9 +35,40 @@ def show(data, title):
     plt.legend(bbox_to_anchor=(1, 1))
     plt.show()
 
-SSD = collections.defaultdict(lambda: [])
-ZSAD = collections.defaultdict(lambda: [])
-Census = collections.defaultdict(lambda: [])
+def showAvg(*args, title=""):
+    plt.title(title)
+    plt.gca().set_ylim([0, 100])
+    plt.xlabel("Veličina kvadratnog prozora u pikselima")
+    plt.ylabel("Pogreška u %")
+    for d, label in args:
+        sortDict(d)
+        nKeys = len(d.keys())
+        
+        x = []
+        y = []
+        
+        for key in d:
+            for i, v in enumerate(d[key]):
+                if len(y) <= i:
+                    y.append(v[1])
+                    x.append(v[0])
+                
+                y[i] += v[1]
+                x[i] = v[0]
+        for i, v in enumerate(y):
+            y[i] = v / nKeys
+
+        plt.plot(x, y, label=label)
+
+    plt.legend()
+    plt.show()
+
+localSSD = collections.defaultdict(lambda: [])
+localZSAD = collections.defaultdict(lambda: [])
+localCensus = collections.defaultdict(lambda: [])
+sgmSSD = collections.defaultdict(lambda: [])
+sgmZSAD = collections.defaultdict(lambda: [])
+sgmCensus = collections.defaultdict(lambda: [])
 
 with open("middlebury_2006.out", "r") as file:
     local = []
@@ -47,16 +80,32 @@ with open("middlebury_2006.out", "r") as file:
 
         if matching == 'local':
             if corresp == 'SSD':
-                SSD[picName].append((int(window), float(error)*100))
+                localSSD[picName].append((int(window), float(error)*100))
             elif corresp == 'ZSAD':
-                ZSAD[picName].append((int(window), float(error)*100))
+                localZSAD[picName].append((int(window), float(error)*100))
             elif corresp == 'Census':
-                Census[picName].append((int(window), float(error)*100))
+                localCensus[picName].append((int(window), float(error)*100))
+        elif matching == 'sgm':
+            if corresp == 'SSD':
+                sgmSSD[picName].append((int(window), float(error)*100))
+            elif corresp == 'ZSAD':
+                sgmZSAD[picName].append((int(window), float(error)*100))
+            elif corresp == 'Census':
+                sgmCensus[picName].append((int(window), float(error)*100))
 
-    for key in SSD:
+    for key in localSSD:
         markers[key] = '-' + next(marker)
-                
-    show(SSD, 'SSD')
-    show(ZSAD, 'ZSAD')
-    show(Census, 'Census')
+
+    
+    show(localSSD, 'SSD lokalno')
+    show(localZSAD, 'ZSAD lokalno')
+    show(localCensus, 'Census lokalno')
+
+    show(sgmSSD, 'SSD + SGM')
+    show(sgmZSAD, 'ZSAD + SGM')
+    show(sgmCensus, 'Census + SGM')
+    
+    showAvg((localSSD, 'SSD'), (localZSAD, 'ZSAD'), (localCensus, 'Census'), title='Prosječna pogreška lokalnih metoda')
+
+    showAvg((sgmSSD, 'SSD'), (sgmZSAD, 'ZSAD'), (sgmCensus, 'Census'), title='Prosječna pogreška lokalno + SGM')
 

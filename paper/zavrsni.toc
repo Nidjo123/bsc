@@ -13,6 +13,6 @@
 \contentsline {section}{\numberline {3.6}Usporedba lokalnih i globalnih metoda}{8}
 \contentsline {chapter}{\numberline {4}Poluglobalno podudaranje}{10}
 \contentsline {chapter}{\numberline {5}Rezultati}{11}
-\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{12}
-\contentsline {chapter}{Literatura}{13}
-\contentsline {chapter}{\numberline {A}Upute za kori\IeC {\v s}tenje}{14}
+\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{13}
+\contentsline {chapter}{Literatura}{14}
+\contentsline {chapter}{\numberline {A}Upute za kori\IeC {\v s}tenje}{15}

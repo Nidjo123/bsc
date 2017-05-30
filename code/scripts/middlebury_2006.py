@@ -10,7 +10,7 @@ if len(sys.argv) != 2:
 
 path = os.path.abspath(sys.argv[1])
 max_disparity = 100
-max_window = 34
+max_window = 41
 P1 = 3
 P2 = 22
 
