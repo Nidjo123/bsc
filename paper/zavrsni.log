@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.4.6)  31 MAY 2017 17:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.4.6)  31 MAY 2017 19:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -670,13 +670,10 @@ Package: subfig 2005/06/28 ver: 1.3 subfig package
 \sf@bottom=\skip55
 ) (./zavrsni.aux
 
-LaTeX Warning: Label `fig:SSD-error' multiply defined.
+LaTeX Warning: Label `fig:kitti-max-sgm16-error_left' multiply defined.
 
 
-LaTeX Warning: Label `fig:ZSAD-error' multiply defined.
-
-
-LaTeX Warning: Label `fig:Census-error' multiply defined.
+LaTeX Warning: Label `sub@fig:kitti-max-sgm16-error_left' multiply defined.
 
 )
 \openout1 = `zavrsni.aux'.
@@ -987,84 +984,164 @@ Poglavlje 6.
 File: img/SSD_lokalno_middlebury.png Graphic file (type png)
 
 <use img/SSD_lokalno_middlebury.png>
-Package pdftex.def Info: img/SSD_lokalno_middlebury.png used on input line 612.
+Package pdftex.def Info: img/SSD_lokalno_middlebury.png used on input line 632.
 
 (pdftex.def)             Requested size: 369.88582pt x 225.60481pt.
+ [22
 
-<img/SSD_sgm_middlebury.png, id=123, 754.4988pt x 455.301pt>
+]
+<img/SSD_sgm_middlebury.png, id=126, 754.4988pt x 455.301pt>
 File: img/SSD_sgm_middlebury.png Graphic file (type png)
 
 <use img/SSD_sgm_middlebury.png>
-Package pdftex.def Info: img/SSD_sgm_middlebury.png used on input line 619.
+Package pdftex.def Info: img/SSD_sgm_middlebury.png used on input line 639.
 (pdftex.def)             Requested size: 369.88582pt x 223.21059pt.
 
-<img/ZSAD_lokalno_middlebury.png, id=124, 760.2804pt x 456.7464pt>
+<img/ZSAD_lokalno_middlebury.png, id=127, 760.2804pt x 456.7464pt>
 File: img/ZSAD_lokalno_middlebury.png Graphic file (type png)
 
 <use img/ZSAD_lokalno_middlebury.png>
-Package pdftex.def Info: img/ZSAD_lokalno_middlebury.png used on input line 626
+Package pdftex.def Info: img/ZSAD_lokalno_middlebury.png used on input line 651
 .
 (pdftex.def)             Requested size: 369.88582pt x 222.21867pt.
-
-<img/ZSAD_sgm_middlebury.png, id=125, 758.1123pt x 453.8556pt>
+ [23 <./img/SSD_lokalno_middlebury.png> <./img/SSD_sgm_middlebury.png>]
+<img/ZSAD_sgm_middlebury.png, id=133, 758.1123pt x 453.8556pt>
 File: img/ZSAD_sgm_middlebury.png Graphic file (type png)
 
 <use img/ZSAD_sgm_middlebury.png>
-Package pdftex.def Info: img/ZSAD_sgm_middlebury.png used on input line 633.
+Package pdftex.def Info: img/ZSAD_sgm_middlebury.png used on input line 658.
 (pdftex.def)             Requested size: 369.88582pt x 221.44243pt.
 
-<img/Census_lokalno_middlebury.png, id=126, 763.1712pt x 455.301pt>
+<img/Census_lokalno_middlebury.png, id=134, 763.1712pt x 455.301pt>
 File: img/Census_lokalno_middlebury.png Graphic file (type png)
 
 <use img/Census_lokalno_middlebury.png>
 Package pdftex.def Info: img/Census_lokalno_middlebury.png used on input line 6
-40.
+72.
 (pdftex.def)             Requested size: 369.88582pt x 220.66788pt.
-
-<img/Census_sgm_middlebury.png, id=127, 757.3896pt x 456.7464pt>
+ [24 <./img/ZSAD_lokalno_middlebury.png> <./img/ZSAD_sgm_middlebury.png>]
+<img/Census_sgm_middlebury.png, id=140, 757.3896pt x 456.7464pt>
 File: img/Census_sgm_middlebury.png Graphic file (type png)
 
 <use img/Census_sgm_middlebury.png>
-Package pdftex.def Info: img/Census_sgm_middlebury.png used on input line 647.
+Package pdftex.def Info: img/Census_sgm_middlebury.png used on input line 679.
 (pdftex.def)             Requested size: 369.88582pt x 223.06197pt.
 
-<img/prosjek_lokalno.png, id=128, 618.6312pt x 450.2421pt>
+<img/prosjek_lokalno.png, id=141, 618.6312pt x 450.2421pt>
 File: img/prosjek_lokalno.png Graphic file (type png)
 
 <use img/prosjek_lokalno.png>
-Package pdftex.def Info: img/prosjek_lokalno.png used on input line 654.
+Package pdftex.def Info: img/prosjek_lokalno.png used on input line 693.
 (pdftex.def)             Requested size: 220.50887pt x 160.48628pt.
 
-<img/prosjek_sgm.png, id=129, 612.8496pt x 452.4102pt>
+<img/prosjek_sgm.png, id=142, 612.8496pt x 452.4102pt>
 File: img/prosjek_sgm.png Graphic file (type png)
 
 <use img/prosjek_sgm.png>
-Package pdftex.def Info: img/prosjek_sgm.png used on input line 656.
+Package pdftex.def Info: img/prosjek_sgm.png used on input line 695.
 (pdftex.def)             Requested size: 220.50887pt x 162.7778pt.
- [22
+ [25 <./img/Census_lokalno_middlebury.png> <./img/Census_sgm_middlebury.png>]
+<img/sgm_bt_middlebury.png, id=148, 611.4042pt x 516.7305pt>
+File: img/sgm_bt_middlebury.png Graphic file (type png)
 
- <./img/SSD_lokalno_middlebury.png> <./img/SSD_sgm_middlebury.png>] [23 <./img/
-ZSAD_lokalno_middlebury.png> <./img/ZSAD_sgm_middlebury.png>] [24 <./img/Census
-_lokalno_middlebury.png> <./img/Census_sgm_middlebury.png>] [25 <./img/prosjek_
-lokalno.png> <./img/prosjek_sgm.png>]
+<use img/sgm_bt_middlebury.png>
+Package pdftex.def Info: img/sgm_bt_middlebury.png used on input line 701.
+(pdftex.def)             Requested size: 369.88582pt x 312.61897pt.
+ [26 <./img/prosjek_lokalno.png> <./img/prosjek_sgm.png> <./img/sgm_bt_middlebu
+ry.png>]
+<img/sgm_best_kitti.png, id=155, 1245.65375pt x 377.41pt>
+File: img/sgm_best_kitti.png Graphic file (type png)
+
+<use img/sgm_best_kitti.png>
+Package pdftex.def Info: img/sgm_best_kitti.png used on input line 721.
+(pdftex.def)             Requested size: 369.88582pt x 112.06635pt.
+
+<img/sgm_best_ground_truth.png, id=156, 1245.65375pt x 377.41pt>
+File: img/sgm_best_ground_truth.png Graphic file (type png)
+
+<use img/sgm_best_ground_truth.png>
+Package pdftex.def Info: img/sgm_best_ground_truth.png used on input line 724.
+(pdftex.def)             Requested size: 369.88582pt x 112.06635pt.
+
+<img/sgmbt_000188_10_150.png, id=157, 1245.65375pt x 377.41pt>
+File: img/sgmbt_000188_10_150.png Graphic file (type png)
+
+<use img/sgmbt_000188_10_150.png>
+Package pdftex.def Info: img/sgmbt_000188_10_150.png used on input line 727.
+(pdftex.def)             Requested size: 369.88582pt x 112.06635pt.
+
+<img/sgm_8_worst.png, id=158, 1242.6425pt x 375.4025pt>
+File: img/sgm_8_worst.png Graphic file (type png)
+
+<use img/sgm_8_worst.png>
+Package pdftex.def Info: img/sgm_8_worst.png used on input line 737.
+(pdftex.def)             Requested size: 369.88582pt x 111.73947pt.
+
+<img/sgm_8_worst_ground_truth.png, id=159, 1242.6425pt x 375.4025pt>
+File: img/sgm_8_worst_ground_truth.png Graphic file (type png)
+
+<use img/sgm_8_worst_ground_truth.png>
+Package pdftex.def Info: img/sgm_8_worst_ground_truth.png used on input line 74
+0.
+(pdftex.def)             Requested size: 369.88582pt x 111.73947pt.
+
+<img/sgmbt_000169_10_150.png, id=160, 1242.6425pt x 375.4025pt>
+File: img/sgmbt_000169_10_150.png Graphic file (type png)
+
+<use img/sgmbt_000169_10_150.png>
+Package pdftex.def Info: img/sgmbt_000169_10_150.png used on input line 743.
+(pdftex.def)             Requested size: 369.88582pt x 111.73947pt.
+ [27 <./img/sgm_best_kitti.png (PNG copy)> <./img/sgm_best_ground_truth.png (PN
+G copy)> <./img/sgmbt_000188_10_150.png (PNG copy)>] <img/sgm_16_worst.png, id=
+165, 1245.65375pt x 377.41pt>
+File: img/sgm_16_worst.png Graphic file (type png)
+
+<use img/sgm_16_worst.png>
+Package pdftex.def Info: img/sgm_16_worst.png used on input line 756.
+(pdftex.def)             Requested size: 369.88582pt x 112.06635pt.
+
+<img/000177_10.png, id=166, 1245.65375pt x 377.41pt>
+File: img/000177_10.png Graphic file (type png)
+ <use img/000177_10.png>
+Package pdftex.def Info: img/000177_10.png used on input line 759.
+(pdftex.def)             Requested size: 369.88582pt x 112.06635pt.
+
+<img/sgm_16_worst_ground_truth.png, id=167, 1245.65375pt x 377.41pt>
+File: img/sgm_16_worst_ground_truth.png Graphic file (type png)
+
+<use img/sgm_16_worst_ground_truth.png>
+Package pdftex.def Info: img/sgm_16_worst_ground_truth.png used on input line 7
+62.
+(pdftex.def)             Requested size: 369.88582pt x 112.06635pt.
+
+<img/sgmbt_000177_10_150.png, id=168, 1245.65375pt x 377.41pt>
+File: img/sgmbt_000177_10_150.png Graphic file (type png)
+
+<use img/sgmbt_000177_10_150.png>
+Package pdftex.def Info: img/sgmbt_000177_10_150.png used on input line 765.
+(pdftex.def)             Requested size: 369.88582pt x 112.06635pt.
+ [28 <./img/sgm_8_worst.png (PNG copy)> <./img/sgm_8_worst_ground_truth.png (PN
+G copy)> <./img/sgmbt_000169_10_150.png (PNG copy)>] [29 <./img/sgm_16_worst.pn
+g (PNG copy)> <./img/000177_10.png (PNG copy)> <./img/sgm_16_worst_ground_truth
+.png (PNG copy)> <./img/sgmbt_000177_10_150.png (PNG copy)>]
 Poglavlje 7.
-(./zavrsni.bbl [26
+(./zavrsni.bbl [30
 
-]) [27
+]) [31
 
-] [28] (./zavrsni.aux)
+] [32] (./zavrsni.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 7857 strings out of 493013
- 111703 string characters out of 6135683
- 188474 words of memory out of 5000000
- 11184 multiletter control sequences out of 15000+600000
+ 7934 strings out of 493013
+ 113979 string characters out of 6135683
+ 188722 words of memory out of 5000000
+ 11250 multiletter control sequences out of 15000+600000
  112814 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,16n,49p,485b,397s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,16n,49p,485b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
 ips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share
 /texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm
@@ -1083,10 +1160,10 @@ msy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmtto10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
 /helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uh
 vr8a.pfb>
-Output written on zavrsni.pdf (32 pages, 4150000 bytes).
+Output written on zavrsni.pdf (36 pages, 8228515 bytes).
 PDF statistics:
- 234 PDF objects out of 1000 (max. 8388607)
- 145 compressed objects within 2 object streams
+ 258 PDF objects out of 1000 (max. 8388607)
+ 153 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 101 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 156 words of extra memory for PDF output out of 10000 (max. 10000000)
 

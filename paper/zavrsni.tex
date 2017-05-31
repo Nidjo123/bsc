@@ -295,7 +295,7 @@ računski tako primijenimo operaciju isključivo-ili između binarnih riječi pr
   \label{fig:Census-KITTI}
 \end{figure}
 
-Do sada navedene metode opisane su u projektnoj dokumentaciji kolega \cite{projekt1415}.
+Do sada navedene metode opisane su u projektnoj dokumentaciji kolega \cite{projekt1415} te u članku \cite{hirschmuller2007evaluation}.
 
 \section{Korespondencija neovisna o uzorkovanju}
 
@@ -417,7 +417,7 @@ može se opisati sljedećom rekurzivnom funkcijom:
     L'_{\mathbf{r}}(\mathbf{p}, d) = & C(\mathbf{p}, d) + \min(L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d), \\
     & L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d - 1) + P_1, \\
     & L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d + 1) + P_1, \\
-    & \max\limits_{i} L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, i) + P_2) \\
+    & \min\limits_{i} L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, i) + P_2) \\
   \end{split}
 \end{equation}
 gdje je $\mathbf{p}$ trenutni piksel, $d$ trenutni disparitet, $C(\mathbf{p}, d)$ ranije
@@ -442,10 +442,10 @@ Najveća vrijednost cijene će sada biti $L \leq C_{\max} + P_2$.
 
 \begin{equation} \label{cijena_puta}
   \begin{split}
-    L'_{\mathbf{r}}(\mathbf{p}, d) = & C(\mathbf{p}, d) + \min(L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d), \\
-    & L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d - 1) + P_1, \\
-    & L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d + 1) + P_1, \\
-    & \max\limits_{i} L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, i) + P_2) - \min\limits_{k}L_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, k) \\
+    L_{\mathbf{r}}(\mathbf{p}, d) = & C(\mathbf{p}, d) + \min(L_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d), \\
+    & L_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d - 1) + P_1, \\
+    & L_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d + 1) + P_1, \\
+    & \min\limits_{i} L_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, i) + P_2) - \min\limits_{k}L_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, k) \\
   \end{split}
 \end{equation}
 
@@ -607,59 +607,181 @@ prosječnom pogreškom na cijelom skupu.
 
 \chapter{Rezultati}
 
-\begin{figure}[htb]
+Implementirani algoritmi evaluirani su na standardnim skupovima slika Middlebury i KITTI.
+Prvi dio evaluacije odrađen je na skupu Middlebury i cilj je bio usporediti s jedne strane lokalne metode
+uz uzimanje dispariteta s najmanjom cijenom, a s druge strane lokalne metode u kombinaciji s
+algoritmom poluglobalnog podudaranja. Posebno su izdvojene pogreške poluglobalnog podudaranja
+u kombinaciji s BT cijenom. Parametri kažnjavanja bili su postavljeni na $P_1 = 3$ i $P_2 = 22$.
+Na skupu KITTI je cilj bio vidjeti točnost algoritma poluglobalnog podudaranja u kombinaciji
+s BT cijenom, i to s 8 i 16 smjerova, radi usporedbe tog parametra. Pokazat ćemo za svaku
+varijantu slike s najmanjom i najvećom pogreškom te prosječnu pogrešku. Prvo ćemo krenuti sa skupom Middlebury.
+
+\section{Middlebury}
+
+Očekujemo kako će lokalne metode dati relativno dobre rezultate te da će uz uključivanje
+SGM-a pogreška dodatno pasti. Vidjet ćemo kako će se ponašati SGM te u kojim segmentima će
+dati poboljšanja i kolika, a u kojima neće biti velikih promjena.
+
+Na prva dva grafa možemo vidjeti pogreške dobivene korištenjem metode korespondencije SSD, te
+SSD uz kombinaciju sa SGM-om. SSD nudi relativno dobre rezultate, ali postoje i bolje
+metode. Kada u igru uključimo SGM, vidimo da su se točnosti popravile pri jako malim
+prozorima. 
+
+\begin{figure}[H]
   \centering
   \includegraphics[width=13cm]{img/SSD_lokalno_middlebury.png}
   \caption{Pogreška metode korespondencije SSD}
   \label{fig:SSD-error}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}[H]
   \centering
   \includegraphics[width=13cm]{img/SSD_sgm_middlebury.png}
-  \caption{Pogreška metode korespondencije SSD}
-  \label{fig:SSD-error}
+  \caption{Pogreška metode korespondencije SSD + SGM}
+  \label{fig:SSD-sgm-error}
 \end{figure}
 
-\begin{figure}[htb]
+Metoda ZSAD se pokazala kao najbolja u čisto lokalnoj varijanti. Vidimo da je
+za većinu slika pogreška oko 20\%, i to za prozor veličine 5. Interesantno je da
+uz kombinaciju sa SGM-om postiže još bolje rezultate, i to za prozor manji od
+najboljeg u čisto lokalnoj varijanti.
+
+\begin{figure}[H]
   \centering
   \includegraphics[width=13cm]{img/ZSAD_lokalno_middlebury.png}
   \caption{Pogreška metode korespondencije ZSAD}
   \label{fig:ZSAD-error}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}[H]
   \centering
   \includegraphics[width=13cm]{img/ZSAD_sgm_middlebury.png}
-  \caption{Pogreška metode korespondencije ZSAD}
-  \label{fig:ZSAD-error}
+  \caption{Pogreška metode korespondencije ZSAD + SGM}
+  \label{fig:ZSAD-sgm-error}
 \end{figure}
 
-\begin{figure}[htb]
+Metoda Census je uvjerljivo najlošija u čisto lokalnoj varijanti, ali je iznenađujuće dobra
+u kombinaciji sa SGM-om. To možemo objasniti ako pogledamo sliku \ref{fig:Census-KITTI}.
+Vidimo da ima puno šuma, tj. pojedinih piksela koji odskaču od okoline. SGM-u ``odgovara''
+takvo ponašanje jer je on dobar u ispravljanju manjih diskontinuiteta u zamjenu za glatkije
+površine. Isto vrijedi i za metode SSD i ZSAD, kod korištenja manjih prozora. U ovom
+slučaju Census i SGM daju bolje od rezultate od ZSAD-a u kombinaciji sa SGM-om.
+
+\begin{figure}[H]
   \centering
   \includegraphics[width=13cm]{img/Census_lokalno_middlebury.png}
   \caption{Pogreška metode korespondencije Census}
   \label{fig:Census-error}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}[H]
   \centering
   \includegraphics[width=13cm]{img/Census_sgm_middlebury.png}
-  \caption{Pogreška metode korespondencije Census}
-  \label{fig:Census-error}
+  \caption{Pogreška metode korespondencije Census + SGM}
+  \label{fig:Census-sgm-error}
 \end{figure}
 
-\begin{figure}[htb]
+Na slikama \ref{fig:pogreska-lok} i \ref{fig:pogreska-sgm} možemo vidjeti prosječne vrijednosti pogreške metoda SSD, ZSAD i Census na
+slici (a) te istih metoda u kombinaciji sa SGM-om na slici (b). To nam potvrđuje kako ZSAD
+daje najbolje rezultate u samostalnoj varijanti, a Census u kombinaciji sa SGM-om.
+Također vidimo da kako veličina prozora raste, SGM ima sve manje utjecaja, što je već objašnjeno
+njegovim favoriziranjem šuma. Kod velikih prozora nema puno šuma, tj. sve površine su dosta velike i glatke te SGM zapravo nema što popravljati. Na slici \ref{fig:bt-sgm-error} još su
+prikazane pogreške dobivene SGM-om u izvornoj varijanti, uz korespondenciju Birchfield-Tomasi.
+
+\begin{figure}[H]
   \centering
   \subfloat[Pogreška lokalnih metoda]{\includegraphics[width=0.5\textwidth]{img/prosjek_lokalno.png}\label{fig:pogreska-lok}}
   \hfill
-  \subfloat[Pogreška lokalno + SGM]{\includegraphics[width=0.5\textwidth]{img/prosjek_sgm.png}\label{fig:f2}}
+  \subfloat[Pogreška lokalno + SGM]{\includegraphics[width=0.5\textwidth]{img/prosjek_sgm.png}\label{fig:pogreska-sgm}}
   \caption{Prosječne pogreške u ovisnosti o veličini prozora}
 \end{figure}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=13cm]{img/sgm_bt_middlebury.png}
+  \caption{Pogreška metode korespondencije BT + SGM}
+  \label{fig:bt-sgm-error}
+\end{figure}
+
+\section{KITTI}
+Na skupu KITTI testiran je SGM u varijanti s 8 i 16 smjerova agregiranja cijena.
+Testiranje je provedeno na skupu za treniranje uz koji su dane i mape točnih dispariteta
+kako bi se mogle usporediti s izračunatima. Radi jednostavnosti, prikazivat ćemo samo slike
+lijeve kamere.
+
+Prvo ćemo pokazati sliku s najmanjom pogreškom, tj. najbolji rezultat. Slika iz skupa koja je imala najmanju
+pogrešku je {\verb|000188_10.png|} i prikazana je na slici \ref{fig:kitti-min-sgm-error}.
+Ista slika je imala najmanju pogrešku u obje varijante algoritma. Vidimo da slika predstavlja
+relativno glatke i široke površine što je pogodno za SGM. Mogli bismo pretpostaviti da rezultat neće biti tako dobar
+zbog šume s lijeve strane ceste, no kao što možemo vidjeti na mapi točnih dispariteta, taj dio
+se ne uzima u obzir, niti je vidljiv na izračunatoj mapi dispariteta.
+
+\begin{figure}[H]
+  \centering
+  \subfloat[Slika s najmanjom pogreškom u skupu KITTI]{\includegraphics[width=13cm]{img/sgm_best_kitti.png}\label{fig:kitti-min-sgm-error}}
+  
+  \centering
+  \subfloat[Pripadni točni dispariteti]{\includegraphics[width=13cm]{img/sgm_best_ground_truth.png}\label{fig:kitti-min-sgm-true-disparity}}
+
+  \centering
+  \subfloat[Pripadni izračunati dispariteti (16 smjerova)]{\includegraphics[width=13cm]{img/sgmbt_000188_10_150.png}\label{fig:kitti-min-sgm-calc-disparity}}
+
+  \caption{Slika s najmanjom pogreškom uz korištenje SGM + BT u skupu KITTI}
+\end{figure}
+
+Slika s najgorim rezultatom u varijanti s 8 smjerova bila je {\verb|000169_10.png|} koja je prikazana na slici \ref{fig:kitti-max-sgm8-error}. Pogreška iznosi 57\%. Vidimo da slika ima puno objekata koji su
+nepravilnog oblika što je dosta nepogodno za računanje korespondencije. Iz tog razloga rezultat na toj slici nije najbolji.
+
+\begin{figure}[H]
+  \centering
+  \subfloat[Slika s najvećom pogreškom u skupu KITTI]{\includegraphics[width=13cm]{img/sgm_8_worst.png}\label{fig:kitti-max-sgm8-error}}
+  
+  \centering
+  \subfloat[Pripadni točni dispariteti]{\includegraphics[width=13cm]{img/sgm_8_worst_ground_truth.png}\label{fig:kitti-max-sgm8-true-disparity}}
+
+  \centering
+  \subfloat[Pripadni izračunati dispariteti (8 smjerova)]{\includegraphics[width=13cm]{img/sgmbt_000169_10_150.png}\label{fig:kitti-max-sgm8-calc-disparity}}
+
+  \caption{Slika s najvećom pogreškom uz korištenje SGM + BT u skupu KITTI (8 smjerova)}
+\end{figure}
+
+U varijanti sa 16 smjerova, slika s najvećom pogreškom bila je {\verb|000177_10.png|}, a
+pogreška je iznosila 52\%. Na slici vidimo dosta izražen odbljesak sunca što može biti
+razlog tako lošeg rezultata. Boljim uvidom utvrđeno je da je to slučaj te su priložene obje
+slike za lakšu usporedbu. Vidimo da se razina osvjetljenja razlikuje na slikama što je
+vrlo nepovoljan slučaj kod stereoskopske rekonstrukcije i dosta otežava postupak.
+
+\begin{figure}[H]
+  \centering
+  \subfloat[Slika s najvećom pogreškom u skupu KITTI (lijeva)]{\includegraphics[width=13cm]{img/sgm_16_worst.png}\label{fig:kitti-max-sgm16-error_left}}
+
+  \centering
+  \subfloat[Slika s najvećom pogreškom u skupu KITTI (desna)]{\includegraphics[width=13cm]{img/000177_10.png}\label{fig:kitti-max-sgm16-error_left}}
+  
+  \centering
+  \subfloat[Pripadni točni dispariteti]{\includegraphics[width=13cm]{img/sgm_16_worst_ground_truth.png}\label{fig:kitti-max-sgm16-true-disparity}}
+
+  \centering
+  \subfloat[Pripadni izračunati dispariteti (16 smjerova)]{\includegraphics[width=13cm]{img/sgmbt_000177_10_150.png}\label{fig:kitti-max-sgm16-calc-disparity}}
+
+  \caption{Slika s najvećom pogreškom uz korištenje SGM + BT u skupu KITTI (16 smjerova)}
+\end{figure}
+
+Prosječna pogreška u varijanti a 8 smjerova iznosila je 19.77\% dok je u varijanti sa 16
+smjerova iznosila 17.97\%. Vidimo da razlika nije velika, ali je očekivano varijanta sa 16 smjerova bolja zbog bolje pokrivenosti cijele slike.
 
 \chapter{Zaključak}
-Zaključak.
+Cilj ovog rada bio je upoznati se s metodama guste stereoskopske rekonstrukcije, s naglaskom
+na poluglobalno podudaranje. Prvo su obrađene metode lokalne korespondencije koje se temelje
+na principu prozorčića. Zatim je uveden algoritam poluglobalnog podudaranja koji kao ulaz
+prima cijene izračunate kod lokalnih metoda. Njegova ideja je da optimira globalnu funkciju energije na način da preferira glatkoću površina, a kažnjava prekide u kontinuitetima.
+Navedeni algoritmi su testirani na standardnim skupovima slika Middlebury i KITTI, a rezultati
+su uglavnom u skladu s očekivanim. Jedino iznenađenje bila je metoda Census u kombinaciji sa poluglobalnim podudaranjem koja je dala izrazito dobre rezultate.
+
+Kao sljedeći korak u poboljšanju navedenih metoda mogle bi se implementirati visoko paralelizirane verzije algoritama
+koje bi se izvodile na grafičkim karticama. Osim toga, moguće je implementirati i dodatne
+korake u algoritmu poluglobalnog podudaranja koji bi ostvarili još bolje rezultate, poput
+uklanjanja naglih skokova u disparitetu (eng. {\sl peaks}), zaglađivanja Gaussovim filtrom i tako dalje.
 
 \bibliography{literatura}
 \bibliographystyle{fer}
