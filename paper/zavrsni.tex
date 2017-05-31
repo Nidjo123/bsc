@@ -73,7 +73,7 @@ U petom poglavlju ćemo vidjeti rezultate eksperimenata na standardnim skupovima
 \chapter{Stereoskopska rekonstrukcija}
 
 Prije same rekonstrukcije, potrebno je obraditi slike dobivene iz para kamera. Za to je potrebno znati geometrijske parametre sustava dvaju kamera. Kao model kamere uzet ćemo
-projekcijsku ravninu koja je udaljena od izvora/kamere za neku udaljenost $d$. Tako se sve točke u prostoru ispred kamere i ravnine projiciraju na tu zamišljenu ravninu.
+projekcijsku ravninu koja je udaljena od izvora/kamere za neku udaljenost $f$. Tako se sve točke u prostoru ispred kamere i ravnine projiciraju na tu zamišljenu ravninu.
 
 \begin{figure}[htb]
   \centering
@@ -82,6 +82,16 @@ projekcijsku ravninu koja je udaljena od izvora/kamere za neku udaljenost $d$. T
   \label{fig:model-kamere}
 \end{figure}
 
+Na slici \ref{fig:model-kamere} prikazan je upravo takav model. Kamera se nalazi u ishodištu
+globalnog koordinatnog sustava s osima $(X_c, Y_c, Z_c)$. Ispred kamere u smjeru pozitivne
+$Z$ osi na udaljenosti $z = f$ nalazi se projekcijska ravnina okomita na navedenu os. Udaljenost $f$ još se naziva žarišna udaljenost (eng. {\sl focal distance}). Koordinatni sustav projekcijske ravnine
+ili slike određen osima $(u, v)$ je smješten tako da mu je ishodište u gornjem lijevom kutu slike.
+
+Postupak stvaranja slike si možemo predočiti tako da zamislimo da za svaki piksel slike ispucamo
+zraku koja ide iz globalnog ishodišta (kamere), prolazi kroz ravninu projekcije i ide sve dok ne pogodi neki najbliži vidljivi predmet. Boju u pogođenoj točki preslikavamo na ravninu projekciju, i to u točki sjecišta ispucane zrake i ravnine.
+
+Naravno, ovo je vrlo rudimentaran model i u stvarnosti je postupak puno kompleksniji jer nismo
+uzeli u obzir valna svojstva svjetlosti već smo pretpostavili da se svjetlost širi pravocrtno.
 
 \section{Epipolarna geometrija}
 
@@ -91,7 +101,7 @@ Geometrijske parametre sustava kamera možemo podijeliti u dvije skupine:
   \item ekstrinzični parametri.
 \end{enumerate}
 
-Intrinzični parametri su svojstveni svakoj kameri pojedinačno, dok su im ekstrinzični parametri zajednički. Neka svojstva koja utječu na intrinzične parametre su nesavršenost leće (radijalna distorzija), pomak senzora
+Intrinzični parametri su svojstveni svakoj kameri pojedinačno, dok su im ekstrinzični parametri zajednički. Neka svojstva koja utječu na intrinzične parametre su nesavršenost leće (radijalna distorzija, slika \ref{fig:primjeri-distorzije}), pomak senzora
 od centra leće (tangencijalna distorzija) i slične fizičke nesavršenosti koje je ponekad nemoguće izbjeći. Stoga priskačemo programskom otklanjanju tih nedostataka.
 Ekstrinzični parametri dovode do transformacija kako bismo slike doveli u istu ravninu projekcije te postigli da svi pikseli duž horizontalnog pravca jedne slike odgovaraju istom pravcu (na istoj visini) na drugoj slici.
 Taj pravac se naziva epipolarna linija. Razlog takvih transformacija je olakšavanje traženja korespondentnih točaka koje sada treba tražiti samo duž epipolarne linije čime je problem sveden na jednu dimenziju. Vidimo da uz malo pretprocesiranja puno olakšavamo problem rekonstrukcije.
@@ -171,28 +181,54 @@ gdje je $d = x_L - x_R$ disparitet.
 \chapter{Lokalne metode}
 Metode guste stereoskopske rekonstrukcije se mogu podijeliti na lokalne i globalne. U ovom poglavlju ćemo načelno opisati takve metode te detaljnije obraditi neke koje su korištene u ovom radu.
 
-Lokalne metode se temelje na principu prozorčića ili okna fiksne širine oko piksela. Označimo širinu prozora s $w$.
+Lokalne metode se temelje na principu prozorčića ili okna fiksne širine oko piksela. Označimo širinu prozora s $w$. Primijetimo kako bi $w$ trebao biti neparan broj jer se promatrani piksel
+nalazi u sredini prozora, a sa svake strane oko njega nalazi se jednak broj piksela.
 
-Postavlja se pitanje što napraviti na rubovima slike gdje nije moguće izračunati sve vrijednosti. Nekoliko je mogućih rješenja:
+Ideja je da trčimo po svim pikselima lijeve slike te ih uspoređujemo s pikselima desne slike, ali
+s određenim pomakom. Taj pomak naziva se disparitet i upravo je on cilj koji trebamo odrediti.
+Kako je disparitet unaprijed zadan rasponom $[0, maksimalni\_disparitet]$, moramo se odlučiti
+koji iz navedenog raspona ćemo odabrati. Naravno, odabrat ćemo onaj koji daje najbolje rezultate, no nekako moramo vrednovati takve rezultate. Rješenje leži u ideji da svakom mogućem
+disparitetu dodijelimo cijenu koja opisuje u kakvom je odnosu piksel desne slike spram piksela
+lijeve slike za koji želimo odrediti točan disparitet. Prirodno je da želimo proći što je
+jeftinije moguće pa ćemo odabrati upravo onaj disparitet koji ima najmanju cijenu. Cijenu
+također možemo shvatiti kao količinu razlike između intenziteta prozora oko odgovarajućih piksela.
+
+Postavlja se pitanje što napraviti na rubovima slike gdje nije moguće izračunati sve vrijednosti prozora iz razloga što se pikseli mogu nalaziti izvan slike. Nekoliko je mogućih rješenja:
 \begin{itemize}
   \item računati samo piksele koje je moguće obuhvatiti unutar slike
-  \item proširiti sliku crnim okvirom debljine $w/2$
+  \item proširiti sliku crnim okvirom širine $w/2$
   \item uopće ne računati korespondenciju za rub slike.
 \end{itemize}
 
-Svaki pristup ima svoje mane i prednosti. U vlastitoj implementaciji je korišteno treće rješenje gdje se uopće ne računa korespondencija, radi jednostavnosti. Razlika u pogrešci je relativno
+Svaki pristup ima svoje mane i prednosti. U vlastitoj implementaciji je korišteno treće rješenje gdje se uopće ne računa korespondencija na rubnim pikselima, radi jednostavnosti. Razlika u pogrešci je relativno
 mala, a u skupu slika KITTI \footnote{http://www.cvlibs.net/datasets/kitti/eval\_scene\_flow.php?benchmark=stereo} su rubovi uglavnom i isključeni iz provjere točnih dispariteta.
 
-\section{Opći algoritam}
+Kod svake navedene metode korespondencije ćemo prikazati reultat na jednom paru slika (slike \ref{fig:lijeva_KITTI} i \ref{fig:desna_KITTI} iz skupa KITTI.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=14cm]{img/000046_10_2.png}
+  \caption{Primjer slike iz lijeve kamere skupa KITTI}
+  \label{fig:lijeva_KITTI}
+\end{figure}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=14cm]{img/000046_10_3.png}
+  \caption{Primjer slike iz desne kamere skupa KITTI}
+  \label{fig:desna_KITTI}
+\end{figure}
+
+\section{Općeniti algoritam}
 Sada ćemo opisati općeniti algoritam za lokalno podudaranje.
 
 {\tt za svaki piksel $p(x, y)$ lijeve slike:}
 
 {\quad \tt za svaki disparitet $0 \leq d \leq maksimalni\_ disparitet$:}
 
-{\quad\quad\tt za svaki piksel $q$ u prozoru piksela $p'(x - d, y)$ desne slike:}
+{\quad\quad\tt za svaki piksel $q(x', y')$ u prozoru piksela $p'(x - d, y)$ desne slike:}
 
-{\quad\quad\quad \tt cijena[$y$][$x$] += $f(x, y, d)$}    
+{\quad\quad\quad \tt cijena[$y$][$x$] += $f(p, q)$}    
 
 
 \noindent pri čemu je funkcija $f(x, y, d)$ funkcija korespondencije koja određuje cijenu razlike odgovarajućih piksela lijeve i desne slike. Svaki piksel lijeve slike s pozicijom $(x, y)$
@@ -207,6 +243,13 @@ $$C_{SSD}(x, y, d) = \sum_{i}(I_R(x - d, y) - I_L(x, y))^2 $$
 gdje su $(x, y)$ koordinate piksela lijeve slike, $d$ trenutni disparitet, a $I_L$ lijeva slika te $I_R$ desna slika. Zbroj ide po svim pikselima unutar prozora promatranog piksela.
 Najbolja podudarnost kod SSD-a postiže se kada je vrijednost funkcije cijene jednaka $0$. Lako je vidjeti zašto je tomu tako kada bismo usporedili dva prozora s istim intenzitetima piksela. Tada će vrijednost funkcije biti $0$ jer oduzimamo iste vrijednosti. Iz toga slijedi da što se intenziteti više razlikuju, to će i cijene biti veće. Također, kvadrat doprinosi tome da vrijednosti ne budu negativne tako da možemo raditi samo s pozitivnim brojevima.
 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=14cm]{img/local_000046_10_SSD_11_140.png}
+  \caption{Rezultat primjene metode SSD uz veličinu prozora 11}
+  \label{fig:SSD-KITTI}
+\end{figure}
+
 \section{ZSAD}
 
 Sljedeća metoda je ZSAD ({eng. \sl Zero Sum of Absolute Differences}). Matematički ju možemo definirati ovako:
@@ -214,6 +257,13 @@ $$C_{ZSAD}(x, y, d) = \sum_{i}\lvert(M_L - I_L(x, y)) - (M_R - I_R(x - d, y))\rv
 gdje je $I_L$ lijeva slika, $I_R$ desna slika, a $M_L$ i $M_R$ srednje vrijednosti intenziteta piksela u trenutnom prozoru lijeve, odnosno desne slike.
 Nedostatak ove metode je što moramo računati i srednje vrijednosti svakog mogućeg prozora. Za razliku od SSD-a, ovdje nenegativnost cijena postižemo korištenje apsolutne vrijednosti, a ne kvadriranjem. Idealna vrijednost iznosi 0, odnosno u slučaju kada su svi odgovarajući pikseli u oba
 prozora jednakih intenziteta.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=14cm]{img/local_000046_10_ZSAD_11_140.png}
+  \caption{Rezultat primjene metode ZSAD uz veličinu prozora 11}
+  \label{fig:ZSAD-KITTI}
+\end{figure}
 
 \section{Census}
 
@@ -230,6 +280,13 @@ b(p, q) =
 gdje je $I$ slika, $p$ piksel u sredini prozora za kojega računamo transformaciju, $q$ bilo koji piksel unutar prozora. Važno je napomenuti da redoslijed pridruživanja bitova mora biti jednak u oba
 prozora koja se uspoređuju kako bi rezultat bio ispravan. Nakon što svakom pikselu pridružimo binarnu vrijednost, cijenu možemo izračunati
 računski tako primijenimo operaciju isključivo-ili između binarnih riječi prozora lijeve i desne slike te zatim prebrojimo broj bitova u jedinici.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=14cm]{img/local_000046_10_Census_11_140.png}
+  \caption{Rezultat primjene metode Census uz veličinu prozora 11}
+  \label{fig:Census-KITTI}
+\end{figure}
 
 Do sada navedene metode opisane su u projektnoj dokumentaciji kolega \cite{projekt1415}.
 
@@ -261,6 +318,13 @@ I_{max} = max(I^-_R, I^+_R, I_R(y_i))
 \begin{equation}
 C_{BT}(x_i, y_i, I_L, I_R) = max(0, I_L(x_i) - I_{max}, I_{min} - I_L(x_i)))
 \end{equation}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=14cm]{img/local_000046_10_BT_1_140.png}
+  \caption{Rezultat primjene metode Birchfield-Tomasi}
+  \label{fig:BT-KITTI}
+\end{figure}
 
 Birchfield-Tomasijeva cijena je opisana u diplomskom radu Dine Kovača \cite{kovac15ms}, a izvorno u radu Stana Birchfielda i Carla Tomasija \cite{birchfield1998depth}.
 
