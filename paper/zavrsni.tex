@@ -396,7 +396,7 @@ Definirajmo funkciju energije koja ovisi o disparitetu $D$ na sljedeći način:
 \begin{equation} \label{energija}
 E(D) = \sum_{\mathbf{p}}(C(\mathbf{p}, D_{\mathbf{p}}) + \sum_{\mathbf{q} \in N_{\mathbf{p}}} P_1 T [\lvert D_{\mathbf{p}} - D_{\mathbf{q}}\rvert = 1] + \sum_{\mathbf{q} \in N_{\mathbf{p}}} P_2 T [\lvert D_{\mathbf{p}} - D_{\mathbf{q}}\rvert > 1])
 \end{equation}
-gdje je $C(\mathbf{p}, D_{\mathbf{p}})$ cijena piksela $\mathbf{p}$ ovisno o pripadnom disparitetu, a $P1$ i $P2$ konstantni parametri koji predstavljaju kazne da diskontinuitete. Uvijek mora vrijediti $P1 \leq P2$.
+gdje je $C(\mathbf{p}, D_{\mathbf{p}})$ cijena piksela $\mathbf{p}$ ovisno o pripadnom disparitetu, a $P_1$ i $P_2$ konstantni parametri koji predstavljaju kazne da diskontinuitete. Uvijek mora vrijediti $P_1 \leq P_2$.
 Funkcija $T[x]$ je definirana na sljedeći način:
 \[   
 T[x] = 
@@ -415,17 +415,18 @@ može se opisati sljedećom rekurzivnom funkcijom:
 \begin{equation} \label{cijena_1}
   \begin{split}
     L'_{\mathbf{r}}(\mathbf{p}, d) = & C(\mathbf{p}, d) + \min(L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d), \\
-    & L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d - 1) + P1, \\
-    & L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d + 1) + P1, \\
-    & \max\limits_{i} L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, i) + P2) \\
+    & L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d - 1) + P_1, \\
+    & L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d + 1) + P_1, \\
+    & \max\limits_{i} L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, i) + P_2) \\
   \end{split}
 \end{equation}
 gdje je $\mathbf{p}$ trenutni piksel, $d$ trenutni disparitet, $C(\mathbf{p}, d)$ ranije
-izračunata cijena, a $P1 \leq P2$ fiksni, unaprijed određeni parametri koji kažnjavaju
+izračunata cijena, a $P_1 \leq P_2$ fiksni, unaprijed određeni parametri koji kažnjavaju
 prekide u kontinuitetu.
 
 Probajmo sada riječima opisati što funkcija radi. Za trenutni piksel agregira unaprijed izračunatu cijenu te joj pridodaje minimalnu cijenu puta prošlog piksela ovisno o najboljem disparitetu. Vidimo da se u ovom koraku događa spomenuto kažnjavanje.
-Ukoliko se disparitet razlikuje malo (u ovom slučaju točno 1), tada ćemo dodati malu kaznu $P1$ na cijenu, a ukoliko se razlikuje puno (u ovom slučaju više od 1), onda ćemo dodati veću kaznu $P2$.
+Ukoliko se disparitet razlikuje malo (u ovom slučaju točno 1), tada ćemo dodati malu kaznu $P_1$ na cijenu, a ukoliko
+se razlikuje puno (u ovom slučaju više od 1), onda ćemo dodati veću kaznu $P_2$.
 
 \begin{figure}[H]
   \centering
@@ -437,20 +438,32 @@ Ukoliko se disparitet razlikuje malo (u ovom slučaju točno 1), tada ćemo doda
 
 Primijetimo sada jedan nedostatak ove funkcije. Kako agregiramo cijene duž određenog puta, cijena puta uvijek raste i može poprimiti veliku vrijednost. Tome ćemo doskočiti tako da od trenutne cijene puta oduzmemo najmanju cijenu puta u prošlom koraku, što je opisano u \ref{cijena_puta}.
 Ova modifikacija neće promijeniti put jer je ta vrijednost konstantna za sve disparitete konkretnog piksela. Stoga se disparitet s najmanjom cijenom, tj. minimum funkcije, neće promijeniti.
-Najveća vrijednost cijene će sada biti $L \leq C_{\max} + P2$.
+Najveća vrijednost cijene će sada biti $L \leq C_{\max} + P_2$.
 
 \begin{equation} \label{cijena_puta}
   \begin{split}
     L'_{\mathbf{r}}(\mathbf{p}, d) = & C(\mathbf{p}, d) + \min(L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d), \\
-    & L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d - 1) + P1, \\
-    & L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d + 1) + P1, \\
-    & \max\limits_{i} L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, i) + P2) - \min\limits_{k}L_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, k) \\
+    & L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d - 1) + P_1, \\
+    & L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d + 1) + P_1, \\
+    & \max\limits_{i} L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, i) + P_2) - \min\limits_{k}L_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, k) \\
   \end{split}
 \end{equation}
 
 Agregiranje cijena provodimo po svim putevima $\mathbf{r}$. Kako bi se dobio zadovoljavajući rezultat,
 preporučeno je barem 8 puteva kako bi se što bolje pokrila cijela slika. U slučaju 8 puteva, jasno je kako se treba kretati (po horizontalnim i vertikalnim osima te po dijagonalama), no što u slučaju 16 smjerova?
-Tada se još treba kretati i između dijagonala, a to ćemo postići tako da se pomaknemo 2 piksela horizontalno, a zatim 1 vertikalno ili obratno što je prikazano na slici \ref{fig:SGM-paths}. Pretpostavljamo da je ishodište koordinatnog sustava slike u gornjem lijevom kutu, a pozitivni smjer apscise je udesno, a ordinate prema dolje.
+Tada se još treba kretati i između dijagonala, a to ćemo postići tako da se pomaknemo 2 piksela horizontalno, a zatim 1 vertikalno ili obratno što je prikazano na slici \ref{fig:SGM-paths}. Pretpostavljamo da je ishodište koordinatnog sustava slike u gornjem lijevom kutu, pozitivni smjer apscise je udesno, a ordinate prema dolje.
+
+Nakon što smo izračunali cijene za sve puteve, sada cijenu pojedinog dispariteta za određeni
+piksel možemo izraziti sljedećom funkcijom:
+\begin{equation}
+  S(\mathbf{p}, d) = \sum_{\mathbf{r}}L_{\mathbf{r}}(\mathbf{p}, d)
+\end{equation}
+čija najveća vrijednost će biti 16 puta već od najveće cijene pojedinog puta iz razloga što
+ćemo svaki piksel obići 16 puta (ukoliko radimo sa 16 smjerova). Dakle, vrijedi $S \leq 16(C_{\max} + P_2)$.
+
+Označimo širinu slike s $W$, visinu s $H$, a najveći disparitet s $D$.
+Postupak računanja radimo tako da krenemo od rubnih piksela slike i računamo po \ref{cijena_puta}. Za to nam je potrebno polje $S[W][H][D]$ (početno inicijalizirano na 0) u koje ćemo pohranjivati izračunate cijene.
+
 
 \begin{figure}[H]
   \centering
@@ -459,6 +472,17 @@ Tada se još treba kretati i između dijagonala, a to ćemo postići tako da se 
   \label{fig:SGM-paths}
 \end{figure}
 
+Sljedeći korak nakon agregacije je odabrati najbolju mapu dispariteta, a to radimo na identičan način
+kao kod lokalnih metoda---odabirom dispariteta s najmanjom cijenom.
+
+Pokušajmo sada odrediti kolika je složenost navedenog postupka. Pretpostavimo da radimo sa 16 smjerova. Kako krećemo od svakog rubnog piksela i širimo se u svim mogućim smjerovima, svaki
+piksel ćemo posjetiti 16 puta, iz svakog smjera jedanput, i tako za svaki mogući disparitet. Iz toga slijedi da je složenost postupka $O(16WHD)$, tj. $O(WHD)$.
+Minimalnu cijenu puta prošlog piksela možemo izračunati u složenosti $O(D)$, ali pošto je konstantna za sve disparitete trenutnog piksela, možemo ju unaprijed izračunati. Zaključujemo da je složenost algoritma vrlo povoljna (linearna), pogotovo u kombinaciji sa korespondencijom Birchfield-Tomasi.
+
+Također, zbog svoje pravilne strukture, algoritam je pogodan za korištenje vektorskih instrukcija. Najveći nedostatak je memorijska zahtjevnost. Autor algoritma kao rješenje tog problema predlaže
+razlaganje velike slike na više manjih segmenata koji se preklapaju, te zatim provođenje algoritma kako je opisano, za svaki segment posebno.
+
+Algoritam poluglobalnog podudaranja izvorno je opisao Heiko~Hirschm{\"u}ller \cite{hirschmuller2008stereo}, a alternativno objašnjenje je proučeno iz diplomskog rada Dine Kovača \cite{kovac15ms}.
 
 \chapter{Opis implementacije}
 
@@ -487,7 +511,7 @@ u obliku PNG (eng. {\sl Portable Network Graphics}) slika. Naredba za pokretanje
 ./stereoMatching lijeva_slika desna_slika metoda_korespondencije\
  velicina_prozora maksimalni_disparitet P1 P2 izlaz_lokalno izlaz_SGM
 \end{verbatim}
-Metoda korespondencije može biti SSD, ZSAD, Census ili BT. $P1$ i $P2$ su parametri kažnjavanja
+Metoda korespondencije može biti SSD, ZSAD, Census ili BT. $P_1$ i $P_2$ su parametri kažnjavanja
 diskontinuiteta kod algoritma poluglobalnog podudaranja. Kao što vidimo, program obrađuje slike
 i lokalnim i poluglobalnim podudaranjem odjednom, koristeći istu metodu korespondencije.
 Važno je naglasiti kako veličina prozora mora biti neparan broj jer se piksel oko kojega se računa cijena nalazi u sredini prozora pa sa svake strane mora biti jednak broj piksela.
@@ -503,12 +527,12 @@ Izvođenje skripte rezultirat će izvršnim programom {\tt sgm}. Njega možete p
 \begin{verbatim}
      ./sgm lijeva_slika desna_slika maksimalni_disparitet P1 P2 izlaz
 \end{verbatim}
-gdje su $P1$ i $P2$ ponovo iznosi penala diskontinuiteta kod poluglobalnog podudaranja.
+gdje su $P_1$ i $P_2$ ponovo iznosi penala diskontinuiteta kod poluglobalnog podudaranja.
 Pokretanje navedenog programa rezultirat će jednom neskaliranom mapom dispariteta pohranjenom
 u obliku slike u formatu PNG.
 Podrazumijevani broj smjerova optimizacija kod algoritma SGM je 16. Ukoliko se želi promijeniti
 broj smjerova, potrebno je promijeniti varijablu {\verb|N_PATHS|} u npr. 8, te ponovo prevesti izvorni kod. Mape dispariteta su pohranjene u sivoj skali (eng. {\sl grayscale}).
-Važno je pripaziti na to da mora vrijediti $P1 \leq P2$\/!
+Važno je pripaziti na to da mora vrijediti $P_1 \leq P_2$\/!
 
 Osim programa za obradu slika stereoskopskom rekonstrukcijom, tu su još i dva pomoćna programa. Jedan omogućava skaliranje vrijednosti svih piksela slike u formatu PNG. Možete ga prevesti
 naredbom
