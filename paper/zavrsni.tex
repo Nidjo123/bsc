@@ -376,16 +376,39 @@ gdje dolazi do naglih prekida u dubini ili gdje ima čestih izmjena dubine.
 
 Poluglobalno podudaranje pokušava otkloniti neke od navedenih nedostataka. Pokušajmo razmisliti kako bismo mogli unaprijediti postupak stereoskopske rekonstrukcije uz smanjenje navedenih nedostataka (ipak ih ne možemo u potpunosti izbjeći).
 
-Prvo što bismo mogli napraviti jest ne promatrati samo malu konačnu okolinu piksela već proširiti područje traženja najbolje dispariteta. Time bismo dobili bolju globalnu sliku jer se možemo bolje prilagoditi pretpostavci da radimo uglavnom s glatkim površinama.
+Prvo što bismo mogli napraviti jest ne promatrati samo malu konačnu okolinu piksela već proširiti područje traženja najboljeg dispariteta. Time bismo dobili bolju globalnu sliku jer se možemo bolje prilagoditi pretpostavci da radimo uglavnom s glatkim površinama.
 
 Drugo poboljšanje koje bismo mogli uvesti je da na neki način forsiramo ograničenje glatkoće rekonstrukcije.
 To možemo učiniti tako da za svaki disparitet probamo prvo uzeti okolne piksele s istim disparitetom, a svaku razliku u disparitetu kažnjavamo određenim povećanjem cijene.
 
-Upravo navedena poboljšanja su glavne ideje algoritma poluglobalnog podudaranja.
+Upravo navedena poboljšanja su glavne ideje algoritma poluglobalnog podudaranja. Algoritam se odvija u nekoliko koraka:
+\begin{enumerate}
+  \item izračun cijena korespondencija (pomoću ranije navedenih lokalnih metoda),
+  \item agregacija cijena te
+  \item odabir dispariteta s najboljim cijenama.
+\end{enumerate}
 
+Globalne metode obično definiraju globalnu funkcije energije koju pokušavaju optimirati.
+No, taj postupak je izrazito zahtjevan pa poluglobalno podudaranje tome priskače na način
+da aproksimira najbolju moguću energiju.
+
+Definirajmo funkciju energije koja ovisi o disparitetu $D$ na sljedeći način:
 \begin{equation} \label{energija}
 E(D) = \sum_{\mathbf{p}}(C(\mathbf{p}, D_{\mathbf{p}}) + \sum_{\mathbf{q} \in N_{\mathbf{p}}} P_1 T [\lvert D_{\mathbf{p}} - D_{\mathbf{q}}\rvert = 1] + \sum_{\mathbf{q} \in N_{\mathbf{p}}} P_2 T [\lvert D_{\mathbf{p}} - D_{\mathbf{q}}\rvert > 1])
 \end{equation}
+gdje je $C(\mathbf{p}, D_{\mathbf{p}})$ cijena piksela $\mathbf{p}$ ovisno o pripadnom disparitetu, a $P1$ i $P2$ konstantni parametri koji predstavljaju kazne da diskontinuitete. Uvijek mora vrijediti $P1 \leq P2$.
+Funkcija $T[x]$ je definirana na sljedeći način:
+\[   
+T[x] = 
+     \begin{cases}
+       0, & x\ \ je\ \ laž \\
+       1, & x\ \ je\ \ istina \\
+     \end{cases}
+\]
+Ideja je aproksimirati optimalnu vrijednost navedene funkcije energije, odnosno odabrati
+mapu dispariteta $D$ za koju će vrijednost $E(D)$ biti minimalna.
+
+Način na koji ćemo to postići
 
 \begin{equation} \label{cijena_1}
   \begin{split}
@@ -404,6 +427,13 @@ E(D) = \sum_{\mathbf{p}}(C(\mathbf{p}, D_{\mathbf{p}}) + \sum_{\mathbf{q} \in N_
     & \max\limits_{i} L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, i) + P2) - \min\limits_{k}L_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, k) \\
   \end{split}
 \end{equation}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=12cm]{img/sgm.png}
+  \caption{Ilustracija rada algoritma poluglobalnog podudaranja}
+  \label{fig:SGM}
+\end{figure}
 
 \chapter{Opis implementacije}
 
