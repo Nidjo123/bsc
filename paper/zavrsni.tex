@@ -22,8 +22,8 @@
 % Ispis stranice s napomenom o umetanju izvornika rada. Uklonite naredbu \izvornik ako želite izbaciti tu stranicu.
 \izvornik
 
-% Dodavanje zahvale ili prazne stranice. Ako ne želite dodati zahvalu, naredbu ostavite radi prazne stranice.
-\zahvala{}
+\zahvala{Zahvaljujem se mentoru prof.~dr.~sc.~Siniši~Šegviću na pomoći pri izradi ovog rada
+te svojoj obitelji na podršci tijekom cijelog školovanja}
 
 \tableofcontents
 
@@ -35,7 +35,7 @@ Pomoću vida se orijentiramo u prostoru, prepoznajemo druge ljude i njihova lica
 Kada bi računala mogla interpretirati vizualne podražaje poput ljudi, to bi omogućilo velik
 napredak u umjetnoj inteligenciji. Nažalost, to je još uvijek neriješen problem.
 
-Cijelo područje
+Samo područje
 je nastalo šezdesetih godina prošlog stoljeća kada se mislilo da će se taj problem relativno brzo riješiti.
 Naime, profesor je kao zadatak studentu zadao da na robota stavi kameru i da robot opisuje ono što vidi.
 Vrlo brzo se pokazalo kako je problem puno složeniji nego što se mislilo.
@@ -179,6 +179,8 @@ i uvrštavanjem u \ref{lijevi_trokut} dolazimo do krajnjeg izraza
 Z = \frac{fb}{d} \label{udaljenost}
 \end{equation}
 gdje je $d = x_L - x_R$ disparitet.
+Sada možemo vidjeti da je udaljenost od kamere obrnuto proporcionalna disparitetu. To znači da što
+je promatrani objekt bliže kameri, to će disparitet biti veći i obratno.
 
 \chapter{Lokalne metode}
 Metode guste stereoskopske rekonstrukcije se mogu podijeliti na lokalne i globalne. U ovom poglavlju ćemo načelno opisati takve metode te detaljnije obraditi neke koje su korištene u ovom radu.
@@ -787,15 +789,32 @@ uklanjanja naglih skokova u disparitetu (eng. {\sl peaks}), zaglađivanja Gausso
 \bibliographystyle{fer}
 
 \begin{sazetak}
-  Sažetak na hrvatskom jeziku.
+  Ovaj rad razmatra metode guste stereoskopske rekonstrukcije na standardnim skupovima slika.
+  Cilj takvih metoda je odrediti oblak točaka koji najbolje odgovara prostoru projiciranom
+  na slici.
+  Poseban naglasak je na metodama koje favoriziraju glatku rekonstrukciju. Kao glavni
+  algoritam uvedeno je poluglobalno podudaranje koje se temelji na pretpostavci da radimo
+  uglavnom s glatkim površinama. Zato algoritam kažnjava svaki prekid u dubini slike. Kao
+  ulaze prima cijene izračunate u metodama lokalne korespondencije. Algoritmi su
+  evaluirani na standardnim skupovima slika Middlebury i KITTI. Rezultati i usporedbe metoda su prikazani
+  grafički i komentarima.
 
 \kljucnerijeci{računalni vid, stereoskopska rekonstrukcija, poluglobalno podudaranje, disparitet, korespondencija}
 \end{sazetak}
 
 \engtitle{Dense stereoscopic reconstruction with semi-global matching}
 \begin{abstract}
-Abstract.
-
+  This thesis considers methods for dense stereoscopic reconstruction on standard image
+  datasets. The aim of such methods is to determine the cloud of points that best suits
+  the space projected onto the picture.
+  Particular emphasis is placed on methods that favor smooth reconstruction. As the main
+  algorithm, the thesis introduces semi-global matching which is based on the assumptions
+  that we are mainly concerned about smooth surfaces. That is the reason why the algorithm
+  penalizes every discontinuity in the depth of the image. It accepts, as input, the costs
+  calculated by local correspondence methods. Algorithms are evaluated on standard image
+  datasets Middlebury and KITTI. Results and comparisons of the methods are shown graphically
+  and discussed.
+  
 \keywords{computer vision, stereoscopic reconstruction, semi-global matching, disparity, correspondence}
 \end{abstract}
 
