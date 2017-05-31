@@ -494,7 +494,21 @@ dobit ćemo prikaz svih grafova pogrešaka korespondencija, zatim korespondencij
 s poluglobalnim podudaranjem te naposlijetku prikaz prosječnih pogrešaka u ovisnosti o
 veličini prozorčića.
 
-Za skup KITTI je napisana skripta
+Za skup KITTI je napisana skripta {\verb|kitti_2015_sgm.py|} koja računa mape dispariteta
+na skupu KITTI 2015 i to koristeći poluglobalno podudaranje u kombinaciji s Birchfield-Tomasijevom korespondencijom. Nakon pokretanja naredbe
+\begin{verbatim}
+          python3 kitti_2015_sgm.py put_do_skupa_kitti_2015
+\end{verbatim}
+nastat će direktorij {\verb|kitti_2015_sgmbt_results|} u kojem će se nalaziti izračunate
+mape dispariteta za sve slike iz skupa za treniranje, iz razloga što samo za njih imamo točne
+disparitete za usporedbu.
+
+Nakon obrade, slike možemo evaluirati pozivom
+\begin{verbatim}
+          python3 kitti_2015_results.py put_do_skupa_kitti_2015
+\end{verbatim}
+te ćemo u konzoli dobiti ispis slike s najmanjom pogreškom, slike s najvećom pogreškom te
+prosječnom pogreškom na cijelom skupu.
 
 \chapter{Rezultati}
 
