@@ -195,10 +195,10 @@ lijeve slike za koji želimo odrediti točan disparitet. Prirodno je da želimo 
 jeftinije moguće pa ćemo odabrati upravo onaj disparitet koji ima najmanju cijenu. Cijenu
 također možemo shvatiti kao količinu razlike između intenziteta prozora oko odgovarajućih piksela.
 
-Postavlja se pitanje što napraviti na rubovima slike gdje nije moguće izračunati sve vrijednosti prozora iz razloga što se pikseli mogu nalaziti izvan slike. Nekoliko je mogućih rješenja:
+Postavlja se pitanje što napraviti na rubovima slike gdje nije moguće izračunati sve vrijednosti prozora iz razloga što se koordinate piksela mogu nalaziti izvan slike. Nekoliko je mogućih rješenja:
 \begin{itemize}
   \item računati samo piksele koje je moguće obuhvatiti unutar slike
-  \item proširiti sliku crnim okvirom širine $w/2$
+  \item proširiti sliku crnim (intenziteta 0) okvirom širine $w/2$
   \item uopće ne računati korespondenciju za rub slike.
 \end{itemize}
 
@@ -249,7 +249,7 @@ Najbolja podudarnost kod SSD-a postiže se kada je vrijednost funkcije cijene je
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=14cm]{img/local_000046_10_SSD_11_140.png}
+  \includegraphics[width=14cm]{img/local_000046_10_SSD_11_140_scaled.png}
   \caption{Rezultat primjene metode SSD uz veličinu prozora 11}
   \label{fig:SSD-KITTI}
 \end{figure}
@@ -266,7 +266,7 @@ prozora jednakih intenziteta.
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=14cm]{img/local_000046_10_ZSAD_11_140.png}
+  \includegraphics[width=14cm]{img/local_000046_10_ZSAD_11_140_scaled.png}
   \caption{Rezultat primjene metode ZSAD uz veličinu prozora 11}
   \label{fig:ZSAD-KITTI}
 \end{figure}
@@ -284,7 +284,8 @@ b(p, q) =
      \end{cases}
 \]
 gdje je $I$ slika, $p$ piksel u sredini prozora za kojega računamo transformaciju, $q$ bilo koji piksel unutar prozora. Važno je napomenuti da redoslijed pridruživanja bitova mora biti jednak u oba
-prozora koja se uspoređuju kako bi rezultat bio ispravan. Nakon što svakom pikselu pridružimo binarnu vrijednost, cijenu možemo izračunati
+prozora koja se uspoređuju kako bi rezultat bio ispravan. Zgodno je primijetiti kako će
+rezultat biti isti ukoliko zamijenimo vrijednosti gornjih jednadžbi, odnosno invertiramo bitove. Nakon što svakom pikselu pridružimo binarnu vrijednost, cijenu možemo izračunati
 računski tako primijenimo operaciju isključivo-ili između binarnih riječi prozora lijeve i desne slike te zatim prebrojimo broj bitova u jedinici.
 
 \begin{figure}[htb]
@@ -329,7 +330,7 @@ C_{BT}(x_i, y_i, I_L, I_R) = \max(0, I_L(x_i) - I_{max}, I_{min} - I_L(x_i)))
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=14cm]{img/local_000046_10_BT_1_140.png}
+  \includegraphics[width=14cm]{img/local_000046_10_BT_1_140_scaled.png}
   \caption{Rezultat primjene metode Birchfield-Tomasi}
   \label{fig:BT-KITTI}
 \end{figure}
