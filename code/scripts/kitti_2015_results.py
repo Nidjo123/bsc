@@ -33,11 +33,23 @@ for image in os.listdir(leftDispPath):
     results.append((image, float(res)))
 
 results = sorted(results, key=lambda x: x[1])
-    
+
+def average(l):
+    s = 0
+    for _, x in l:
+        s += x
+
+    return s / len(l)
+
+avg = average(results)
+
 with open("kitti_2015_sgm.out", "w") as file:
     for img, error in results:
         s = img + " " + str(error) + "\n"
         file.write(s)
 
+    file.write("Average error: " + str(avg))
+
 print("Minimal error: ", results[0])
 print("Maximal error: ", results[-1])
+print("Average error: ", avg)
