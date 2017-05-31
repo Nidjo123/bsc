@@ -41,7 +41,7 @@ Naime, profesor je kao zadatak studentu zadao da na robota stavi kameru i da rob
 Vrlo brzo se pokazalo kako je problem puno složeniji nego što se mislilo.
 S druge strane, od tada su ostvareni veliki napretci u tom području kao i općenito u umjetnoj inteligenciji.
 
-U ovom radu ćemo opisati neke metode za stvaranje rekonstrukcije prostora iz slika dviju kamera. Takvi sustavi se nazivaju stereo sustavi, a takva vrsta vida stereo vid.
+U ovom radu ćemo opisati neke metode za stvaranje rekonstrukcije dubine prostora iz slika dviju kamera. Takvi sustavi se nazivaju stereo sustavi, a takva vrsta vida stereo vid.
 Oni funkcioniraju analogno ljudskom vidu koji se još naziva binokularni vid zbog toga što ljudi gledaju pomoću dva oka. To ljudima omogućava stvaranje vrlo kvalitetnog dojma o 3D osobinama prostora kojega promatraju. Mogu zaključiti koliko je nešto udaljeno, odnos veličina raznih predmeta itd.
 
 Gusta stereoskopska rekonstrukcija pokušava iz dvaju slika rekonstruirati gusti oblak točaka koji
@@ -408,8 +408,10 @@ T[x] =
 Ideja je aproksimirati optimalnu vrijednost navedene funkcije energije, odnosno odabrati
 mapu dispariteta $D$ za koju će vrijednost $E(D)$ biti minimalna.
 
-Način na koji ćemo to postići
-
+Pretpostavimo da smo već izračunali cijene korespondencija koristeći neku od ranije navedenih lokalnih metoda.
+Sljedeći korak je agregacija cijena. To ćemo provesti tako da za svaki piksel računamo cijene
+po putevima u različitim smjerovima. Preporučeno je da bude barem 8, a idealno bi bilo 16 puteva. Ti putevi su ilustrirani na slici \ref{fig:SGM} (16 puteva). Cijena po putu $\mathbf{r}$
+može se opisati sljedećom rekurzivnom funkcijom:
 \begin{equation} \label{cijena_1}
   \begin{split}
     L'_{\mathbf{r}}(\mathbf{p}, d) = & C(\mathbf{p}, d) + \min(L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d), \\
@@ -418,6 +420,24 @@ Način na koji ćemo to postići
     & \max\limits_{i} L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, i) + P2) \\
   \end{split}
 \end{equation}
+gdje je $\mathbf{p}$ trenutni piksel, $d$ trenutni disparitet, $C(\mathbf{p}, d)$ ranije
+izračunata cijena, a $P1 \leq P2$ fiksni, unaprijed određeni parametri koji kažnjavaju
+prekide u kontinuitetu.
+
+Probajmo sada riječima opisati što funkcija radi. Za trenutni piksel agregira unaprijed izračunatu cijenu te joj pridodaje minimalnu cijenu puta prošlog piksela ovisno o najboljem disparitetu. Vidimo da se u ovom koraku događa spomenuto kažnjavanje.
+Ukoliko se disparitet razlikuje malo (u ovom slučaju točno 1), tada ćemo dodati malu kaznu $P1$ na cijenu, a ukoliko se razlikuje puno (u ovom slučaju više od 1), onda ćemo dodati veću kaznu $P2$.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{img/sgm.png}
+  \caption{Ilustracija rada algoritma poluglobalnog podudaranja}
+  \label{fig:SGM}
+\end{figure}
+
+
+Primijetimo sada jedan nedostatak ove funkcije. Kako agregiramo cijene duž određenog puta, cijena puta uvijek raste i može poprimiti veliku vrijednost. Tome ćemo doskočiti tako da od trenutne cijene puta oduzmemo najmanju cijenu puta u prošlom koraku, što je opisano u \ref{cijena_puta}.
+Ova modifikacija neće promijeniti put jer je ta vrijednost konstantna za sve disparitete konkretnog piksela. Stoga se disparitet s najmanjom cijenom, tj. minimum funkcije, neće promijeniti.
+Najveća vrijednost cijene će sada biti $L \leq C_{\max} + P2$.
 
 \begin{equation} \label{cijena_puta}
   \begin{split}
@@ -428,12 +448,17 @@ Način na koji ćemo to postići
   \end{split}
 \end{equation}
 
-\begin{figure}[htb]
+Agregiranje cijena provodimo po svim putevima $\mathbf{r}$. Kako bi se dobio zadovoljavajući rezultat,
+preporučeno je barem 8 puteva kako bi se što bolje pokrila cijela slika. U slučaju 8 puteva, jasno je kako se treba kretati (po horizontalnim i vertikalnim osima te po dijagonalama), no što u slučaju 16 smjerova?
+Tada se još treba kretati i između dijagonala, a to ćemo postići tako da se pomaknemo 2 piksela horizontalno, a zatim 1 vertikalno ili obratno što je prikazano na slici \ref{fig:SGM-paths}. Pretpostavljamo da je ishodište koordinatnog sustava slike u gornjem lijevom kutu, a pozitivni smjer apscise je udesno, a ordinate prema dolje.
+
+\begin{figure}[H]
   \centering
-  \includegraphics[width=12cm]{img/sgm.png}
-  \caption{Ilustracija rada algoritma poluglobalnog podudaranja}
-  \label{fig:SGM}
+  \includegraphics[width=10cm]{img/sgm_smjerovi.png}
+  \caption{Ilustracija smjerova kretanja kod agregacije cijena}
+  \label{fig:SGM-paths}
 \end{figure}
+
 
 \chapter{Opis implementacije}
 
@@ -554,6 +579,8 @@ Nakon obrade, slike možemo evaluirati pozivom
 te ćemo u konzoli dobiti ispis slike s najmanjom pogreškom, slike s najvećom pogreškom te
 prosječnom pogreškom na cijelom skupu.
 
+
+
 \chapter{Rezultati}
 
 \begin{figure}[htb]
@@ -598,13 +625,14 @@ prosječnom pogreškom na cijelom skupu.
   \label{fig:Census-error}
 \end{figure}
 
-\begin{figure}[!tbp]
+\begin{figure}[htb]
   \centering
   \subfloat[Pogreška lokalnih metoda]{\includegraphics[width=0.5\textwidth]{img/prosjek_lokalno.png}\label{fig:pogreska-lok}}
   \hfill
   \subfloat[Pogreška lokalno + SGM]{\includegraphics[width=0.5\textwidth]{img/prosjek_sgm.png}\label{fig:f2}}
   \caption{Prosječne pogreške u ovisnosti o veličini prozora}
 \end{figure}
+
 
 \chapter{Zaključak}
 Zaključak.

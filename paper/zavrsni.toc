@@ -12,7 +12,7 @@
 \contentsline {section}{\numberline {3.5}Korespondencija neovisna o uzorkovanju}{12}
 \contentsline {section}{\numberline {3.6}Usporedba lokalnih i globalnih metoda}{12}
 \contentsline {chapter}{\numberline {4}Poluglobalno podudaranje}{14}
-\contentsline {chapter}{\numberline {5}Opis implementacije}{16}
-\contentsline {chapter}{\numberline {6}Rezultati}{20}
-\contentsline {chapter}{\numberline {7}Zaklju\IeC {\v c}ak}{24}
-\contentsline {chapter}{Literatura}{25}
+\contentsline {chapter}{\numberline {5}Opis implementacije}{18}
+\contentsline {chapter}{\numberline {6}Rezultati}{22}
+\contentsline {chapter}{\numberline {7}Zaklju\IeC {\v c}ak}{26}
+\contentsline {chapter}{Literatura}{27}
