@@ -40,7 +40,7 @@ Vrlo brzo se pokazalo kako je problem puno složeniji nego što se mislilo.
 S druge strane, od tada su ostvareni veliki napretci u tom području kao i općenito u umjetnoj inteligenciji.
 
 U ovom radu ćemo opisati neke metode za stvaranje rekonstrukcije prostora iz slika dviju kamera. Takvi sustavi se nazivaju stereo sustavi, a takva vrsta vida stereo vid.
-Oni funkcioniraju analogno ljudskom vidu koji se još naziva binokularni vid zbog toga što ljudi gledaju pomoću dva oka. To ljudima omogućava stvaranje vrlo kvalitetnog dojma o 3D osobinama prostora kojeg promatraju. Mogu zaključiti koliko je nešto udaljeno, odnos veličina raznih predmeta itd.
+Oni funkcioniraju analogno ljudskom vidu koji se još naziva binokularni vid zbog toga što ljudi gledaju pomoću dva oka. To ljudima omogućava stvaranje vrlo kvalitetnog dojma o 3D osobinama prostora kojega promatraju. Mogu zaključiti koliko je nešto udaljeno, odnos veličina raznih predmeta itd.
 
 Gusta stereoskopska rekonstrukcija pokušava iz dvaju slika rekonstruirati gusti oblak točaka koji
 odgovara prostoru koji se promatra. Postupak se odvija u nekoliko koraka.
@@ -57,7 +57,8 @@ Lokalne metode se temelje na promatranju lokalne okoline svakog pojedinog piksel
 Postupak rekonstrukcije tada se svodi na traženje najsličnijeg prozorčića na drugoj slici. Važno je naglasiti kako se traženje vrši samo duž epipolarne linije.
 Za razliku od lokalnih, globalne metode rekonstrukciju rade pomoću svih piksela slike što intuitivno dovodi do zaključka da je postupak složeniji i zahtijeva više računalnih resursa.
 
-Metoda poluglobalnog podudaranja, koju ćemo detaljnije obrađivati u ovom radu, može se svrstati negdje između. Naime, ona kao ulaz prima izračunate korespondencije lokalnih metoda, a zatim radi optimizaciju nad pikselima duž iste linije u osam ili šesnaest smjerova. Takva optimizacije dovodi do kvalitetnijih rezultata u dijelovima gdje dolazi do nagle promjene u dubini scene.
+Metoda poluglobalnog podudaranja, koju ćemo detaljnije obrađivati u ovom radu, može se svrstati negdje između. Naime, ona kao ulaz prima izračunate korespondencije lokalnih metoda, a zatim radi optimizaciju nad pikselima duž iste linije u osam ili šesnaest smjerova.
+Takva optimizacije dovodi do kvalitetnijih rezultata u dijelovima gdje dolazi do nagle promjene u dubini scene.
 
 U sljedećem poglavlju ćemo ukratko objasniti postupke kalibracije stereo sustava te rektifikacije parova slika kao predradnja postupku rekonstrukcije.
 
@@ -65,9 +66,9 @@ U trećem poglavlju ćemo obraditi nekoliko lokalnih metoda guste stereoskopske 
 
 Zatim ćemo definirati algoritam poluglobalnog podudaranja, razraditi njegove hiperparametre te vidjeti kakva poboljšanja nudi u odnosu na lokalne metode.
 
-U petom poglavlju ćemo vidjeti rezultate eksperimenata na standardnim skupovima slika, usporedbe obrađenih metoda i komentare.
+Sljedeće poglavlje opisuje implementaciju navedenih algoritama i pomoćnih skripti te daje kratke upute za korištenje.
 
-U Dodatku A iza zaključka se nalaze kratke upute za korištenje implementiranih programa i skripti za testiranje ispitnih slijedova.
+U petom poglavlju ćemo vidjeti rezultate eksperimenata na standardnim skupovima slika, usporedbe obrađenih metoda i komentare, nakon čega slijedi zaključak.
 
 \chapter{Stereoskopska rekonstrukcija}
 
@@ -84,8 +85,6 @@ projekcijsku ravninu koja je udaljena od izvora/kamere za neku udaljenost $d$. T
 
 \section{Epipolarna geometrija}
 
-% slika epipolarne geometrije
-
 Geometrijske parametre sustava kamera možemo podijeliti u dvije skupine:
 \begin{enumerate}
   \item intrinzični parametri
@@ -94,7 +93,8 @@ Geometrijske parametre sustava kamera možemo podijeliti u dvije skupine:
 
 Intrinzični parametri su svojstveni svakoj kameri pojedinačno, dok su im ekstrinzični parametri zajednički. Neka svojstva koja utječu na intrinzične parametre su nesavršenost leće (radijalna distorzija), pomak senzora
 od centra leće (tangencijalna distorzija) i slične fizičke nesavršenosti koje je ponekad nemoguće izbjeći. Stoga priskačemo programskom otklanjanju tih nedostataka.
-Ekstrinzični parametri dovode do transformacija kako bismo slike doveli u istu ravninu projekcije te postigli da svi pikseli duž horizontalnog pravca jedne slike odgovaraju istom pravcu (na istoj visini) na drugoj slici. Taj pravac se naziva epipolarna linija. Razlog takvih transformacija je olakšavanje traženja korespondentnih točaka koje sada treba tražiti samo duž epipolarne linije čime je problem sveden na jednu dimenziju. Vidimo da uz malo pretprocesiranja puno olakšavamo problem rekonstrukcije.
+Ekstrinzični parametri dovode do transformacija kako bismo slike doveli u istu ravninu projekcije te postigli da svi pikseli duž horizontalnog pravca jedne slike odgovaraju istom pravcu (na istoj visini) na drugoj slici.
+Taj pravac se naziva epipolarna linija. Razlog takvih transformacija je olakšavanje traženja korespondentnih točaka koje sada treba tražiti samo duž epipolarne linije čime je problem sveden na jednu dimenziju. Vidimo da uz malo pretprocesiranja puno olakšavamo problem rekonstrukcije.
 
 \begin{figure}[htb]
   \centering
@@ -120,10 +120,53 @@ i ostali parametri.
 
 Navedene postupke implementira i nudi biblioteka OpenCV \footnote{http://opencv.org/}. Korisno je istaknuti kako je u korištenim skupovima slika postupak kalibracije i rektifikacije već proveden, barem u skupovima za treniranje. Moguće je doći i do nerektificiranih, sirovih slika pa sam provesti navedene postupke.
 
-% slika epipolarnih linija
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=14cm]{img/lines.png}
+  \caption{Prikaz epipolarnih linija}
+  \label{fig:epipolarne_linije}
+\end{figure}
+
+Na slici \ref{fig:epipolarne_linije} su prikazane dvije slike iz skupa Middlebury na kojima
+se vide epipolarne linije. Možemo primijetiti kako iste točke u prostoru leže na istim epipolarnim
+linijama. To je upravo svojstvo koje smo htjeli dobiti rektifikacijom parova slika lijeve i desne kamere.
+Sada možemo lako uvidjeti zašto je korespondentne piksele potrebno tražiti samo duž iste $y$-koordinate.
 
 \section{Rekonstrukcija udaljenosti}
-Sada ćemo opisati postupak za rekonstrukciju udaljenosti pojedinih točaka u prostoru od kamere. Izračun se temelji na određenim disparitetima.
+Sada ćemo opisati postupak za rekonstrukciju udaljenosti pojedinih točaka u prostoru od kamere. Izračun se temelji na disparitetima određenim prilikom stereoskopske rekonstrukcije.
+Stanje je prikazano na slici \ref{fig:rekonstrukcija_udaljenosti}.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=9cm]{img/rekonstrukcija_udaljenosti.png}
+  \caption{Skica uz rekonstrukciju udaljenosti}
+  \label{fig:rekonstrukcija_udaljenosti}
+\end{figure}
+
+Slika predstavlja dvije kamere duž horizontalne iscrtkane linije, iznad kojih se
+nalaze projekcijske ravnine. Trenutno promatramo točku u prostoru $Q(x, y, z)$ koja se projicira na navedene ravnine.
+Projicirani pikseli se nalaze na apscisnim koordinatama $x_L$ lijeve slike i
+$x_R$ desne slike uz pretpostavku da je ishodište u središtu ravnine projekcije. Udaljenost između kamera i promatrane točke označena je sa $Z$, žarišna
+udaljenost s $f$, dok je razmak između kamera (eng. {\sl baseline}) označen s $b$.
+
+Sada možemo izvesti izraz kojim ćemo dobiti udaljenost između kamere i promatrane točke prostora
+koristeći navedene poznate parametre. Izvod se temelji na sličnosti trokuta. Iz trokuta lijeve kamere imamo
+\begin{equation}
+\frac{f}{x_L} = \frac{Z}{X} \label{lijevi_trokut}
+\end{equation}
+dok iz trokuta desne kamere imamo
+\begin{equation}
+\frac{f}{x_R} = \frac{Z}{X - b} \label{desni_trokut}
+\end{equation}
+Iz \ref{desni_trokut} možemo izvući $X$:
+\begin{equation}
+X = Z\frac{x_R}{f} + b \label{desni_x}
+\end{equation}
+i uvrštavanjem u \ref{lijevi_trokut} dolazimo do krajnjeg izraza
+\begin{equation}
+Z = \frac{fb}{d} \label{udaljenost}
+\end{equation}
+gdje je $d = x_L - x_R$ disparitet.
 
 \chapter{Lokalne metode}
 Metode guste stereoskopske rekonstrukcije se mogu podijeliti na lokalne i globalne. U ovom poglavlju ćemo načelno opisati takve metode te detaljnije obraditi neke koje su korištene u ovom radu.
@@ -143,15 +186,17 @@ mala, a u skupu slika KITTI \footnote{http://www.cvlibs.net/datasets/kitti/eval\
 \section{Opći algoritam}
 Sada ćemo opisati općeniti algoritam za lokalno podudaranje.
 
-{\tt za svaki piksel $(x, y)$ lijeve slike:}
+{\tt za svaki piksel $p(x, y)$ lijeve slike:}
 
 {\quad \tt za svaki disparitet $0 \leq d \leq maksimalni\_ disparitet$:}
 
-{\quad\quad \tt cijena[$y$][$x$] = $f(x, y, d)$}    
+{\quad\quad\tt za svaki piksel $q$ u prozoru piksela $p'(x - d, y)$ desne slike:}
+
+{\quad\quad\quad \tt cijena[$y$][$x$] += $f(x, y, d)$}    
 
 
 \noindent pri čemu je funkcija $f(x, y, d)$ funkcija korespondencije koja određuje cijenu razlike odgovarajućih piksela lijeve i desne slike. Svaki piksel lijeve slike s pozicijom $(x, y)$
-uspoređuje se s pikselom desne slike na poziciji $(x - d, y)$, gdje je $d$ disparitet. Vidimo kako se odgovarajući pikseli nalaze na istoj $y$ koordinati što je posljedica rektifikacije slika.
+uspoređuje se s pikselom desne slike u prozoru oko piksela na poziciji $(x - d, y)$, gdje je $d$ disparitet. Vidimo kako se odgovarajući pikseli nalaze na istoj $y$ koordinati što je posljedica rektifikacije slika.
 Stoga je potrebno razmatrati samo piksele duž epipolarne linije.
 
 \section{SSD}
@@ -297,7 +342,7 @@ Pokretanje navedenog programa rezultirat će jednom neskaliranom mapom disparite
 u obliku slike u formatu PNG.
 Podrazumijevani broj smjerova optimizacija kod algoritma SGM je 16. Ukoliko se želi promijeniti
 broj smjerova, potrebno je promijeniti varijablu {\verb|N_PATHS|} u npr. 8, te ponovo prevesti izvorni kod. Mape dispariteta su pohranjene u sivoj skali (eng. {\sl grayscale}).
-Važno je pripaziti na to da mora vrijediti $P1 \geq P2$\/!
+Važno je pripaziti na to da mora vrijediti $P1 \leq P2$\/!
 
 Osim programa za obradu slika stereoskopskom rekonstrukcijom, tu su još i dva pomoćna programa. Jedan omogućava skaliranje vrijednosti svih piksela slike u formatu PNG. Možete ga prevesti
 naredbom
