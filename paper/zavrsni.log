@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.4.6)  31 MAY 2017 15:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.4.6)  31 MAY 2017 15:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -961,82 +961,82 @@ line 333.
 Poglavlje 4.
 [14
 
-]
+] [15]
 Poglavlje 5.
-[15
+[16
 
-] [16] [17] [18]
+] [17] [18] [19]
 Poglavlje 6.
-<img/SSD_lokalno_middlebury.png, id=108, 742.9356pt x 453.1329pt>
+<img/SSD_lokalno_middlebury.png, id=111, 742.9356pt x 453.1329pt>
 File: img/SSD_lokalno_middlebury.png Graphic file (type png)
 
 <use img/SSD_lokalno_middlebury.png>
-Package pdftex.def Info: img/SSD_lokalno_middlebury.png used on input line 517.
+Package pdftex.def Info: img/SSD_lokalno_middlebury.png used on input line 531.
 
 (pdftex.def)             Requested size: 369.88582pt x 225.60481pt.
 
-<img/SSD_sgm_middlebury.png, id=109, 754.4988pt x 455.301pt>
+<img/SSD_sgm_middlebury.png, id=112, 754.4988pt x 455.301pt>
 File: img/SSD_sgm_middlebury.png Graphic file (type png)
 
 <use img/SSD_sgm_middlebury.png>
-Package pdftex.def Info: img/SSD_sgm_middlebury.png used on input line 524.
+Package pdftex.def Info: img/SSD_sgm_middlebury.png used on input line 538.
 (pdftex.def)             Requested size: 369.88582pt x 223.21059pt.
 
-<img/ZSAD_lokalno_middlebury.png, id=110, 760.2804pt x 456.7464pt>
+<img/ZSAD_lokalno_middlebury.png, id=113, 760.2804pt x 456.7464pt>
 File: img/ZSAD_lokalno_middlebury.png Graphic file (type png)
 
 <use img/ZSAD_lokalno_middlebury.png>
-Package pdftex.def Info: img/ZSAD_lokalno_middlebury.png used on input line 531
+Package pdftex.def Info: img/ZSAD_lokalno_middlebury.png used on input line 545
 .
 (pdftex.def)             Requested size: 369.88582pt x 222.21867pt.
 
-<img/ZSAD_sgm_middlebury.png, id=111, 758.1123pt x 453.8556pt>
+<img/ZSAD_sgm_middlebury.png, id=114, 758.1123pt x 453.8556pt>
 File: img/ZSAD_sgm_middlebury.png Graphic file (type png)
 
 <use img/ZSAD_sgm_middlebury.png>
-Package pdftex.def Info: img/ZSAD_sgm_middlebury.png used on input line 538.
+Package pdftex.def Info: img/ZSAD_sgm_middlebury.png used on input line 552.
 (pdftex.def)             Requested size: 369.88582pt x 221.44243pt.
 
-<img/Census_lokalno_middlebury.png, id=112, 763.1712pt x 455.301pt>
+<img/Census_lokalno_middlebury.png, id=115, 763.1712pt x 455.301pt>
 File: img/Census_lokalno_middlebury.png Graphic file (type png)
 
 <use img/Census_lokalno_middlebury.png>
 Package pdftex.def Info: img/Census_lokalno_middlebury.png used on input line 5
-45.
+59.
 (pdftex.def)             Requested size: 369.88582pt x 220.66788pt.
 
-<img/Census_sgm_middlebury.png, id=113, 757.3896pt x 456.7464pt>
+<img/Census_sgm_middlebury.png, id=116, 757.3896pt x 456.7464pt>
 File: img/Census_sgm_middlebury.png Graphic file (type png)
 
 <use img/Census_sgm_middlebury.png>
-Package pdftex.def Info: img/Census_sgm_middlebury.png used on input line 552.
+Package pdftex.def Info: img/Census_sgm_middlebury.png used on input line 566.
 (pdftex.def)             Requested size: 369.88582pt x 223.06197pt.
 
-<img/prosjek_lokalno.png, id=114, 618.6312pt x 450.2421pt>
+<img/prosjek_lokalno.png, id=117, 618.6312pt x 450.2421pt>
 File: img/prosjek_lokalno.png Graphic file (type png)
 
 <use img/prosjek_lokalno.png>
-Package pdftex.def Info: img/prosjek_lokalno.png used on input line 559.
+Package pdftex.def Info: img/prosjek_lokalno.png used on input line 573.
 (pdftex.def)             Requested size: 220.50887pt x 160.48628pt.
 
-<img/prosjek_sgm.png, id=115, 612.8496pt x 452.4102pt>
+<img/prosjek_sgm.png, id=118, 612.8496pt x 452.4102pt>
 File: img/prosjek_sgm.png Graphic file (type png)
 
 <use img/prosjek_sgm.png>
-Package pdftex.def Info: img/prosjek_sgm.png used on input line 561.
+Package pdftex.def Info: img/prosjek_sgm.png used on input line 575.
 (pdftex.def)             Requested size: 220.50887pt x 162.7778pt.
- [19
+ [20
 
- <./img/SSD_lokalno_middlebury.png> <./img/SSD_sgm_middlebury.png>] [20 <./img/
-ZSAD_lokalno_middlebury.png> <./img/ZSAD_sgm_middlebury.png>] [21 <./img/Census
-_lokalno_middlebury.png> <./img/Census_sgm_middlebury.png>] [22 <./img/prosjek_
+ <./img/SSD_lokalno_middlebury.png> <./img/SSD_sgm_middlebury.png>] [21 <./img/
+ZSAD_lokalno_middlebury.png> <./img/ZSAD_sgm_middlebury.png>] [22 <./img/Census
+_lokalno_middlebury.png> <./img/Census_sgm_middlebury.png>] [23 <./img/prosjek_
 lokalno.png> <./img/prosjek_sgm.png>]
 Poglavlje 7.
-(./zavrsni.bbl [23
+(./zavrsni.bbl [24
 
-]) [24
+]) [25
 
-] [25] (./zavrsni.aux)
+] [26] (./zavrsni.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1067,10 +1067,10 @@ msy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmtto10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
 /helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uh
 vr8a.pfb>
-Output written on zavrsni.pdf (29 pages, 4102254 bytes).
+Output written on zavrsni.pdf (30 pages, 4104002 bytes).
 PDF statistics:
- 220 PDF objects out of 1000 (max. 8388607)
- 138 compressed objects within 2 object streams
+ 223 PDF objects out of 1000 (max. 8388607)
+ 140 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  91 words of extra memory for PDF output out of 10000 (max. 10000000)
 

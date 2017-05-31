@@ -192,7 +192,7 @@ Kako je disparitet unaprijed zadan rasponom $[0, maksimalni\_disparitet]$, moram
 koji iz navedenog raspona ćemo odabrati. Naravno, odabrat ćemo onaj koji daje najbolje rezultate, no nekako moramo vrednovati takve rezultate. Rješenje leži u ideji da svakom mogućem
 disparitetu dodijelimo cijenu koja opisuje u kakvom je odnosu piksel desne slike spram piksela
 lijeve slike za koji želimo odrediti točan disparitet. Prirodno je da želimo proći što je
-jeftinije moguće pa ćemo odabrati upravo onaj disparitet koji ima najmanju cijenu. Cijenu
+jeftinije moguće pa ćemo odabrati upravo onaj disparitet koji ima najmanju cijenu (eng. {\sl winner takes all}). Cijenu
 također možemo shvatiti kao količinu razlike između intenziteta prozora oko odgovarajućih piksela.
 
 Postavlja se pitanje što napraviti na rubovima slike gdje nije moguće izračunati sve vrijednosti prozora iz razloga što se koordinate piksela mogu nalaziti izvan slike. Nekoliko je mogućih rješenja:
@@ -367,7 +367,21 @@ pikselima u određenim smjerovima. Time ga, kao što mu i naziv govori, možemo 
 
 \chapter{Poluglobalno podudaranje}
 
-Sada ćemo oblikovati algoritam poluglobalnog podudaranja (eng. {\sl semi-global matching, SGM}). 
+Sada ćemo oblikovati algoritam poluglobalnog podudaranja (eng. {\sl semi-global matching, SGM}).
+Vidjeli smo kako funkcioniraju lokalne metode pa razmislimo koje nedostatke imaju. Jedan od nedostataka je što
+smo kod traženja najsličnijeg piksela ograničeni veličinom prozorčića. Jedna loša strana je što ne možemo uzeti u obzir sve piksele, već moramo pogađati na temelju trenutnih spoznaja.
+To ponekad dovodi do artefakata koji su dobro vidljivi na gornjim slikama, npr. slika \ref{fig:ZSAD-KITTI}.
+Drugi nedostatak {\sl lokalnosti} je što dobivamo loše rezultate na rubovima glatkih površina
+gdje dolazi do naglih prekida u dubini ili gdje ima čestih izmjena dubine.
+
+Poluglobalno podudaranje pokušava otkloniti neke od navedenih nedostataka. Pokušajmo razmisliti kako bismo mogli unaprijediti postupak stereoskopske rekonstrukcije uz smanjenje navedenih nedostataka (ipak ih ne možemo u potpunosti izbjeći).
+
+Prvo što bismo mogli napraviti jest ne promatrati samo malu konačnu okolinu piksela već proširiti područje traženja najbolje dispariteta. Time bismo dobili bolju globalnu sliku jer se možemo bolje prilagoditi pretpostavci da radimo uglavnom s glatkim površinama.
+
+Drugo poboljšanje koje bismo mogli uvesti je da na neki način forsiramo ograničenje glatkoće rekonstrukcije.
+To možemo učiniti tako da za svaki disparitet probamo prvo uzeti okolne piksele s istim disparitetom, a svaku razliku u disparitetu kažnjavamo određenim povećanjem cijene.
+
+Upravo navedena poboljšanja su glavne ideje algoritma poluglobalnog podudaranja.
 
 \begin{equation} \label{energija}
 E(D) = \sum_{\mathbf{p}}(C(\mathbf{p}, D_{\mathbf{p}}) + \sum_{\mathbf{q} \in N_{\mathbf{p}}} P_1 T [\lvert D_{\mathbf{p}} - D_{\mathbf{q}}\rvert = 1] + \sum_{\mathbf{q} \in N_{\mathbf{p}}} P_2 T [\lvert D_{\mathbf{p}} - D_{\mathbf{q}}\rvert > 1])
