@@ -14,5 +14,5 @@
 \contentsline {chapter}{\numberline {4}Poluglobalno podudaranje}{14}
 \contentsline {chapter}{\numberline {5}Opis implementacije}{15}
 \contentsline {chapter}{\numberline {6}Rezultati}{19}
-\contentsline {chapter}{\numberline {7}Zaklju\IeC {\v c}ak}{22}
-\contentsline {chapter}{Literatura}{23}
+\contentsline {chapter}{\numberline {7}Zaklju\IeC {\v c}ak}{23}
+\contentsline {chapter}{Literatura}{24}

@@ -4,6 +4,8 @@
 \usepackage{natbib}
 \usepackage{float}
 \usepackage{listings}
+\usepackage{graphicx}
+\usepackage{subfig}
 
 \begin{document}
 
@@ -143,7 +145,7 @@ linijama. To je upravo svojstvo koje smo htjeli dobiti rektifikacijom parova sli
 Sada možemo lako uvidjeti zašto je korespondentne piksele potrebno tražiti samo duž iste $y$-koordinate.
 
 \section{Rekonstrukcija udaljenosti}
-Sada ćemo opisati postupak za rekonstrukciju udaljenosti pojedinih točaka u prostoru od kamere. Izračun se temelji na disparitetima određenim prilikom stereoskopske rekonstrukcije.
+Sada ćemo opisati postupak za rekonstrukciju udaljenosti pojedinih točaka u prostoru od kamere. Taj postupak se još naziva i trijangulacija. Izračun se temelji na disparitetima određenim prilikom stereoskopske rekonstrukcije.
 Stanje je prikazano na slici \ref{fig:rekonstrukcija_udaljenosti}.
 
 \begin{figure}[htb]
@@ -239,7 +241,9 @@ Stoga je potrebno razmatrati samo piksele duž epipolarne linije.
 
 Prva metoda koju ćemo opisati je SSD ({eng. \sl Sum of Squared Differences}) koja se temelji na zbroju kvadrata razlika intenziteta piksela.
 Matematički ju možemo opisati sljedećim izrazom:
-$$C_{SSD}(x, y, d) = \sum_{i}(I_R(x - d, y) - I_L(x, y))^2 $$
+\[
+C_{SSD}(x, y, d) = \sum(I_R(x - d, y) - I_L(x, y))^2
+\]
 gdje su $(x, y)$ koordinate piksela lijeve slike, $d$ trenutni disparitet, a $I_L$ lijeva slika te $I_R$ desna slika. Zbroj ide po svim pikselima unutar prozora promatranog piksela.
 Najbolja podudarnost kod SSD-a postiže se kada je vrijednost funkcije cijene jednaka $0$. Lako je vidjeti zašto je tomu tako kada bismo usporedili dva prozora s istim intenzitetima piksela. Tada će vrijednost funkcije biti $0$ jer oduzimamo iste vrijednosti. Iz toga slijedi da što se intenziteti više razlikuju, to će i cijene biti veće. Također, kvadrat doprinosi tome da vrijednosti ne budu negativne tako da možemo raditi samo s pozitivnim brojevima.
 
@@ -253,7 +257,9 @@ Najbolja podudarnost kod SSD-a postiže se kada je vrijednost funkcije cijene je
 \section{ZSAD}
 
 Sljedeća metoda je ZSAD ({eng. \sl Zero Sum of Absolute Differences}). Matematički ju možemo definirati ovako:
-$$C_{ZSAD}(x, y, d) = \sum_{i}\lvert(M_L - I_L(x, y)) - (M_R - I_R(x - d, y))\rvert$$
+\[
+C_{ZSAD}(x, y, d) = \sum\lvert(M_L - I_L(x, y)) - (M_R - I_R(x - d, y))\rvert
+\]
 gdje je $I_L$ lijeva slika, $I_R$ desna slika, a $M_L$ i $M_R$ srednje vrijednosti intenziteta piksela u trenutnom prozoru lijeve, odnosno desne slike.
 Nedostatak ove metode je što moramo računati i srednje vrijednosti svakog mogućeg prozora. Za razliku od SSD-a, ovdje nenegativnost cijena postižemo korištenje apsolutne vrijednosti, a ne kvadriranjem. Idealna vrijednost iznosi 0, odnosno u slučaju kada su svi odgovarajući pikseli u oba
 prozora jednakih intenziteta.
@@ -295,7 +301,9 @@ Do sada navedene metode opisane su u projektnoj dokumentaciji kolega \cite{proje
 Birchfield-Tomasijeva korespondencija se malo razlikuje od do sada navedenih metoda.
 Razlikuje se po tome što ona ne koristi prozorčić već se temelji na usporedbama s dvaju susjednih piksela duž epipolarne linije.
 Funkcija cijene je definirana preko simetričnih funkcija:
-$$ C_{BT} = min(C_{BT}(x_i, y_i, I_L, I_R), C_{BT}(y_i, x_i I_R, I_L) $$
+\[
+C_{BT} = \min(C_{BT}(x_i, y_i, I_L, I_R), C_{BT}(y_i, x_i I_R, I_L)
+\]
 gdje se $x_i$ i $y_i$ pikseli lijeve slike $I_L$, odnosno desne slike $I_R$.
 
 Funkcije $C_{BT}$ je definirana ovako:
@@ -308,15 +316,15 @@ I^- = \frac{1}{2}(I_R(y_i) + I_R(y_i - 1))
 \end{equation}
 
 \begin{equation}
-I_{min} = min(I^-_R, I^+_R, I_R(y_i))
+I_{min} = \min(I^-_R, I^+_R, I_R(y_i))
 \end{equation}
 
 \begin{equation}
-I_{max} = max(I^-_R, I^+_R, I_R(y_i))
+I_{max} = \max(I^-_R, I^+_R, I_R(y_i))
 \end{equation}
 
 \begin{equation}
-C_{BT}(x_i, y_i, I_L, I_R) = max(0, I_L(x_i) - I_{max}, I_{min} - I_L(x_i)))
+C_{BT}(x_i, y_i, I_L, I_R) = \max(0, I_L(x_i) - I_{max}, I_{min} - I_L(x_i)))
 \end{equation}
 
 \begin{figure}[htb]
@@ -357,6 +365,30 @@ pikselima u određenim smjerovima. Time ga, kao što mu i naziv govori, možemo 
 
 
 \chapter{Poluglobalno podudaranje}
+
+Sada ćemo oblikovati algoritam poluglobalnog podudaranja (eng. {\sl semi-global matching, SGM}). 
+
+\begin{equation} \label{energija}
+E(D) = \sum_{\mathbf{p}}(C(\mathbf{p}, D_{\mathbf{p}}) + \sum_{\mathbf{q} \in N_{\mathbf{p}}} P_1 T [\lvert D_{\mathbf{p}} - D_{\mathbf{q}}\rvert = 1] + \sum_{\mathbf{q} \in N_{\mathbf{p}}} P_2 T [\lvert D_{\mathbf{p}} - D_{\mathbf{q}}\rvert > 1])
+\end{equation}
+
+\begin{equation} \label{cijena_1}
+  \begin{split}
+    L'_{\mathbf{r}}(\mathbf{p}, d) = & C(\mathbf{p}, d) + \min(L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d), \\
+    & L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d - 1) + P1, \\
+    & L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d + 1) + P1, \\
+    & \max\limits_{i} L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, i) + P2) \\
+  \end{split}
+\end{equation}
+
+\begin{equation} \label{cijena_puta}
+  \begin{split}
+    L'_{\mathbf{r}}(\mathbf{p}, d) = & C(\mathbf{p}, d) + \min(L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d), \\
+    & L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d - 1) + P1, \\
+    & L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, d + 1) + P1, \\
+    & \max\limits_{i} L'_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, i) + P2) - \min\limits_{k}L_{\mathbf{r}}(\mathbf{p} - \mathbf{r}, k) \\
+  \end{split}
+\end{equation}
 
 \chapter{Opis implementacije}
 
@@ -474,7 +506,7 @@ Za skup KITTI je napisana skripta
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=13cm]{img/SSD_SGM_middlebury.png}
+  \includegraphics[width=13cm]{img/SSD_sgm_middlebury.png}
   \caption{Pogreška metode korespondencije SSD}
   \label{fig:SSD-error}
 \end{figure}
@@ -488,7 +520,7 @@ Za skup KITTI je napisana skripta
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=13cm]{img/ZSAD_SGM_middlebury.png}
+  \includegraphics[width=13cm]{img/ZSAD_sgm_middlebury.png}
   \caption{Pogreška metode korespondencije ZSAD}
   \label{fig:ZSAD-error}
 \end{figure}
@@ -502,9 +534,17 @@ Za skup KITTI je napisana skripta
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=13cm]{img/Census_SGM_middlebury.png}
+  \includegraphics[width=13cm]{img/Census_sgm_middlebury.png}
   \caption{Pogreška metode korespondencije Census}
   \label{fig:Census-error}
+\end{figure}
+
+\begin{figure}[!tbp]
+  \centering
+  \subfloat[Pogreška lokalnih metoda]{\includegraphics[width=0.5\textwidth]{img/prosjek_lokalno.png}\label{fig:pogreska-lok}}
+  \hfill
+  \subfloat[Pogreška lokalno + SGM]{\includegraphics[width=0.5\textwidth]{img/prosjek_sgm.png}\label{fig:f2}}
+  \caption{Prosječne pogreške u ovisnosti o veličini prozora}
 \end{figure}
 
 \chapter{Zaključak}
