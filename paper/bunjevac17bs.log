@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.4.6)  5 JUN 2017 18:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.4.6)  5 JUN 2017 19:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -981,28 +981,28 @@ Poglavlje 5.
 
 ] [19] [20] [21]
 Poglavlje 6.
-<img/SSD_lokalno_middlebury.png, id=123, 742.9356pt x 453.1329pt>
+[22
+
+] <img/SSD_lokalno_middlebury.png, id=126, 742.9356pt x 453.1329pt>
 File: img/SSD_lokalno_middlebury.png Graphic file (type png)
 
 <use img/SSD_lokalno_middlebury.png>
-Package pdftex.def Info: img/SSD_lokalno_middlebury.png used on input line 646.
+Package pdftex.def Info: img/SSD_lokalno_middlebury.png used on input line 653.
 
 (pdftex.def)             Requested size: 369.88582pt x 225.60481pt.
- [22
 
-]
 <img/SSD_sgm_middlebury.png, id=127, 754.4988pt x 455.301pt>
 File: img/SSD_sgm_middlebury.png Graphic file (type png)
 
 <use img/SSD_sgm_middlebury.png>
-Package pdftex.def Info: img/SSD_sgm_middlebury.png used on input line 653.
+Package pdftex.def Info: img/SSD_sgm_middlebury.png used on input line 660.
 (pdftex.def)             Requested size: 369.88582pt x 223.21059pt.
 
 <img/ZSAD_lokalno_middlebury.png, id=128, 760.2804pt x 456.7464pt>
 File: img/ZSAD_lokalno_middlebury.png Graphic file (type png)
 
 <use img/ZSAD_lokalno_middlebury.png>
-Package pdftex.def Info: img/ZSAD_lokalno_middlebury.png used on input line 665
+Package pdftex.def Info: img/ZSAD_lokalno_middlebury.png used on input line 672
 .
 (pdftex.def)             Requested size: 369.88582pt x 222.21867pt.
  [23 <./img/SSD_lokalno_middlebury.png> <./img/SSD_sgm_middlebury.png>]
@@ -1010,7 +1010,7 @@ Package pdftex.def Info: img/ZSAD_lokalno_middlebury.png used on input line 665
 File: img/ZSAD_sgm_middlebury.png Graphic file (type png)
 
 <use img/ZSAD_sgm_middlebury.png>
-Package pdftex.def Info: img/ZSAD_sgm_middlebury.png used on input line 672.
+Package pdftex.def Info: img/ZSAD_sgm_middlebury.png used on input line 679.
 (pdftex.def)             Requested size: 369.88582pt x 221.44243pt.
 
 <img/Census_lokalno_middlebury.png, id=135, 763.1712pt x 455.301pt>
@@ -1018,42 +1018,42 @@ File: img/Census_lokalno_middlebury.png Graphic file (type png)
 
 <use img/Census_lokalno_middlebury.png>
 Package pdftex.def Info: img/Census_lokalno_middlebury.png used on input line 6
-86.
+93.
 (pdftex.def)             Requested size: 369.88582pt x 220.66788pt.
  [24 <./img/ZSAD_lokalno_middlebury.png> <./img/ZSAD_sgm_middlebury.png>]
 <img/Census_sgm_middlebury.png, id=141, 757.3896pt x 456.7464pt>
 File: img/Census_sgm_middlebury.png Graphic file (type png)
 
 <use img/Census_sgm_middlebury.png>
-Package pdftex.def Info: img/Census_sgm_middlebury.png used on input line 693.
+Package pdftex.def Info: img/Census_sgm_middlebury.png used on input line 700.
 (pdftex.def)             Requested size: 369.88582pt x 223.06197pt.
  [25 <./img/Census_lokalno_middlebury.png> <./img/Census_sgm_middlebury.png>]
 <img/prosjek_lokalno.png, id=147, 618.6312pt x 450.2421pt>
 File: img/prosjek_lokalno.png Graphic file (type png)
 
 <use img/prosjek_lokalno.png>
-Package pdftex.def Info: img/prosjek_lokalno.png used on input line 708.
+Package pdftex.def Info: img/prosjek_lokalno.png used on input line 715.
 (pdftex.def)             Requested size: 220.50887pt x 160.48628pt.
 
 <img/prosjek_sgm.png, id=148, 612.8496pt x 452.4102pt>
 File: img/prosjek_sgm.png Graphic file (type png)
 
 <use img/prosjek_sgm.png>
-Package pdftex.def Info: img/prosjek_sgm.png used on input line 710.
+Package pdftex.def Info: img/prosjek_sgm.png used on input line 717.
 (pdftex.def)             Requested size: 220.50887pt x 162.7778pt.
 
 <img/BT_lokalno_middlebury.png, id=149, 609.2361pt x 446.6286pt>
 File: img/BT_lokalno_middlebury.png Graphic file (type png)
 
 <use img/BT_lokalno_middlebury.png>
-Package pdftex.def Info: img/BT_lokalno_middlebury.png used on input line 716.
+Package pdftex.def Info: img/BT_lokalno_middlebury.png used on input line 723.
 (pdftex.def)             Requested size: 369.88582pt x 271.16864pt.
 
 <img/sgm_bt_middlebury.png, id=150, 611.4042pt x 516.7305pt>
 File: img/sgm_bt_middlebury.png Graphic file (type png)
 
 <use img/sgm_bt_middlebury.png>
-Package pdftex.def Info: img/sgm_bt_middlebury.png used on input line 723.
+Package pdftex.def Info: img/sgm_bt_middlebury.png used on input line 730.
 (pdftex.def)             Requested size: 369.88582pt x 312.61897pt.
  [26 <./img/prosjek_lokalno.png> <./img/prosjek_sgm.png> <./img/BT_lokalno_midd
 lebury.png>]
@@ -1061,28 +1061,28 @@ lebury.png>]
 File: img/sgm_best_kitti.png Graphic file (type png)
 
 <use img/sgm_best_kitti.png>
-Package pdftex.def Info: img/sgm_best_kitti.png used on input line 743.
+Package pdftex.def Info: img/sgm_best_kitti.png used on input line 750.
 (pdftex.def)             Requested size: 369.88582pt x 112.06635pt.
 
 <img/sgm_best_ground_truth.png, id=158, 1245.65375pt x 377.41pt>
 File: img/sgm_best_ground_truth.png Graphic file (type png)
 
 <use img/sgm_best_ground_truth.png>
-Package pdftex.def Info: img/sgm_best_ground_truth.png used on input line 746.
+Package pdftex.def Info: img/sgm_best_ground_truth.png used on input line 753.
 (pdftex.def)             Requested size: 369.88582pt x 112.06635pt.
 
 <img/sgmbt_000188_10_150.png, id=159, 1245.65375pt x 377.41pt>
 File: img/sgmbt_000188_10_150.png Graphic file (type png)
 
 <use img/sgmbt_000188_10_150.png>
-Package pdftex.def Info: img/sgmbt_000188_10_150.png used on input line 749.
+Package pdftex.def Info: img/sgmbt_000188_10_150.png used on input line 756.
 (pdftex.def)             Requested size: 369.88582pt x 112.06635pt.
  [27 <./img/sgm_bt_middlebury.png>]
 <img/sgm_8_worst.png, id=165, 1242.6425pt x 375.4025pt>
 File: img/sgm_8_worst.png Graphic file (type png)
 
 <use img/sgm_8_worst.png>
-Package pdftex.def Info: img/sgm_8_worst.png used on input line 759.
+Package pdftex.def Info: img/sgm_8_worst.png used on input line 766.
 (pdftex.def)             Requested size: 369.88582pt x 111.73947pt.
 
 <img/sgm_8_worst_ground_truth.png, id=166, 1242.6425pt x 375.4025pt>
@@ -1090,14 +1090,14 @@ File: img/sgm_8_worst_ground_truth.png Graphic file (type png)
 
 <use img/sgm_8_worst_ground_truth.png>
 Package pdftex.def Info: img/sgm_8_worst_ground_truth.png used on input line 76
-2.
+9.
 (pdftex.def)             Requested size: 369.88582pt x 111.73947pt.
 
 <img/sgmbt_000169_10_150.png, id=167, 1242.6425pt x 375.4025pt>
 File: img/sgmbt_000169_10_150.png Graphic file (type png)
 
 <use img/sgmbt_000169_10_150.png>
-Package pdftex.def Info: img/sgmbt_000169_10_150.png used on input line 765.
+Package pdftex.def Info: img/sgmbt_000169_10_150.png used on input line 772.
 (pdftex.def)             Requested size: 369.88582pt x 111.73947pt.
  [28 <./img/sgm_best_kitti.png (PNG copy)> <./img/sgm_best_ground_truth.png (PN
 G copy)> <./img/sgmbt_000188_10_150.png (PNG copy)>] <img/sgm_16_worst.png, id=
@@ -1105,13 +1105,13 @@ G copy)> <./img/sgmbt_000188_10_150.png (PNG copy)>] <img/sgm_16_worst.png, id=
 File: img/sgm_16_worst.png Graphic file (type png)
 
 <use img/sgm_16_worst.png>
-Package pdftex.def Info: img/sgm_16_worst.png used on input line 778.
+Package pdftex.def Info: img/sgm_16_worst.png used on input line 785.
 (pdftex.def)             Requested size: 369.88582pt x 112.06635pt.
 
 <img/000177_10.png, id=172, 1245.65375pt x 377.41pt>
 File: img/000177_10.png Graphic file (type png)
  <use img/000177_10.png>
-Package pdftex.def Info: img/000177_10.png used on input line 781.
+Package pdftex.def Info: img/000177_10.png used on input line 788.
 (pdftex.def)             Requested size: 369.88582pt x 112.06635pt.
 
 <img/sgm_16_worst_ground_truth.png, id=173, 1245.65375pt x 377.41pt>
@@ -1119,14 +1119,14 @@ File: img/sgm_16_worst_ground_truth.png Graphic file (type png)
 
 <use img/sgm_16_worst_ground_truth.png>
 Package pdftex.def Info: img/sgm_16_worst_ground_truth.png used on input line 7
-84.
+91.
 (pdftex.def)             Requested size: 369.88582pt x 112.06635pt.
 
 <img/sgmbt_000177_10_150.png, id=174, 1245.65375pt x 377.41pt>
 File: img/sgmbt_000177_10_150.png Graphic file (type png)
 
 <use img/sgmbt_000177_10_150.png>
-Package pdftex.def Info: img/sgmbt_000177_10_150.png used on input line 787.
+Package pdftex.def Info: img/sgmbt_000177_10_150.png used on input line 794.
 (pdftex.def)             Requested size: 369.88582pt x 112.06635pt.
  [29 <./img/sgm_8_worst.png (PNG copy)> <./img/sgm_8_worst_ground_truth.png (PN
 G copy)> <./img/sgmbt_000169_10_150.png (PNG copy)>] [30 <./img/sgm_16_worst.pn
@@ -1167,7 +1167,7 @@ exmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/l
 msy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on bunjevac17bs.pdf (37 pages, 8332792 bytes).
+Output written on bunjevac17bs.pdf (37 pages, 8334262 bytes).
 PDF statistics:
  263 PDF objects out of 1000 (max. 8388607)
  155 compressed objects within 2 object streams

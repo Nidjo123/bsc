@@ -407,7 +407,7 @@ Definirajmo funkciju energije koja ovisi o disparitetu $D$ na sljedeći način:
 \begin{equation} \label{energija}
 E(D) = \sum_{\mathbf{p}}(C(\mathbf{p}, D_{\mathbf{p}}) + \sum_{\mathbf{q} \in N_{\mathbf{p}}} P_1 [\![\lvert D_{\mathbf{p}} - D_{\mathbf{q}}\rvert = 1]\!] + \sum_{\mathbf{q} \in N_{\mathbf{p}}} P_2 [\![\lvert D_{\mathbf{p}} - D_{\mathbf{q}}\rvert > 1]\!])
 \end{equation}
-gdje je $C(\mathbf{p}, D_{\mathbf{p}})$ cijena piksela $\mathbf{p}$ ovisno o pripadnom disparitetu, a $P_1$ i $P_2$ konstantni parametri koji predstavljaju kazne da diskontinuitete. Uvijek mora vrijediti $P_1 \leq P_2$.
+gdje je $C(\mathbf{p}, D_{\mathbf{p}})$ cijena piksela $\mathbf{p}$ ovisno o pripadnom disparitetu, $N_{\mathbf{p}}$ susjedstvo piksela $\mathbf{p}$, a $P_1$ i $P_2$ konstantni parametri koji predstavljaju kazne da diskontinuitete. Uvijek mora vrijediti $P_1 \leq P_2$.
 Funkcija $[\![P]\!]$ je definirana nad propozicijom $P$ pomoću Iversonove zagrade na sljedeći način:
 \[   
 [\![P]\!] = 
@@ -625,7 +625,14 @@ Implementirani algoritmi evaluirani su na standardnim skupovima slika Middlebury
 Prvi dio evaluacije odrađen je na skupu Middlebury i cilj je bio usporediti s jedne strane lokalne metode
 uz uzimanje dispariteta s najmanjom cijenom, a s druge strane lokalne metode u kombinaciji s
 algoritmom poluglobalnog podudaranja. Posebno su izdvojene pogreške poluglobalnog podudaranja
-u kombinaciji s BT cijenom. Parametri kažnjavanja bili su postavljeni na $P_1 = 3$ i $P_2 = 22$.
+u kombinaciji s BT cijenom.
+
+Parametri kažnjavanja bili su postavljeni na $P_1 = 3$ i $P_2 = 22$. Vrijednosti su određene eksperimentalno i navedene su se pokazale relativno dobre. Jedini zahtjev na parametre jest da vrijedi $P_1 \leq P_2$.
+Potrebno je odabrati takve vrijednosti da male razlike samo malo kaznimo jer ipak ne možemo očekivati da će disparitet biti konstantan, ali želimo da se razlike u vrijednosti kod male i velike promjene dispariteta osjete na cijeni.
+Pri tome favoriziramo male promjene (jedan piksel). Odabirom drugačijih vrijednosti parametara bi neke metode možda postigle drugačije rezultate jer se raspon vrijednosti cijena razlikuje od metode do metode.
+
+Vremenska složenost algoritma SGM je $O(WHD)$, pri čemu je $W$ širina slike, $H$ visina slike, a $D$ najveći mogući disparitet (raspon $[0, D]$). Memorijski, algoritam treba jedno polje za cijene, te jedno za agregaciju cijena duž puteva. To su dva polja veličine $W \times H \times D$. Skaliranjem cijena je moguće postići manje zauzeće memorije, ali ipak u istoj memorijskoj složenosti.
+
 Na skupu KITTI je cilj bio vidjeti točnost algoritma poluglobalnog podudaranja u kombinaciji
 s BT cijenom, i to s 8 i 16 smjerova, radi usporedbe tog parametra. Pokazat ćemo za svaku
 varijantu slike s najmanjom i najvećom pogreškom te prosječnu pogrešku. Prvo ćemo krenuti sa skupom Middlebury.
@@ -819,7 +826,7 @@ uklanjanja naglih skokova u disparitetu (engl. {\sl peaks}), zaglađivanja Gauss
   evaluirani na standardnim skupovima slika Middlebury i KITTI. Rezultati i usporedbe metoda su prikazani
   grafički i komentarima.
 
-\kljucnerijeci{računalni vid, stereoskopska rekonstrukcija, poluglobalno podudaranje, disparitet, korespondencija}
+\kljucnerijeci{računalni vid, stereoskopska rekonstrukcija, poluglobalno podudaranje, disparitet, korespondencija, dinamičko programiranje}
 \end{sazetak}
 
 \engtitle{Dense stereoscopic reconstruction with semi-global matching}
@@ -835,7 +842,7 @@ uklanjanja naglih skokova u disparitetu (engl. {\sl peaks}), zaglađivanja Gauss
   datasets Middlebury and KITTI. Results and comparisons of the methods are shown graphically
   and discussed.
   
-\keywords{computer vision, stereoscopic reconstruction, semi-global matching, disparity, correspondence}
+\keywords{computer vision, stereoscopic reconstruction, semi-global matching, disparity, correspondence, dynamic programming}
 \end{abstract}
 
 \end{document}
