@@ -20,9 +20,13 @@
 \maketitle
 
 % Ispis stranice s napomenom o umetanju izvornika rada. Uklonite naredbu \izvornik ako želite izbaciti tu stranicu.
-\izvornik
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{img/zadatak.jpg}
+  \label{fig:zadatak}
+\end{figure}
 
-\zahvala{Zahvaljujem se mentoru prof.~dr.~sc.~Siniši~Šegviću na pomoći pri izradi ovog rada
+\zahvala{Zahvaljujem mentoru prof.~dr.~sc.~Siniši~Šegviću na pomoći pri izradi ovog rada
 te posebno svojoj obitelji na podršci tijekom cijelog školovanja.}
 
 \tableofcontents
@@ -396,15 +400,15 @@ da aproksimira najbolju moguću energiju.
 
 Definirajmo funkciju energije koja ovisi o disparitetu $D$ na sljedeći način:
 \begin{equation} \label{energija}
-E(D) = \sum_{\mathbf{p}}(C(\mathbf{p}, D_{\mathbf{p}}) + \sum_{\mathbf{q} \in N_{\mathbf{p}}} P_1 T [\lvert D_{\mathbf{p}} - D_{\mathbf{q}}\rvert = 1] + \sum_{\mathbf{q} \in N_{\mathbf{p}}} P_2 T [\lvert D_{\mathbf{p}} - D_{\mathbf{q}}\rvert > 1])
+E(D) = \sum_{\mathbf{p}}(C(\mathbf{p}, D_{\mathbf{p}}) + \sum_{\mathbf{q} \in N_{\mathbf{p}}} P_1 [\![\lvert D_{\mathbf{p}} - D_{\mathbf{q}}\rvert = 1]\!] + \sum_{\mathbf{q} \in N_{\mathbf{p}}} P_2 [\![\lvert D_{\mathbf{p}} - D_{\mathbf{q}}\rvert > 1]\!])
 \end{equation}
 gdje je $C(\mathbf{p}, D_{\mathbf{p}})$ cijena piksela $\mathbf{p}$ ovisno o pripadnom disparitetu, a $P_1$ i $P_2$ konstantni parametri koji predstavljaju kazne da diskontinuitete. Uvijek mora vrijediti $P_1 \leq P_2$.
-Funkcija $T[x]$ je definirana na sljedeći način:
+Funkcija $[\![P]\!]$ je definirana nad propozicijom $P$ pomoću Iversonove zagrade na sljedeći način:
 \[   
-T[x] = 
+[\![P]\!] = 
      \begin{cases}
-       0, & x\ \ je\ \ laž \\
-       1, & x\ \ je\ \ istina \\
+       0, & P \text{ je laž} \\
+       1, & P \text{ je istina} \\
      \end{cases}
 \]
 Ideja je aproksimirati optimalnu vrijednost navedene funkcije energije, odnosno odabrati
