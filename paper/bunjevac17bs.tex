@@ -417,7 +417,10 @@ Funkcija $[\![P]\!]$ je definirana nad propozicijom $P$ pomoću Iversonove zagra
      \end{cases}
 \]
 Ideja je aproksimirati optimalnu vrijednost navedene funkcije energije, odnosno odabrati
-mapu dispariteta $D$ za koju će vrijednost $E(D)$ biti minimalna.
+mapu dispariteta $D$ za koju će vrijednost $E(D)$ biti minimalna. To ćemo
+učiniti koristeću princip dinamičkog programiranja. Ideja je na manjim i jednostavnijim
+slučajevima, odnosno potproblemima koje znamo riješiti, graditi rješenje do konačnog oblika. Ovdje su potproblemi pronalazak najboljih pojedinih puteva duž slike pomoću kojih dolazimo do krajnjeg aproksimacijskog rješenja cijelog problema. Opisani postupak uvelike olakšava optimiranje funkcije cilja, a velika
+prednost mu je i brzina. Korisno je napomenuti kako se dinamičko programiranje uobičajeno koristi za rješavanje problema optimizacije, ukoliko struktura problema to dozvoljava.
 
 Pretpostavimo da smo već izračunali cijene korespondencija koristeći neku od ranije navedenih lokalnih metoda.
 Sljedeći korak je agregacija cijena. To ćemo provesti tako da za svaki piksel računamo cijene
