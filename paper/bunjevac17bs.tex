@@ -90,7 +90,7 @@ projekcijsku ravninu koja je udaljena od izvora/kamere za neku udaljenost $f$. T
 
 Na slici \ref{fig:model-kamere} prikazan je upravo takav model. Kamera se nalazi u ishodištu
 globalnog koordinatnog sustava s osima $(X_c, Y_c, Z_c)$. Ispred kamere u smjeru pozitivne
-$Z$ osi na udaljenosti $z = f$ nalazi se projekcijska ravnina okomita na navedenu os. Udaljenost $f$ još se naziva žarišna udaljenost (eng. {\sl focal distance}). Koordinatni sustav projekcijske ravnine
+$Z$ osi na udaljenosti $z = f$ nalazi se projekcijska ravnina okomita na navedenu os. Udaljenost $f$ još se naziva žarišna udaljenost (engl. {\sl focal distance}). Koordinatni sustav projekcijske ravnine
 ili slike određen osima $(u, v)$ je smješten tako da mu je ishodište u gornjem lijevom kutu slike.
 
 Postupak stvaranja slike si možemo predočiti tako da zamislimo da za svaki piksel slike ispucamo
@@ -163,7 +163,7 @@ Slika predstavlja dvije kamere duž horizontalne iscrtkane linije, iznad kojih s
 nalaze projekcijske ravnine. Trenutno promatramo točku u prostoru $Q(x, y, z)$ koja se projicira na navedene ravnine.
 Projicirani pikseli se nalaze na apscisnim koordinatama $x_L$ lijeve slike i
 $x_R$ desne slike uz pretpostavku da je ishodište u središtu ravnine projekcije. Udaljenost između kamera i promatrane točke označena je sa $Z$, žarišna
-udaljenost s $f$, dok je razmak između kamera (eng. {\sl baseline}) označen s $b$.
+udaljenost s $f$, dok je razmak između kamera (engl. {\sl baseline}) označen s $b$.
 
 Sada možemo izvesti izraz kojim ćemo dobiti udaljenost između kamere i promatrane točke prostora
 koristeći navedene poznate parametre. Izvod se temelji na sličnosti trokuta. Iz trokuta lijeve kamere imamo
@@ -198,7 +198,7 @@ Kako je disparitet unaprijed zadan rasponom $[0, maksimalni\_disparitet]$, moram
 koji iz navedenog raspona ćemo odabrati. Naravno, odabrat ćemo onaj koji daje najbolje rezultate, no nekako moramo vrednovati takve rezultate. Rješenje leži u ideji da svakom mogućem
 disparitetu dodijelimo cijenu koja opisuje u kakvom je odnosu piksel desne slike spram piksela
 lijeve slike za koji želimo odrediti točan disparitet. Prirodno je da želimo proći što je
-jeftinije moguće pa ćemo odabrati upravo onaj disparitet koji ima najmanju cijenu (eng. {\sl winner takes all}). Cijenu
+jeftinije moguće pa ćemo odabrati upravo onaj disparitet koji ima najmanju cijenu (engl. {\sl winner takes all}). Cijenu
 također možemo shvatiti kao količinu razlike između intenziteta prozora oko odgovarajućih piksela.
 
 Postavlja se pitanje što napraviti na rubovima slike gdje nije moguće izračunati sve vrijednosti prozora iz razloga što se koordinate piksela mogu nalaziti izvan slike. Nekoliko je mogućih rješenja:
@@ -245,7 +245,7 @@ Stoga je potrebno razmatrati samo piksele duž epipolarne linije.
 
 \section{SSD}
 
-Prva metoda koju ćemo opisati je SSD ({eng. \sl Sum of Squared Differences}) koja se temelji na zbroju kvadrata razlika intenziteta piksela.
+Prva metoda koju ćemo opisati je SSD ({engl. \sl Sum of Squared Differences}) koja se temelji na zbroju kvadrata razlika intenziteta piksela.
 Matematički ju možemo opisati sljedećim izrazom:
 \[
 C_{SSD}(x, y, d) = \sum(I_R(x - d, y) - I_L(x, y))^2
@@ -262,7 +262,7 @@ Najbolja podudarnost kod SSD-a postiže se kada je vrijednost funkcije cijene je
 
 \section{ZSAD}
 
-Sljedeća metoda je ZSAD ({eng. \sl Zero Sum of Absolute Differences}). Matematički ju možemo definirati ovako:
+Sljedeća metoda je ZSAD ({engl. \sl Zero Sum of Absolute Differences}). Matematički ju možemo definirati ovako:
 \[
 C_{ZSAD}(x, y, d) = \sum\lvert(M_L - I_L(x, y)) - (M_R - I_R(x - d, y))\rvert
 \]
@@ -373,7 +373,7 @@ pikselima u određenim smjerovima. Time ga, kao što mu i naziv govori, možemo 
 
 \chapter{Poluglobalno podudaranje}
 
-Sada ćemo oblikovati algoritam poluglobalnog podudaranja (eng. {\sl semi-global matching, SGM}).
+Sada ćemo oblikovati algoritam poluglobalnog podudaranja (engl. {\sl semi-global matching, SGM}).
 Vidjeli smo kako funkcioniraju lokalne metode pa razmislimo koje nedostatke imaju. Jedan od nedostataka je što
 smo kod traženja najsličnijeg piksela ograničeni veličinom okno. Jedna loša strana je što ne možemo uzeti u obzir sve piksele, već moramo pogađati na temelju trenutnih spoznaja.
 To ponekad dovodi do artefakata koji su dobro vidljivi na gornjim slikama, npr. slika \ref{fig:ZSAD-KITTI}.
@@ -512,7 +512,7 @@ Prvo ćemo krenuti s prevođenjem programa. U direktoriju s k\^odom nalazi se ne
           ./compileStereoMatching.sh
 \end{verbatim}
 Ona prevodi sve potrebne lokalne metode korespondencije kao i implementacije lokalnog podudaranja te poluglobalnog podudaranja. Prevedeni program omogućava obradu jednog para slika (s lijeve i desne kamere) uz određene parametre te pohranjuje dobivene neskalirane mape dispariteta
-u obliku PNG (eng. {\sl Portable Network Graphics}) slika. Naredba za pokretanje je sljedeća:
+u obliku PNG (engl. {\sl Portable Network Graphics}) slika. Naredba za pokretanje je sljedeća:
 \begin{verbatim}
 ./stereoMatching lijeva_slika desna_slika metoda_korespondencije\
  velicina_prozora maksimalni_disparitet P1 P2 izlaz_lokalno izlaz_SGM
@@ -537,7 +537,7 @@ gdje su $P_1$ i $P_2$ ponovo iznosi penala diskontinuiteta kod poluglobalnog pod
 Pokretanje navedenog programa rezultirat će jednom neskaliranom mapom dispariteta pohranjenom
 u obliku slike u formatu PNG.
 Podrazumijevani broj smjerova optimizacija kod algoritma SGM je 16. Ukoliko se želi promijeniti
-broj smjerova, potrebno je promijeniti varijablu {\verb|N_PATHS|} u npr. 8, te ponovo prevesti izvorni kod. Mape dispariteta su pohranjene u sivoj skali (eng. {\sl grayscale}).
+broj smjerova, potrebno je promijeniti varijablu {\verb|N_PATHS|} u npr. 8, te ponovo prevesti izvorni kod. Mape dispariteta su pohranjene u sivoj skali (engl. {\sl grayscale}).
 Važno je pripaziti na to da mora vrijediti $P_1 \leq P_2$\/!
 
 Osim programa za obradu slika stereoskopskom rekonstrukcijom, tu su još i dva pomoćna programa. Jedan omogućava skaliranje vrijednosti svih piksela slike u formatu PNG. Možete ga prevesti
@@ -559,7 +559,7 @@ Drugi pomoćni program je evaluator pojedine mape dispariteta. Moguće ga je pre
           ./compileEvaluator.sh
 \end{verbatim}
 nakon čega će se u direktoriju stvoriti program {\tt evaluator}. Evaluator služi za ispitivanje
-pogreške mape dispariteta pripadnog para slika u odnosu na temeljnu istinu (eng. {\sl ground truth}). Temeljna istina, ili mapa točnih dispariteta je dana u standardnim skupovima slika, 
+pogreške mape dispariteta pripadnog para slika u odnosu na temeljnu istinu (engl. {\sl ground truth}). Temeljna istina, ili mapa točnih dispariteta je dana u standardnim skupovima slika, 
 obično u podskupu za treniranje. Program pokrećemo na sljedeći način:
 \begin{verbatim}
      ./evaluator lijevi_tocni_disp desni_tocni_disp mapa_dispariteta
@@ -795,7 +795,7 @@ su uglavnom u skladu s očekivanim. Jedino iznenađenje bila je metoda Census u 
 Kao sljedeći korak u poboljšanju navedenih metoda mogle bi se implementirati visoko paralelizirane verzije algoritama
 koje bi se izvodile na grafičkim karticama. Osim toga, moguće je implementirati i dodatne
 korake u algoritmu poluglobalnog podudaranja koji bi ostvarili još bolje rezultate, poput
-uklanjanja naglih skokova u disparitetu (eng. {\sl peaks}), zaglađivanja Gaussovim filtrom i tako dalje.
+uklanjanja naglih skokova u disparitetu (engl. {\sl peaks}), zaglađivanja Gaussovim filtrom i tako dalje.
 
 \bibliography{literatura}
 \bibliographystyle{fer}
