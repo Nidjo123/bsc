@@ -103,15 +103,15 @@ Geometrijske parametre sustava kamera možemo podijeliti u dvije skupine:
   \item ekstrinzični parametri.
 \end{enumerate}
 
-Intrinzični parametri su svojstveni svakoj kameri pojedinačno, dok su im ekstrinzični parametri zajednički. Neka svojstva koja utječu na intrinzične parametre su nesavršenost leće (radijalna distorzija, slika \ref{fig:primjeri-distorzije}), pomak senzora
-od centra leće (tangencijalna distorzija) i slične fizičke nesavršenosti koje je ponekad nemoguće izbjeći. Stoga priskačemo programskom otklanjanju tih nedostataka.
+Intrinzični parametri su svojstveni svakoj kameri pojedinačno, dok su im ekstrinzični parametri zajednički. Neka svojstva koja utječu na intrinzične parametre su nesavršenost leće (radijalno izobličenje, slika \ref{fig:primjeri-distorzije}), pomak senzora
+od centra leće (tangencijalno izobličenje) i slične fizičke nesavršenosti koje je ponekad nemoguće izbjeći. Stoga priskačemo programskom otklanjanju tih nedostataka.
 Ekstrinzični parametri dovode do transformacija kako bismo slike doveli u istu ravninu projekcije te postigli da svi pikseli duž horizontalnog pravca jedne slike odgovaraju istom pravcu (na istoj visini) na drugoj slici.
 Taj pravac se naziva epipolarna linija. Razlog takvih transformacija je olakšavanje traženja korespondentnih točaka koje sada treba tražiti samo duž epipolarne linije čime je problem sveden na jednu dimenziju. Vidimo da uz malo pretprocesiranja puno olakšavamo problem rekonstrukcije.
 
 \begin{figure}[htb]
   \centering
   \includegraphics[width=13cm]{img/distortion_examples.png}
-  \caption{Primjeri distorzije (preuzeto iz dokumentacije biblioteke OpenCV)}
+  \caption{Primjeri izobličenja (preuzeto iz dokumentacije biblioteke OpenCV)}
   \label{fig:primjeri-distorzije}
 \end{figure}
 
@@ -119,7 +119,7 @@ Taj pravac se naziva epipolarna linija. Razlog takvih transformacija je olakšav
 Postupak rektifikacije odgovara transformaciji slika kako bismo dobili slike koje zadovoljavaju gore navedena svojstva, a to su:
 \begin{enumerate}
   \item Pikseli koji odgovaraju točkama u prostoru na istoj visini nalaze se duž iste epipolarne linije
-  \item Nema distorzije uzrokovane lećom
+  \item Nema izobličenja uzrokovanog lećom
   \item Projekcijske ravnine leže u istoj ravnini
 \end{enumerate}
 Za rektifikaciju su potrebni ekstrinzični parametri sustava kamera, a za izračun ekstrinzičnih parametara su potrebni intrinzični.
@@ -127,7 +127,7 @@ Nakon provedenih transformacija intriznični parametri obaju kamera su jednaki (
 u prostoru ispred jednako udaljena od oba projekcijska platna).
 
 Ovaj postupak se obično provodi uz pomoć šahovske ploče koja je pogodna za to zbog svojih svojstava. Potrebno je parom kamera uslikati dovoljan broj slika na kojima se u potpunosti vidi šahovnica.
-Nakon toga se mogu odrediti ranije navedeni parametri. Postupak se odvija u nekoliko koraka, od kojih je prvi traženje šahovskih polja. Nakon toga se pomoću kuteva iz uglova polja može odrediti distorzija
+Nakon toga se mogu odrediti ranije navedeni parametri. Postupak se odvija u nekoliko koraka, od kojih je prvi traženje šahovskih polja. Nakon toga se pomoću kuteva iz uglova polja može odrediti izobličenje
 i ostali parametri.
 
 Navedene postupke implementira i nudi biblioteka OpenCV \footnote{http://opencv.org/}. Korisno je istaknuti kako je u korištenim skupovima slika postupak kalibracije i rektifikacije već proveden, barem u skupovima za treniranje. Moguće je doći i do nerektificiranih, sirovih slika pa sam provesti navedene postupke.
@@ -309,9 +309,9 @@ C_{BT} = \min(C_{BT}(x_i, y_i, I_L, I_R), C_{BT}(y_i, x_i I_R, I_L)
 \]
 gdje se $x_i$ i $y_i$ pikseli lijeve slike $I_L$, odnosno desne slike $I_R$.
 
-Funkcije $C_{BT}$ je definirana ovako:
+Funkcija $C_{BT}$ je definirana ovako:
 \begin{equation}
-I^+ = \frac{1}{2}(I_i(y_i) + I_R(y_i + 1))
+I^+ = \frac{1}{2}(I_R(y_i) + I_R(y_i + 1))
 \end{equation}
 
 \begin{equation}
@@ -438,7 +438,7 @@ se razlikuje puno (u ovom slučaju više od 1), onda ćemo dodati veću kaznu $P
 \end{figure}
 
 
-Primijetimo sada jedan nedostatak ove funkcije. Kako agregiramo cijene duž određenog puta, cijena puta uvijek raste i može poprimiti veliku vrijednost. Tome ćemo doskočiti tako da od trenutne cijene puta oduzmemo najmanju cijenu puta u prošlom koraku, što je opisano u \ref{cijena_puta}.
+Primijetimo sada jedan nedostatak ove funkcije. Kako agregiramo cijene duž određenog puta, cijena puta uvijek raste i može poprimiti veliku vrijednost. Tome ćemo doskočiti tako da od trenutne cijene puta oduzmemo najmanju cijenu puta u prošlom koraku, što je opisano u jednadžbi \ref{cijena_puta}.
 Ova modifikacija neće promijeniti put jer je ta vrijednost konstantna za sve disparitete konkretnog piksela. Stoga se disparitet s najmanjom cijenom, tj. minimum funkcije, neće promijeniti.
 Najveća vrijednost cijene će sada biti $L \leq C_{\max} + P_2$.
 
@@ -460,7 +460,7 @@ piksel možemo izraziti sljedećom funkcijom:
 \begin{equation}
   S(\mathbf{p}, d) = \sum_{\mathbf{r}}L_{\mathbf{r}}(\mathbf{p}, d)
 \end{equation}
-čija najveća vrijednost će biti 16 puta već od najveće cijene pojedinog puta iz razloga što
+Najveća vrijednost koju funkcija $S(\mathbf{p}, d)$ može poprimiti je 16 puta veća od najveće cijene pojedinog puta iz razloga što
 ćemo svaki piksel obići 16 puta (ukoliko radimo sa 16 smjerova). Dakle, vrijedi $S \leq 16(C_{\max} + P_2)$.
 
 Označimo širinu slike s $W$, visinu s $H$, a najveći disparitet s $D$.
