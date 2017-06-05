@@ -59,7 +59,7 @@ Lokalne metode se temelje na promatranju lokalne okoline svakog pojedinog piksel
 Postupak rekonstrukcije tada se svodi na traženje najsličnijeg okna na drugoj slici. Važno je naglasiti kako se traženje vrši samo duž epipolarne linije.
 Za razliku od lokalnih, globalne metode rekonstrukciju rade pomoću svih piksela slike što intuitivno dovodi do zaključka da je postupak složeniji i zahtijeva više računalnih resursa.
 
-Metoda poluglobalnog podudaranja, koju ćemo detaljnije obrađivati u ovom radu, može se svrstati negdje između. Naime, ona kao ulaz prima izračunate korespondencije lokalnih metoda, a zatim radi optimizaciju nad pikselima duž iste linije u osam ili šesnaest smjerova.
+Metoda poluglobalnog podudaranja, koju ćemo detaljnije obrađivati u ovom radu, može se svrstati negdje između. Naime, ona kao ulaz prima izračunate korespondencije lokalnih metoda, a zatim optimira glatkoću rekonstrukcije nad pikselima duž iste linije u osam ili šesnaest smjerova.
 Takva optimizacije dovodi do kvalitetnijih rezultata u dijelovima gdje dolazi do nagle promjene u dubini scene.
 
 U sljedećem poglavlju ćemo ukratko objasniti postupke kalibracije stereo sustava te rektifikacije parova slika kao predradnja postupku rekonstrukcije.
@@ -90,7 +90,7 @@ $Z$ osi na udaljenosti $z = f$ nalazi se projekcijska ravnina okomita na naveden
 ili slike određen osima $(u, v)$ je smješten tako da mu je ishodište u gornjem lijevom kutu slike.
 
 Postupak stvaranja slike si možemo predočiti tako da zamislimo da za svaki piksel slike ispucamo
-zraku koja ide iz globalnog ishodišta (kamere), prolazi kroz ravninu projekcije i ide sve dok ne pogodi neki najbliži vidljivi predmet. Boju u pogođenoj točki preslikavamo na ravninu projekciju, i to u točki sjecišta ispucane zrake i ravnine.
+zraku koja ide iz globalnog ishodišta (kamere), prolazi kroz ravninu projekcije i ide sve dok ne pogodi neki najbliži vidljivi predmet. Boju u pogođenoj točki preslikavamo na ravninu projekcije, i to u točki sjecišta ispucane zrake i ravnine.
 
 Naravno, ovo je vrlo rudimentaran model i u stvarnosti je postupak puno kompleksniji jer nismo
 uzeli u obzir valna svojstva svjetlosti već smo pretpostavili da se svjetlost širi pravocrtno.
