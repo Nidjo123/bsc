@@ -19,7 +19,6 @@
 
 \maketitle
 
-% Ispis stranice s napomenom o umetanju izvornika rada. Uklonite naredbu \izvornik ako želite izbaciti tu stranicu.
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{img/zadatak.jpg}
@@ -307,6 +306,12 @@ Do sada navedene metode opisane su u projektnoj dokumentaciji kolega \cite{proje
 
 Birchfield-Tomasijeva korespondencija se malo razlikuje od do sada navedenih metoda.
 Razlikuje se po tome što ona ne koristi okno već se temelji na usporedbama s dvaju susjednih piksela duž epipolarne linije.
+
+Ideja metode BT je sljedeća: za svaki piksel i disparitet odrediti cijenu, i
+to kao minimalnu apsolutnu razliku intenziteta promatranih piksela lijeve i desne slike u rasponu od polovice širine piksela sa svake strane duž epipolarne linije. Prvo je
+potrebno izračunati interpolirane vrijednosti polovice piksela s lijeve i desne strane promatranog piksela desne slike. Zatim računamo najmanju i najveću vrijednost između izračunatih piksela te promatranog središnjeg piksela. Naposlijetku, računamo najveću razliku između izračunatih minimalnih i maksimalnih vrijednosti, i promatranog piksela lijeve slike.
+Također pomoću zadnjeg koraka funkcijom $\max$ osiguravamo da cijena uvijek bude nenegativna. Navedeni postupak primjenjujemo dva puta, jer drugi put mijenjamo ulogu lijeve i desne slike. U nastavku je matematički opis metode.
+
 Funkcija cijene je definirana preko simetričnih funkcija:
 \[
 C_{BT} = \min(C_{BT}(x_i, y_i, I_L, I_R), C_{BT}(y_i, x_i I_R, I_L)
@@ -790,7 +795,7 @@ na poluglobalno podudaranje. Prvo su obrađene metode lokalne korespondencije ko
 na principu okna ili prozora. Zatim je uveden algoritam poluglobalnog podudaranja koji kao ulaz
 prima cijene izračunate kod lokalnih metoda. Njegova ideja je da optimira globalnu funkciju energije na način da preferira glatkoću površina, a kažnjava prekide u kontinuitetima.
 Navedeni algoritmi su testirani na standardnim skupovima slika Middlebury i KITTI, a rezultati
-su uglavnom u skladu s očekivanim. Jedino iznenađenje bila je metoda Census u kombinaciji sa poluglobalnim podudaranjem koja je dala izrazito dobre rezultate.
+su uglavnom u skladu s očekivanim. Jedino iznenađenje bila je metoda Census u kombinaciji s poluglobalnim podudaranjem koja je dala izrazito dobre rezultate.
 
 Kao sljedeći korak u poboljšanju navedenih metoda mogle bi se implementirati visoko paralelizirane verzije algoritama
 koje bi se izvodile na grafičkim karticama. Osim toga, moguće je implementirati i dodatne
