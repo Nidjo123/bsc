@@ -55,8 +55,8 @@ Postoje dvije glavne podjele metoda guste stereoskopske rekonstrukcije, a to su
   \item globalne metode.
 \end{enumerate}
 
-Lokalne metode se temelje na promatranju lokalne okoline svakog pojedinog piksela koju ćemo nazvati prozorčić.
-Postupak rekonstrukcije tada se svodi na traženje najsličnijeg prozorčića na drugoj slici. Važno je naglasiti kako se traženje vrši samo duž epipolarne linije.
+Lokalne metode se temelje na promatranju lokalne okoline svakog pojedinog piksela koju ćemo nazvati okno.
+Postupak rekonstrukcije tada se svodi na traženje najsličnijeg okna na drugoj slici. Važno je naglasiti kako se traženje vrši samo duž epipolarne linije.
 Za razliku od lokalnih, globalne metode rekonstrukciju rade pomoću svih piksela slike što intuitivno dovodi do zaključka da je postupak složeniji i zahtijeva više računalnih resursa.
 
 Metoda poluglobalnog podudaranja, koju ćemo detaljnije obrađivati u ovom radu, može se svrstati negdje između. Naime, ona kao ulaz prima izračunate korespondencije lokalnih metoda, a zatim radi optimizaciju nad pikselima duž iste linije u osam ili šesnaest smjerova.
@@ -185,7 +185,7 @@ je promatrani objekt bliže kameri, to će disparitet biti veći i obratno.
 \chapter{Lokalne metode}
 Metode guste stereoskopske rekonstrukcije se mogu podijeliti na lokalne i globalne. U ovom poglavlju ćemo načelno opisati takve metode te detaljnije obraditi neke koje su korištene u ovom radu.
 
-Lokalne metode se temelje na principu prozorčića ili okna fiksne širine oko piksela. Označimo širinu prozora s $w$. Primijetimo kako bi $w$ trebao biti neparan broj jer se promatrani piksel
+Lokalne metode se temelje na principu prozora ili okna fiksne širine oko piksela. Označimo širinu prozora s $w$. Primijetimo kako bi $w$ trebao biti neparan broj jer se promatrani piksel
 nalazi u sredini prozora, a sa svake strane oko njega nalazi se jednak broj piksela.
 
 Ideja je da trčimo po svim pikselima lijeve slike te ih uspoređujemo s pikselima desne slike, ali
@@ -302,7 +302,7 @@ Do sada navedene metode opisane su u projektnoj dokumentaciji kolega \cite{proje
 \section{Korespondencija neovisna o uzorkovanju}
 
 Birchfield-Tomasijeva korespondencija se malo razlikuje od do sada navedenih metoda.
-Razlikuje se po tome što ona ne koristi prozorčić već se temelji na usporedbama s dvaju susjednih piksela duž epipolarne linije.
+Razlikuje se po tome što ona ne koristi okno već se temelji na usporedbama s dvaju susjednih piksela duž epipolarne linije.
 Funkcija cijene je definirana preko simetričnih funkcija:
 \[
 C_{BT} = \min(C_{BT}(x_i, y_i, I_L, I_R), C_{BT}(y_i, x_i I_R, I_L)
@@ -351,7 +351,7 @@ analognih svojstava globalnih metoda s desne strane.
   \begin{tabularx}{\textwidth}{X|X} \hline
     {\bf Lokalne metode} & {\bf Globalne metode} \\
     \hline
-    cijene temeljene na prozorčićima oko svakog pojedinog piksela & cijene temeljene na svim pikselima slike \\
+    cijene temeljene na oknima oko svakog pojedinog piksela & cijene temeljene na svim pikselima slike \\
     \hline
     odabir pojedinog dispariteta po principu minimalne agregirane cijene & minimizacija globalne funkcije kroz vrijednosti svih piksela slike \\
     \hline
@@ -371,7 +371,7 @@ pikselima u određenim smjerovima. Time ga, kao što mu i naziv govori, možemo 
 
 Sada ćemo oblikovati algoritam poluglobalnog podudaranja (eng. {\sl semi-global matching, SGM}).
 Vidjeli smo kako funkcioniraju lokalne metode pa razmislimo koje nedostatke imaju. Jedan od nedostataka je što
-smo kod traženja najsličnijeg piksela ograničeni veličinom prozorčića. Jedna loša strana je što ne možemo uzeti u obzir sve piksele, već moramo pogađati na temelju trenutnih spoznaja.
+smo kod traženja najsličnijeg piksela ograničeni veličinom okno. Jedna loša strana je što ne možemo uzeti u obzir sve piksele, već moramo pogađati na temelju trenutnih spoznaja.
 To ponekad dovodi do artefakata koji su dobro vidljivi na gornjim slikama, npr. slika \ref{fig:ZSAD-KITTI}.
 Drugi nedostatak {\sl lokalnosti} je što dobivamo loše rezultate na rubovima glatkih površina
 gdje dolazi do naglih prekida u dubini ili gdje ima čestih izmjena dubine.
@@ -574,7 +574,7 @@ Pokrećemo ju naredbom:
 što će rezultirati stvaranjem direktorija {\verb|middlebury_2006_results|} u kojemu će se, nakon
 obrade slika, nalaziti izračunate mape dispariteta. Slike se obrađuju pomoću ranije navedenog
 programa {\verb|stereoMatching|}, i to pomoću svih implementiranih lokalnih metoda korespondencije, lokalnim
-podudaranjem te poluglobalnim podudaranjem u zadanom rasponu veličina prozorčića.
+podudaranjem te poluglobalnim podudaranjem u zadanom rasponu veličina okna.
 Nakon što obrada slika završi, moguće je, po potrebi skalirati vrijednosti intenziteta
 pozivanjem
 \begin{verbatim}
@@ -587,7 +587,7 @@ Nakon toga je sve spremno za generiranje grafova. Izvršavanjem naredbe
 \end{verbatim}
 dobit ćemo prikaz svih grafova pogrešaka korespondencija, zatim korespondencija u kombinaciji
 s poluglobalnim podudaranjem te naposlijetku prikaz prosječnih pogrešaka u ovisnosti o
-veličini prozorčića.
+veličini okna.
 
 Za skup KITTI je napisana skripta {\verb|kitti_2015_sgm.py|} koja računa mape dispariteta
 na skupu KITTI 2015 i to koristeći poluglobalno podudaranje u kombinaciji s Birchfield-Tomasijevom korespondencijom. Nakon pokretanja naredbe
@@ -775,7 +775,7 @@ smjerova iznosila 17.97\%. Vidimo da razlika nije velika, ali je očekivano vari
 \chapter{Zaključak}
 Cilj ovog rada bio je upoznati se s metodama guste stereoskopske rekonstrukcije, s naglaskom
 na poluglobalno podudaranje. Prvo su obrađene metode lokalne korespondencije koje se temelje
-na principu prozorčića. Zatim je uveden algoritam poluglobalnog podudaranja koji kao ulaz
+na principu okna ili prozora. Zatim je uveden algoritam poluglobalnog podudaranja koji kao ulaz
 prima cijene izračunate kod lokalnih metoda. Njegova ideja je da optimira globalnu funkciju energije na način da preferira glatkoću površina, a kažnjava prekide u kontinuitetima.
 Navedeni algoritmi su testirani na standardnim skupovima slika Middlebury i KITTI, a rezultati
 su uglavnom u skladu s očekivanim. Jedino iznenađenje bila je metoda Census u kombinaciji sa poluglobalnim podudaranjem koja je dala izrazito dobre rezultate.
