@@ -63,9 +63,20 @@ def showAvg(*args, title=""):
     plt.legend()
     plt.show()
 
+def showStem(d):
+    xLabels = list(d.keys())
+    y = []
+    for key in xLabels:
+        y.append(d[key][0])
+    
+    plt.xticks(range(len(xLabels)), xLabels, rotation=90)
+    plt.stem(range(len(xLabels)), y)
+    plt.show()
+
 localSSD = collections.defaultdict(lambda: [])
 localZSAD = collections.defaultdict(lambda: [])
 localCensus = collections.defaultdict(lambda: [])
+localBT = collections.defaultdict(lambda: [])
 sgmSSD = collections.defaultdict(lambda: [])
 sgmZSAD = collections.defaultdict(lambda: [])
 sgmCensus = collections.defaultdict(lambda: [])
@@ -86,6 +97,8 @@ with open("middlebury_2006.out", "r") as file:
                 localZSAD[picName].append((int(window), float(error)*100))
             elif corresp == 'Census':
                 localCensus[picName].append((int(window), float(error)*100))
+            elif corresp == 'BT':
+                localBT[picName].append(float(error)*100)
         elif matching == 'sgm':
             if corresp == 'SSD':
                 sgmSSD[picName].append((int(window), float(error)*100))
@@ -110,13 +123,7 @@ with open("middlebury_2006.out", "r") as file:
     showAvg((localSSD, 'SSD'), (localZSAD, 'ZSAD'), (localCensus, 'Census'), title='Prosječna pogreška lokalnih metoda')
 
     showAvg((sgmSSD, 'SSD'), (sgmZSAD, 'ZSAD'), (sgmCensus, 'Census'), title='Prosječna pogreška lokalno + SGM')
-    
-    xLabels = list(sgmBT.keys())
-    y = []
-    for key in xLabels:
-        y.append(sgmBT[key][0])
-    
-    plt.xticks(range(len(xLabels)), xLabels, rotation=90)
-    plt.stem(range(len(xLabels)), y)
-    plt.show()
+
+    showStem(localBT)
+    showStem(sgmBT)
         

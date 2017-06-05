@@ -687,7 +687,8 @@ Na slikama \ref{fig:pogreska-lok} i \ref{fig:pogreska-sgm} možemo vidjeti prosj
 slici (a) te istih metoda u kombinaciji sa SGM-om na slici (b). To nam potvrđuje kako ZSAD
 daje najbolje rezultate u samostalnoj varijanti, a Census u kombinaciji sa SGM-om.
 Također vidimo da kako veličina prozora raste, SGM ima sve manje utjecaja, što je već objašnjeno
-njegovim favoriziranjem šuma. Kod velikih prozora nema puno šuma, tj. sve površine su dosta velike i glatke te SGM zapravo nema što popravljati. Na slici \ref{fig:bt-sgm-error} još su
+njegovim favoriziranjem šuma. Kod velikih prozora nema puno šuma, tj. sve površine su dosta velike i glatke te SGM zapravo nema što popravljati. Slika \ref{fig:bt-local-error} prikazuje pogrešku dobivenu korištenjem metode Birchfield-Tomasi.
+Vidimo da je greška izrazito velika iz čega zaključujemo da dotična metoda nije pogodna za samostalno korištenje. Ipak, zbog svoje brzine, i u kombinaciji s poluglobalnim podudaranjem, postiže iznimno dobre rezultate. Jedan od razloga loših rezultata može biti što se ne temelji na oknima kao ostale lokalne metode već gleda samo dva susjedna piksela. No, to je vrlo dobra situacija za SGM koji s lakoćom popravlja glatkoću takve rekonstrukcije. Na slici \ref{fig:bt-sgm-error} još su
 prikazane pogreške dobivene SGM-om u izvornoj varijanti, uz korespondenciju Birchfield-Tomasi.
 
 \begin{figure}[H]
@@ -696,6 +697,13 @@ prikazane pogreške dobivene SGM-om u izvornoj varijanti, uz korespondenciju Bir
   \hfill
   \subfloat[Pogreška lokalno + SGM]{\includegraphics[width=0.5\textwidth]{img/prosjek_sgm.png}\label{fig:pogreska-sgm}}
   \caption{Prosječne pogreške u ovisnosti o veličini prozora}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=13cm]{img/BT_lokalno_middlebury.png}
+  \caption{Pogreška metode korespondencije BT}
+  \label{fig:bt-local-error}
 \end{figure}
 
 \begin{figure}[H]
@@ -769,7 +777,7 @@ vrlo nepovoljan slučaj kod stereoskopske rekonstrukcije i dosta otežava postup
   \caption{Slika s najvećom pogreškom uz korištenje SGM + BT u skupu KITTI (16 smjerova)}
 \end{figure}
 
-Prosječna pogreška u varijanti a 8 smjerova iznosila je 19.77\% dok je u varijanti sa 16
+Prosječna pogreška u varijanti s 8 smjerova iznosila je 19.77\% dok je u varijanti sa 16
 smjerova iznosila 17.97\%. Vidimo da razlika nije velika, ali je očekivano varijanta sa 16 smjerova bolja zbog bolje pokrivenosti cijele slike.
 
 \chapter{Zaključak}

@@ -15,6 +15,6 @@
 \contentsline {chapter}{\numberline {5}Opis implementacije}{18}
 \contentsline {chapter}{\numberline {6}Rezultati}{22}
 \contentsline {section}{\numberline {6.1}Middlebury}{22}
-\contentsline {section}{\numberline {6.2}KITTI}{26}
-\contentsline {chapter}{\numberline {7}Zaklju\IeC {\v c}ak}{30}
-\contentsline {chapter}{Literatura}{31}
+\contentsline {section}{\numberline {6.2}KITTI}{27}
+\contentsline {chapter}{\numberline {7}Zaklju\IeC {\v c}ak}{31}
+\contentsline {chapter}{Literatura}{32}
